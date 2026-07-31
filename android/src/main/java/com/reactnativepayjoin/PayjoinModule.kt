@@ -5,9 +5,9 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.module.annotations.ReactModule
 import com.facebook.react.turbomodule.core.interfaces.CallInvokerHolder
 
-@ReactModule(name = PayjoinSdkModule.NAME)
-class PayjoinSdkModule(reactContext: ReactApplicationContext) :
-  NativePayjoinSdkSpec(reactContext) {
+@ReactModule(name = PayjoinModule.NAME)
+class PayjoinModule(reactContext: ReactApplicationContext) :
+  NativePayjoinSpec(reactContext) {
 
   override fun getName(): String {
     return NAME
@@ -34,7 +34,7 @@ class PayjoinSdkModule(reactContext: ReactApplicationContext) :
   }
 
   companion object {
-    const val NAME = "PayjoinSdk"
+    const val NAME = "Payjoin"
 
     init {
       System.loadLibrary("react-native-payjoin")

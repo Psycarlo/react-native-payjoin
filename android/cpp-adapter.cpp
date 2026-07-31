@@ -7,18 +7,18 @@
 namespace jsi = facebook::jsi;
 namespace react = facebook::react;
 
-// Automated testing checks Java_com_reactnativepayjoin_PayjoinSdkModule and payjoinsdk
+// Automated testing checks Java_com_reactnativepayjoin_PayjoinModule and payjoin
 // by comparing the whole line here.
 /*
-Java_com_reactnativepayjoin_PayjoinSdkModule_nativeMultiply(JNIEnv *env, jclass type, jdouble a, jdouble b) {
-    return payjoinsdk::multiply(a, b);
+Java_com_reactnativepayjoin_PayjoinModule_nativeMultiply(JNIEnv *env, jclass type, jdouble a, jdouble b) {
+    return payjoin::multiply(a, b);
 }
 */
 
-// Installer coming from PayjoinSdkModule
+// Installer coming from PayjoinModule
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_reactnativepayjoin_PayjoinSdkModule_nativeInstallRustCrate(
+Java_com_reactnativepayjoin_PayjoinModule_nativeInstallRustCrate(
     JNIEnv *env,
     jclass type,
     jlong rtPtr,
@@ -32,12 +32,12 @@ Java_com_reactnativepayjoin_PayjoinSdkModule_nativeInstallRustCrate(
     auto jsCallInvoker = holderCxx->getCallInvoker();
     auto runtime = reinterpret_cast<jsi::Runtime *>(rtPtr);
 
-    return payjoinsdk::installRustCrate(*runtime, jsCallInvoker);
+    return payjoin::installRustCrate(*runtime, jsCallInvoker);
 }
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_reactnativepayjoin_PayjoinSdkModule_nativeCleanupRustCrate(JNIEnv *env, jclass type, jlong rtPtr) {
+Java_com_reactnativepayjoin_PayjoinModule_nativeCleanupRustCrate(JNIEnv *env, jclass type, jlong rtPtr) {
     auto runtime = reinterpret_cast<jsi::Runtime *>(rtPtr);
-    return payjoinsdk::cleanupRustCrate(*runtime);
+    return payjoin::cleanupRustCrate(*runtime);
 }

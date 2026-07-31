@@ -8,10 +8,10 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import java.util.HashMap
 
-class PayjoinSdkPackage : TurboReactPackage() {
+class PayjoinPackage : TurboReactPackage() {
   override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
-    return if (name == PayjoinSdkModule.NAME) {
-      PayjoinSdkModule(reactContext)
+    return if (name == PayjoinModule.NAME) {
+      PayjoinModule(reactContext)
     } else {
       null
     }
@@ -20,9 +20,9 @@ class PayjoinSdkPackage : TurboReactPackage() {
   override fun getReactModuleInfoProvider(): ReactModuleInfoProvider {
     return ReactModuleInfoProvider {
       val moduleInfos: MutableMap<String, ReactModuleInfo> = HashMap()
-      moduleInfos[PayjoinSdkModule.NAME] = ReactModuleInfo(
-        PayjoinSdkModule.NAME,
-        PayjoinSdkModule.NAME,
+      moduleInfos[PayjoinModule.NAME] = ReactModuleInfo(
+        PayjoinModule.NAME,
+        PayjoinModule.NAME,
         false,  // canOverrideExistingModule
         false,  // needsEagerInit
         false,  // isCxxModule

@@ -6,11 +6,11 @@
 #ifdef RCT_NEW_ARCH_ENABLED
 #import "RNPayjoinReactNativeSpec.h"
 
-@interface PayjoinSdk : NSObject <NativePayjoinSdkSpec>
+@interface Payjoin : NSObject <NativePayjoinSpec>
 #else
 #import <React/RCTBridgeModule.h>
 
-@interface PayjoinSdk : NSObject <RCTBridgeModule>
+@interface Payjoin : NSObject <RCTBridgeModule>
 #endif
 
 @end

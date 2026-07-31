@@ -53,6 +53,15 @@ expo-example/android/build/
 android/build/
 ios/build/
 
+# JS build output (`pnpm prepare`). Still shipped to npm via package.json
+# "files" — the release workflow rebuilds it before publishing — so there is no
+# reason to carry ~2MB of compiled output and source maps in git.
+lib/
+
+# Expo config plugin build output (`pnpm plugin:build`).
+plugin/build/
+plugin/tsconfig.tsbuildinfo
+
 # Uniffi Codegen
 android/src/main/jniLibs/
 build/RnPayjoin.xcframework

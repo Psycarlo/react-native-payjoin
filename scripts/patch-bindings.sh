@@ -39,22 +39,22 @@ fi
 #    NOTE: the payjoin API surface is checked for each of these on every
 #    regeneration; the loop is a no-op when a keyword does not appear.
 # ----------------------------------------------------------------------------
-CPP_FFI="$PROJECT_DIR/cpp/generated/payjoin_ffi.cpp"
+CPP_FFI="$PROJECT_DIR/cpp/generated/payjoin.cpp"
 if [ -f "$CPP_FFI" ]; then
   patched=0
   for kw in template class new delete operator register public private protected this; do
     if grep -q "RustBuffer $kw," "$CPP_FFI"; then
-      echo "  Patching payjoin_ffi.cpp (C++ reserved keyword '$kw')..."
+      echo "  Patching payjoin.cpp (C++ reserved keyword '$kw')..."
       sed -i.bak "s/RustBuffer $kw,/RustBuffer ${kw}_,/g" "$CPP_FFI"
       rm -f "$CPP_FFI.bak"
       patched=1
     fi
   done
   if [ "$patched" = "0" ]; then
-    echo "  payjoin_ffi.cpp needs no keyword patches, skipping"
+    echo "  payjoin.cpp needs no keyword patches, skipping"
   fi
 else
-  echo "  payjoin_ffi.cpp not found, skipping"
+  echo "  payjoin.cpp not found, skipping"
 fi
 
 # ----------------------------------------------------------------------------
@@ -64,12 +64,27 @@ INDEX_TSX="$PROJECT_DIR/src/index.tsx"
 if [ -f "$INDEX_TSX" ]; then
   if ! grep -q "from './wrapper'" "$INDEX_TSX"; then
     echo "  Patching index.tsx (adding wrapper export)..."
-    sed -i.bak "/export \* from '\.\/generated\/payjoin_ffi';/a\\
-\\
-// Export the ergonomic wrappers (lives outside generated/ so codegen won't overwrite).\\
-export * from './wrapper';" "$INDEX_TSX"
-    rm -f "$INDEX_TSX.bak"
-    echo "  index.tsx patched"
+    # Insert after the generated re-export. awk rather than `sed a\`, whose
+    # line-continuation form is brittle across sed implementations and fails
+    # silently — leaving the wrapper unexported while still reporting success.
+    awk '
+      { print }
+      !done && /^export \* from ".\/generated\/payjoin";$/ ||
+      !done && /^export \* from '"'"'\.\/generated\/payjoin'"'"';$/ {
+        print ""
+        print "// Export the ergonomic wrappers (lives outside generated/ so codegen won'"'"'t overwrite)."
+        print "export * from '"'"'./wrapper'"'"';"
+        done = 1
+      }
+    ' "$INDEX_TSX" > "$INDEX_TSX.tmp" && mv "$INDEX_TSX.tmp" "$INDEX_TSX"
+
+    # Verify, rather than trusting the edit landed.
+    if grep -q "from './wrapper'" "$INDEX_TSX"; then
+      echo "  index.tsx patched"
+    else
+      echo "::error::Failed to add wrapper export to index.tsx" >&2
+      exit 1
+    fi
   else
     echo "  index.tsx already has wrapper export, skipping"
   fi
