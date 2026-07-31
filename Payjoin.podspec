@@ -15,10 +15,6 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => "https://github.com/Psycarlo/react-native-payjoin.git", :tag => "#{s.version}" }
 
-  # NOTE: non-recursive `ios/*` and headers-only `ios/generated/**/*.{h}` are
-  # deliberate. Recursive globs pull the codegen'd .mm files in twice and fail
-  # with duplicate symbols on RN 0.82+. scripts/patch-bindings.sh re-applies
-  # this if the ubrn codegen overwrites the podspec.
   s.source_files = "ios/*.{h,m,mm,swift}", "ios/generated/**/*.{h}", "cpp/**/*.{hpp,cpp,c,h}", "cpp/generated/**/*.{hpp,cpp,c,h}"
   s.vendored_frameworks = "build/RnPayjoin.xcframework"
   s.dependency    "uniffi-bindgen-react-native", "0.31.0-3"
