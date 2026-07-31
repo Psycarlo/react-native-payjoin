@@ -10,6 +10,7 @@ license = "MIT"
 [lib]
 name = "payjoin_ffi"
 crate-type = ["cdylib", "staticlib", "lib"]
+doctest = false
 
 [dependencies]
 # Upstream uniffi wrapper around the payjoin crate. This is the entire
