@@ -42,6 +42,17 @@ uniffi = { version = "=0.31.2", features = ["tokio"] }
 tokio = { version = "1", features = ["rt-multi-thread"] }
 thiserror = "2"
 
+# Size over speed: this cdylib ships inside a mobile app, once per ABI, and
+# payjoin does no hot-loop crypto — the win from fat LTO + opt-level "z" is
+# several MB per ABI. `panic` stays "unwind" (the default): uniffi scaffolding
+# catches Rust panics at the FFI boundary, and "abort" would turn them into
+# process crashes.
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "z"
+strip = "debuginfo"
+
 # payjoin-ffi depends on `payjoin` by version from crates.io. Redirect that to
 # the git rev above so the wrapper and the core it was written against resolve
 # to a single crate instance — mirroring the monorepo's own [patch.crates-io].

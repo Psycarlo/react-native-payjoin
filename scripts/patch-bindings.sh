@@ -26,6 +26,15 @@ if [ -n "$PODSPEC" ]; then
   else
     echo "  $(basename "$PODSPEC") already patched, skipping"
   fi
+
+  # Release tags are v-prefixed (v0.1.0), but the generated podspec points
+  # :tag at the bare version. Harmless for the vendored framework, wrong for
+  # anyone resolving the pod from source.
+  if grep -q ':tag => "#{s.version}"' "$PODSPEC"; then
+    echo "  Patching $(basename "$PODSPEC") (v-prefixed source tag)..."
+    sed -i.bak 's|:tag => "#{s.version}"|:tag => "v#{s.version}"|' "$PODSPEC"
+    rm -f "$PODSPEC.bak"
+  fi
 else
   echo "  No podspec found, skipping"
 fi
