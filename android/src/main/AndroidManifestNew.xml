@@ -1,0 +1,5 @@
+<!-- Used when the Android Gradle Plugin supports the `namespace` DSL (AGP 7.3+).
+     In that mode the package name comes from `android.namespace` in
+     build.gradle, and declaring `package` here is an error. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+</manifest>

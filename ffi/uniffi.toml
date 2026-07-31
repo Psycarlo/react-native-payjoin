@@ -1,0 +1,7 @@
+# Verified against the built cdylib: all exported symbols carry the
+# `uniffi_payjoin_ffi_*` prefix, i.e. a single `payjoin_ffi` namespace holding
+# both the re-exported upstream API and our own `fetch_ohttp_keys`. Generated
+# bindings are therefore named `payjoin_ffi.{ts,cpp,hpp}`.
+[package]
+name = "payjoin_ffi"
+namespace = "payjoin_ffi"

@@ -1,0 +1,237 @@
+# Unified release pipeline
+# When a release branch is merged to main:
+# 1. Detects version from package.json
+# 2. Builds Android and iOS artifacts in parallel
+# 3. Creates git tag and GitHub Release with artifacts
+# 4. Publishes to npm with checksums injected
+#
+# Triggered by: Push to main branch (release merge)
+# Looks for: Commit messages matching "release/v"
+
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect-release:
+    if: contains(github.event.head_commit.message, 'release/v')
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.detect.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect version from package.json
+        id: detect
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [ -z "$VERSION" ]; then
+            echo "::error::Could not read version from package.json"
+            exit 1
+          fi
+          echo "Release detected: v$VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+  build-android:
+    needs: detect-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: >-
+            aarch64-linux-android,
+            armv7-linux-androideabi,
+            x86_64-linux-android,
+            i686-linux-android
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install cargo-ndk
+        run: cargo install cargo-ndk
+
+      - name: Build Android
+        run: pnpm ubrn:android
+
+      - name: Patch bindings
+        run: bash scripts/patch-bindings.sh
+
+      - name: Create android-artifacts.zip
+        run: |
+          zip -r android-artifacts.zip \
+            android/src/main/jniLibs \
+            cpp/generated \
+            src/generated
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-artifacts
+          path: android-artifacts.zip
+
+  build-ios:
+    needs: detect-release
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          target: >-
+            aarch64-apple-ios,
+            aarch64-apple-ios-sim,
+            x86_64-apple-ios
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build iOS
+        run: pnpm ubrn:ios
+
+      - name: Patch bindings
+        run: bash scripts/patch-bindings.sh
+
+      - name: Create ios-artifacts.zip
+        run: |
+          zip -r ios-artifacts.zip \
+            build/RnPayjoin.xcframework \
+            cpp/generated \
+            src/generated
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-artifacts
+          path: ios-artifacts.zip
+
+  release:
+    needs: [detect-release, build-android, build-ios]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Generate checksums
+        run: |
+          echo "ANDROID_CHECKSUM=$(sha256sum artifacts/android-artifacts/android-artifacts.zip | cut -d' ' -f1)" >> $GITHUB_ENV
+          echo "IOS_CHECKSUM=$(sha256sum artifacts/ios-artifacts/ios-artifacts.zip | cut -d' ' -f1)" >> $GITHUB_ENV
+
+      - name: Create tag
+        run: |
+          TAG="v${{ needs.detect-release.outputs.version }}"
+          # Idempotent: skip if the tag already points at this commit (rerun-safe)
+          if git ls-remote --exit-code --tags origin "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists on remote, skipping"
+          else
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: "v${{ needs.detect-release.outputs.version }}"
+        run: |
+          BODY=$(printf '## Checksums (SHA-256)\n- **android-artifacts.zip**: `%s`\n- **ios-artifacts.zip**: `%s`\n' \
+            "$ANDROID_CHECKSUM" "$IOS_CHECKSUM")
+
+          # Rerun-safe: if a release already exists, just (re)upload assets
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG exists, uploading assets"
+            gh release upload "$TAG" \
+              artifacts/android-artifacts/android-artifacts.zip \
+              artifacts/ios-artifacts/ios-artifacts.zip --clobber
+            exit 0
+          fi
+
+          # Retry to ride out transient GitHub API 5xx errors
+          for attempt in 1 2 3 4 5; do
+            if gh release create "$TAG" \
+                artifacts/android-artifacts/android-artifacts.zip \
+                artifacts/ios-artifacts/ios-artifacts.zip \
+                --generate-notes \
+                --notes "$BODY"; then
+              exit 0
+            fi
+            echo "Release creation failed (attempt $attempt), retrying in $((attempt * 10))s..."
+            sleep $((attempt * 10))
+          done
+          echo "::error::Failed to create GitHub release after retries"
+          exit 1
+
+  publish-npm:
+    needs: [detect-release, release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build JS
+        run: pnpm prepare
+
+      - name: Build Expo plugin
+        run: pnpm plugin:build
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Inject checksums and prepare for publish
+        run: |
+          ANDROID_CHECKSUM=$(sha256sum artifacts/android-artifacts/android-artifacts.zip | cut -d' ' -f1)
+          IOS_CHECKSUM=$(sha256sum artifacts/ios-artifacts/ios-artifacts.zip | cut -d' ' -f1)
+
+          # Inject checksums, remove build scripts
+          jq \
+            --arg ac "$ANDROID_CHECKSUM" \
+            --arg ic "$IOS_CHECKSUM" \
+            '.checksums = {android: $ac, ios: $ic} | del(.scripts.prepare)' \
+            package.json > package.json.tmp
+          mv package.json.tmp package.json
+
+          # Remove native binaries (downloaded by postinstall instead)
+          rm -rf android/src/main/jniLibs
+          rm -rf build
+
+      - name: Publish to npm
+        run: npm publish --access public --ignore-scripts

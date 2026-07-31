@@ -1,0 +1,68 @@
+# Rust
+target
+
+# Node
+node_modules
+
+# Claude
+.claude/settings.local.json
+
+# OSX
+.DS_Store
+
+# VSCode
+.vscode/
+jsconfig.json
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+**/.xcode.env.local
+
+# Cocoapods
+example/ios/Pods
+example-expo/ios/Pods
+
+# Android/IJ
+.classpath
+.cxx
+.gradle
+.idea
+.project
+.settings
+local.properties
+android.iml
+
+# Builds
+expo-example/ios/build/
+expo-example/android/build/
+android/build/
+ios/build/
+
+# Uniffi Codegen
+android/src/main/jniLibs/
+build/RnPayjoin.xcframework
+rust_modules/
+
+# BUCK
+buck-out/
+\.buckd/
+android/app/libs
+android/keystores/debug.keystore
+
+# Expo
+.expo/
