@@ -2,6 +2,43 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.1] - 2026-07-31
+
+Patch release: one protocol-check fix, packaging fixes, smaller binaries,
+and a test suite. No API changes. Built against the same upstream as 0.1.0
+(`payjoin 1.0.0-rc.6` / `payjoin-ffi 0.24.0` at rev `c23380a`).
+
+### Fixed
+
+- `payjoinReceive` passed `feeRange.minSatPerVb` to the broadcast-suitability
+  check unconverted, but that check takes sat/kwu — the minimum fee-rate floor
+  on the sender's fallback transaction was 250× more lenient than configured.
+  The value is now converted (sat/vB × 250). `runReceiverChecks` itself is
+  unchanged: it always took sat/kwu, as documented.
+- Android: added `android/gradle.properties` with `Payjoin_*` defaults
+  (kotlin, min/target/compileSdk, NDK) so builds no longer NPE when the host
+  app doesn't define these in `rootProject.ext`, and fixed a leftover
+  `DummyLibForAndroid_kotlinVersion` template reference in `build.gradle`.
+- Podspec `:tag` now matches the v-prefixed release tags (`v0.1.1`), enforced
+  by `patch-bindings.sh` across regenerations.
+
+### Changed
+
+- Native release builds now use fat LTO, `opt-level = "z"`, a single codegen
+  unit, and stripped debuginfo — several MB smaller per ABI. Panics still
+  unwind, so uniffi keeps catching them at the FFI boundary.
+
+### Added
+
+- Jest test suite for the wrapper (15 tests): typestate chaining and persist
+  points, polling through Stasis, timeout/abort behavior, fee-contribution
+  mapping, the receiver check order, and the sat/vB↔sat/kwu conversion.
+- Rust tests for the OHTTP key-fetch shim (invalid-URL error path, error
+  Display format).
+- CI: runs on pushes to main as well as PRs; adds `cargo fmt --check`,
+  `cargo clippy -D warnings`, `cargo audit`, and the JS test suite. All
+  GitHub Actions are pinned to commit SHAs.
+
 ## [0.1.0] - 2026-07-31
 
 Initial alpha release. React Native bindings for the Payjoin Dev Kit

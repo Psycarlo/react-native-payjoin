@@ -4,5 +4,5 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "exclude": ["expo-example", "lib", "node_modules"]
+  "exclude": ["expo-example", "lib", "node_modules", "src/__tests__"]
 }

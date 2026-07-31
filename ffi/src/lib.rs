@@ -62,10 +62,38 @@ pub async fn fetch_ohttp_keys(
             payjoin::io::fetch_ohttp_keys(ohttp_relay, payjoin_directory)
                 .await
                 .map(|keys| std::sync::Arc::new(OhttpKeys::from(keys)))
-                .map_err(|e| OhttpKeysFetchError::Fetch { message: e.to_string() })
+                .map_err(|e| OhttpKeysFetchError::Fetch {
+                    message: e.to_string(),
+                })
         })
         .await
         .map_err(|e| OhttpKeysFetchError::Fetch {
             message: format!("OHTTP key fetch task panicked: {e}"),
         })?
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// A malformed relay URL must surface as a catchable `Fetch` error, not a
+    /// panic — this also exercises the runtime spawn path without any network.
+    #[test]
+    fn fetch_ohttp_keys_rejects_invalid_urls() {
+        let result = RUNTIME.block_on(fetch_ohttp_keys(
+            "not a url".to_string(),
+            "also not a url".to_string(),
+        ));
+        assert!(matches!(result, Err(OhttpKeysFetchError::Fetch { .. })));
+    }
+
+    /// The message must survive into the Display output, since that string is
+    /// all the JS side ever sees of the underlying error.
+    #[test]
+    fn fetch_error_display_includes_message() {
+        let err = OhttpKeysFetchError::Fetch {
+            message: "boom".to_string(),
+        };
+        assert_eq!(err.to_string(), "Failed to fetch OHTTP keys: boom");
+    }
 }

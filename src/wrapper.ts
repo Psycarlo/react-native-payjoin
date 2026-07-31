@@ -474,9 +474,14 @@ export async function payjoinReceive(
     await sleep(intervalMs, signal);
   }
 
-  // Run the mandatory protocol checks in order.
+  // Run the mandatory protocol checks in order. `checkBroadcastSuitability`
+  // takes sat/kwu while our options use sat/vB (1 vB = 4 WU, 1 kwu = 1000 WU,
+  // so sat/kwu = sat/vB ÷ 4 × 1000 = sat/vB × 250).
   const wantsOutputs = runReceiverChecks(unchecked, persister, callbacks, {
-    minFeeRateSatPerKwu: options.feeRange?.minSatPerVb,
+    minFeeRateSatPerKwu:
+      options.feeRange?.minSatPerVb === undefined
+        ? undefined
+        : options.feeRange.minSatPerVb * 250,
   });
 
   // Optionally contribute inputs / rewrite outputs, then commit both stages.
