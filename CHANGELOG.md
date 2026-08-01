@@ -2,6 +2,31 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.0] - 2026-08-01
+
+Minor release: adds fully offline (out-of-band) BIP78 receiver support. Built
+against the same upstream as 0.1.x (`payjoin 1.0.0-rc.6` / `payjoin-ffi 0.24.0`
+at rev `c23380a`). No breaking changes.
+
+### Added
+
+- `receiverManualContribute` / `receiverManualFinalize` — run a BIP78 receive
+  entirely out of band, with no directory, relay, or OHTTP involvement. The
+  sender's Original PSBT is imported directly (QR, file, airgap), the receiver
+  checks run against caller-supplied ownership data, one input is contributed,
+  and the proposal PSBT is handed back the same way. Split into two calls so the
+  signing wallet sits between them; the intermediate state is serializable, so
+  the flow survives the signing step.
+
+  Previously unreachable: `UncheckedOriginalPayload` is only exposed inside a v2
+  session, so an airgapped receiver had no entry point.
+
+- `mergeFinalizedProposalInputs` — copies the receiver's finalized inputs onto a
+  cleared proposal PSBT. Needed by any receiver finalize callback, including the
+  BIP77 (v2) path, where the callback runs in the host language. Returning the
+  wallet-signed PSBT wholesale there reintroduces the sender's finals and yields
+  an invalid proposal.
+
 ## [0.1.1] - 2026-07-31
 
 Patch release: one protocol-check fix, packaging fixes, smaller binaries,

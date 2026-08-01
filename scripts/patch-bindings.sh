@@ -40,6 +40,28 @@ else
 fi
 
 # ----------------------------------------------------------------------------
+#    Fix kotlinVersion property lookup in generated android/build.gradle.
+#    The ubrn template hardcodes its test-fixture name in the buildscript
+#    block ("DummyLibForAndroid_kotlinVersion") instead of the {{ name }}
+#    placeholder, so the fallback lookup misses Payjoin_kotlinVersion from
+#    gradle.properties and resolves to null in apps that don't set
+#    rootProject.ext.kotlinVersion.
+# ----------------------------------------------------------------------------
+BUILD_GRADLE="$PROJECT_DIR/android/build.gradle"
+if [ -f "$BUILD_GRADLE" ]; then
+  if grep -q 'DummyLibForAndroid_kotlinVersion' "$BUILD_GRADLE"; then
+    echo "  Patching build.gradle (DummyLibForAndroid_kotlinVersion)..."
+    sed -i.bak 's/DummyLibForAndroid_kotlinVersion/Payjoin_kotlinVersion/g' "$BUILD_GRADLE"
+    rm -f "$BUILD_GRADLE.bak"
+    echo "  build.gradle patched"
+  else
+    echo "  build.gradle already patched, skipping"
+  fi
+else
+  echo "  build.gradle not found, skipping"
+fi
+
+# ----------------------------------------------------------------------------
 #    Fix C++ reserved keywords used as parameter names in generated FFI code.
 #    Some words are valid Rust identifiers but reserved in C++, so the uniffi
 #    codegen emits them verbatim into extern "C" declarations and the C++

@@ -37,6 +37,17 @@ payjoin = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "c23380a4
 # Must match the uniffi version used by payjoin-ffi 0.24.0.
 uniffi = { version = "=0.31.2", features = ["tokio"] }
 
+# The offline (out-of-band) receiver primitives in `manual.rs` build PSBTs and
+# input pairs directly, so they need the same `bitcoin` types the pinned
+# `payjoin` core exposes — a different major here would be a distinct crate
+# instance and the types would not unify.
+bitcoin = { version = "0.32.9", features = ["base64", "serde"] }
+
+# `ProvisionalProposal` is Serialize/Deserialize, which is what makes the
+# two-step offline flow resumable across the signing step.
+base64 = "0.22"
+serde_json = "1"
+
 # fetch_ohttp_keys is async over reqwest; uniffi polls Rust futures without
 # entering a Tokio context, so we own a runtime to spawn onto.
 tokio = { version = "1", features = ["rt-multi-thread"] }

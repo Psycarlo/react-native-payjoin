@@ -436,6 +436,9 @@ class NativePayjoin : public jsi::HostObject {
     jsi::Value cpp_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_debug(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_display(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log_async(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_fn_func_replay_sender_event_log(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
@@ -489,6 +492,9 @@ class NativePayjoin : public jsi::HostObject {
     jsi::Value cpp_ffi_payjoin_ffi_rust_future_free_void(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_ffi_payjoin_ffi_rust_future_complete_void(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
+    jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log_async(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);
     jsi::Value cpp_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count);

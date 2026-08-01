@@ -2011,6 +2011,26 @@ extern "C" {
         RustBuffer ohttp_relay, 
         RustBuffer payjoin_directory
     );
+    RustBuffer uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(
+        RustBuffer cleared_psbt_base64, 
+        RustBuffer signed_psbt_base64, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(
+        RustBuffer original_psbt_base64, 
+        RustBuffer receive_address, 
+        int8_t disable_output_substitution, 
+        RustBuffer input, 
+        RustBuffer owned_scripts_hex, 
+        RustBuffer owned_outpoints, 
+        RustBuffer seen_outpoints, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(
+        RustBuffer provisional_state, 
+        RustBuffer signed_psbt_base64, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(
         /*handle*/ uint64_t persister, 
         RustCallStatus *uniffi_out_err
@@ -2223,6 +2243,12 @@ extern "C" {
         RustCallStatus *uniffi_out_err
     );
     uint16_t uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(
     );
     uint16_t uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log(
     );
@@ -12588,6 +12614,30 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute"),
+        7,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log"),
@@ -13010,6 +13060,30 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log"] = jsi::Function::createFromHostFunction(
@@ -20237,6 +20311,36 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(jsi::R
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), uniffi_jsi::Bridging<int8_t>::fromJs(rt, callInvoker, args[2]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[3]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[4]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[5]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[6]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -20645,6 +20749,27 @@ jsi::Value NativePayjoin::cpp_ffi_payjoin_ffi_rust_future_complete_void(jsi::Run
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(
         );
 
         
