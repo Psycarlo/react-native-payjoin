@@ -39,11 +39,15 @@ pub enum ManualReceiveError {
 
 impl ManualReceiveError {
     fn invalid(error: impl std::fmt::Display) -> Self {
-        Self::Invalid { message: error.to_string() }
+        Self::Invalid {
+            message: error.to_string(),
+        }
     }
 
     fn check(error: impl std::fmt::Display) -> Self {
-        Self::Check { message: error.to_string() }
+        Self::Check {
+            message: error.to_string(),
+        }
     }
 }
 
@@ -99,9 +103,7 @@ fn encode_provisional_state(
     Ok(base64::engine::general_purpose::STANDARD.encode(json.as_bytes()))
 }
 
-fn decode_provisional_state(
-    state: &str,
-) -> Result<v1::ProvisionalProposal, ManualReceiveError> {
+fn decode_provisional_state(state: &str) -> Result<v1::ProvisionalProposal, ManualReceiveError> {
     let bytes = base64::engine::general_purpose::STANDARD
         .decode(state.as_bytes())
         .map_err(ManualReceiveError::invalid)?;
@@ -112,15 +114,20 @@ fn input_pair(input: &ManualReceiverInput) -> Result<InputPair, ManualReceiveErr
     let txid = Txid::from_str(&input.txid).map_err(ManualReceiveError::invalid)?;
     let script_pubkey =
         ScriptBuf::from_hex(&input.script_hex).map_err(ManualReceiveError::invalid)?;
-    let txout = TxOut { value: Amount::from_sat(input.value), script_pubkey };
-    let outpoint = OutPoint { txid, vout: input.vout };
+    let txout = TxOut {
+        value: Amount::from_sat(input.value),
+        script_pubkey,
+    };
+    let outpoint = OutPoint {
+        txid,
+        vout: input.vout,
+    };
 
     if txout.script_pubkey.is_p2wpkh() {
         return InputPair::new_p2wpkh(txout, outpoint).map_err(ManualReceiveError::invalid);
     }
     if txout.script_pubkey.is_p2tr() {
-        return InputPair::new_p2tr_keyspend(txout, outpoint)
-            .map_err(ManualReceiveError::invalid);
+        return InputPair::new_p2tr_keyspend(txout, outpoint).map_err(ManualReceiveError::invalid);
     }
     Err(ManualReceiveError::Invalid {
         message: "contributed input must be p2wpkh or p2tr".to_string(),
@@ -154,7 +161,9 @@ pub fn receiver_manual_contribute(
 ) -> Result<ManualContributeResult, ManualReceiveError> {
     let body_string = original_psbt_base64.trim().to_string();
     let body = body_string.as_bytes();
-    let headers = ManualHeaders { content_length: body.len().to_string() };
+    let headers = ManualHeaders {
+        content_length: body.len().to_string(),
+    };
     let query = if disable_output_substitution {
         "v=1&disableoutputsubstitution=true"
     } else {
@@ -229,14 +238,15 @@ pub fn receiver_manual_finalize(
     signed_psbt_base64: String,
 ) -> Result<ManualFinalizeResult, ManualReceiveError> {
     let provisional = decode_provisional_state(&provisional_state)?;
-    let signed_psbt =
-        Psbt::from_str(&signed_psbt_base64).map_err(ManualReceiveError::invalid)?;
+    let signed_psbt = Psbt::from_str(&signed_psbt_base64).map_err(ManualReceiveError::invalid)?;
 
     let proposal = provisional
         .finalize_proposal(|cleared| Ok(merge_finalized_inputs(cleared, &signed_psbt)))
         .map_err(ManualReceiveError::check)?;
 
-    Ok(ManualFinalizeResult { proposal_psbt_base64: proposal.psbt().to_string() })
+    Ok(ManualFinalizeResult {
+        proposal_psbt_base64: proposal.psbt().to_string(),
+    })
 }
 
 /// Applies the receiver's finalized inputs onto a cleared proposal PSBT.
@@ -254,10 +264,8 @@ pub fn merge_finalized_proposal_inputs(
     cleared_psbt_base64: String,
     signed_psbt_base64: String,
 ) -> Result<String, ManualReceiveError> {
-    let cleared =
-        Psbt::from_str(&cleared_psbt_base64).map_err(ManualReceiveError::invalid)?;
-    let signed =
-        Psbt::from_str(&signed_psbt_base64).map_err(ManualReceiveError::invalid)?;
+    let cleared = Psbt::from_str(&cleared_psbt_base64).map_err(ManualReceiveError::invalid)?;
+    let signed = Psbt::from_str(&signed_psbt_base64).map_err(ManualReceiveError::invalid)?;
     Ok(merge_finalized_inputs(&cleared, &signed).to_string())
 }
 
@@ -366,7 +374,10 @@ mod tests {
 
         let merged = merge_finalized_inputs(&cleared, &signed);
 
-        assert!(merged.inputs.iter().all(|i| i.final_script_witness.is_none()));
+        assert!(merged
+            .inputs
+            .iter()
+            .all(|i| i.final_script_witness.is_none()));
     }
 
     #[test]
@@ -378,7 +389,10 @@ mod tests {
 
         let merged = merge_finalized_inputs(&cleared, &signed);
 
-        assert_eq!(merged.inputs[0].final_script_witness, Some(dummy_witness(0xdd)));
+        assert_eq!(
+            merged.inputs[0].final_script_witness,
+            Some(dummy_witness(0xdd))
+        );
         assert!(merged.inputs[1].final_script_witness.is_none());
     }
 
