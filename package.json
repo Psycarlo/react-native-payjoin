@@ -1,6 +1,6 @@
 {
   "name": "react-native-payjoin",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "React Native language bindings for the Payjoin Dev Kit",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",

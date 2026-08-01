@@ -20,6 +20,13 @@
 // Re-export the whole upstream API surface.
 pub use payjoin_ffi::*;
 
+mod manual;
+
+pub use manual::{
+    merge_finalized_proposal_inputs, receiver_manual_contribute, receiver_manual_finalize,
+    ManualContributeResult, ManualFinalizeResult, ManualReceiveError, ManualReceiverInput,
+};
+
 use std::sync::LazyLock;
 
 /// Global Tokio runtime for async methods.

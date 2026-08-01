@@ -60,6 +60,103 @@ export async function fetchOhttpKeys(ohttpRelay: string, payjoinDirectory: strin
     }
     }
 
+/**
+ * Applies the receiver's finalized inputs onto a cleared proposal PSBT.
+ *
+ * Exposed because every receiver finalize callback needs it, including the
+ * BIP77 (v2) `finalize_proposal` path, where the callback runs in the host
+ * language. PDK hands that callback a PSBT with the sender's finals stripped, so
+ * returning the wallet-signed PSBT wholesale would reintroduce the sender's
+ * finals and yield an invalid proposal. Copying per-input is the correct merge.
+ *
+ * * `cleared_psbt_base64` — the PSBT handed to the finalize callback.
+ * * `signed_psbt_base64` — the same PSBT after the receiver's wallet signed it.
+ */
+export function mergeFinalizedProposalInputs(clearedPsbtBase64: string, signedPsbtBase64: string): string /*throws*/ {
+    return ((__rb: Uint8Array) => {
+        try {
+            return FfiConverterString.lift(__rb);
+        } finally {
+            nativeModule().rustbuffer_free(__rb);
+        }
+    })(uniffiCaller.rustCallWithError(
+            /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(FfiConverterTypeManualReceiveError),
+            /*caller:*/ (callStatus) => {
+                return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(
+        FfiConverterString.lower(clearedPsbtBase64, nativeModule().rustbuffer_alloc),
+        FfiConverterString.lower(signedPsbtBase64, nativeModule().rustbuffer_alloc),
+                callStatus);
+            },
+            /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
+    ));
+    }
+
+/**
+ * Offline receiver step 1: ingest the sender's Original PSBT, run the receiver
+ * checks, contribute one input, and return the provisional PSBT to sign.
+ *
+ * * `owned_scripts_hex` — the receiver's own scriptPubKeys, used to identify
+ * which outputs belong to the receiver alongside `receive_address`.
+ * * `owned_outpoints` — the receiver's wallet outpoints, formatted `txid:vout`.
+ * Rejecting an Original PSBT that spends these stops a sender from getting the
+ * receiver to spend its own coins.
+ * * `seen_outpoints` — outpoints from previous payjoin sessions, formatted
+ * `txid:vout`. Rejecting these blocks probing attacks that replay inputs to
+ * discover the receiver's UTXO set.
+ *
+ * The broadcast-suitability check is skipped: an interactive receiver imports
+ * the Original PSBT deliberately, so the anti-probing guard that check provides
+ * is unnecessary and it would require a mempool connection this path lacks.
+ */
+export function receiverManualContribute(originalPsbtBase64: string, receiveAddress: string, disableOutputSubstitution: boolean, input: ManualReceiverInput, ownedScriptsHex: Array<string>, ownedOutpoints: Array<string>, seenOutpoints: Array<string>): ManualContributeResult /*throws*/ {
+    return ((__rb: Uint8Array) => {
+        try {
+            return FfiConverterTypeManualContributeResult.lift(__rb);
+        } finally {
+            nativeModule().rustbuffer_free(__rb);
+        }
+    })(uniffiCaller.rustCallWithError(
+            /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(FfiConverterTypeManualReceiveError),
+            /*caller:*/ (callStatus) => {
+                return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(
+        FfiConverterString.lower(originalPsbtBase64, nativeModule().rustbuffer_alloc),
+        FfiConverterString.lower(receiveAddress, nativeModule().rustbuffer_alloc),
+        FfiConverterBool.lower(disableOutputSubstitution, nativeModule().rustbuffer_alloc),
+        FfiConverterTypeManualReceiverInput.lower(input, nativeModule().rustbuffer_alloc),
+        FfiConverterSequenceString.lower(ownedScriptsHex, nativeModule().rustbuffer_alloc),
+        FfiConverterSequenceString.lower(ownedOutpoints, nativeModule().rustbuffer_alloc),
+        FfiConverterSequenceString.lower(seenOutpoints, nativeModule().rustbuffer_alloc),
+                callStatus);
+            },
+            /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
+    ));
+    }
+
+/**
+ * Offline receiver step 2: finalize the proposal from the state returned by
+ * [`receiver_manual_contribute`] and the receiver-signed provisional PSBT.
+ *
+ * Returns the proposal PSBT to hand back to the sender out of band.
+ */
+export function receiverManualFinalize(provisionalState: string, signedPsbtBase64: string): ManualFinalizeResult /*throws*/ {
+    return ((__rb: Uint8Array) => {
+        try {
+            return FfiConverterTypeManualFinalizeResult.lift(__rb);
+        } finally {
+            nativeModule().rustbuffer_free(__rb);
+        }
+    })(uniffiCaller.rustCallWithError(
+            /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(FfiConverterTypeManualReceiveError),
+            /*caller:*/ (callStatus) => {
+                return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(
+        FfiConverterString.lower(provisionalState, nativeModule().rustbuffer_alloc),
+        FfiConverterString.lower(signedPsbtBase64, nativeModule().rustbuffer_alloc),
+                callStatus);
+            },
+            /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
+    ));
+    }
+
 export function replayReceiverEventLog(persister: JsonReceiverSessionPersister): ReplayResultLike /*throws*/ {
     return FfiConverterTypeReplayResult.lift(uniffiCaller.rustCallWithError(
             /*liftError:*/ FfiConverterTypeReceiverReplayError__as_error.lift.bind(FfiConverterTypeReceiverReplayError__as_error),
@@ -197,6 +294,169 @@ const stringConverter = (() => {
     };
 })();
 const FfiConverterString = uniffiCreateFfiConverterString(stringConverter);
+
+/**
+ * Result of [`receiver_manual_contribute`].
+ */
+export type ManualContributeResult = {
+    /**
+     * PSBT for the receiver's wallet to sign.
+     */
+    provisionalPsbtBase64: string,
+    /**
+     * Opaque resumable state to pass to [`receiver_manual_finalize`].
+     */
+    provisionalState: string
+}
+
+/**
+ * Generated factory for {@link ManualContributeResult} record objects.
+ */
+export const ManualContributeResult = (() => {
+    const defaults = () => ({
+    });
+    const create = (() => {
+        return uniffiCreateRecord<ManualContributeResult, ReturnType<typeof defaults>>(defaults);
+    })();
+    return Object.freeze({
+        create,
+        new: create,
+        defaults: () => Object.freeze(defaults()) as Partial<ManualContributeResult>,
+    });
+})();
+
+const FfiConverterTypeManualContributeResult = (() => {
+    type TypeName = ManualContributeResult;
+    class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
+        read(from: RustBuffer): TypeName {
+            return {
+                provisionalPsbtBase64: FfiConverterString.read(from), 
+                provisionalState: FfiConverterString.read(from)
+            };
+        }
+        write(value: TypeName, into: RustBuffer): void {
+            FfiConverterString.write(value.provisionalPsbtBase64, into);
+            FfiConverterString.write(value.provisionalState, into);
+        }
+        allocationSize(value: TypeName): number {
+            return FfiConverterString.allocationSize(value.provisionalPsbtBase64) +
+             FfiConverterString.allocationSize(value.provisionalState);
+            
+        }
+    };
+    return new FFIConverter();
+})();
+
+/**
+ * Result of [`receiver_manual_finalize`].
+ */
+export type ManualFinalizeResult = {
+    /**
+     * Proposal PSBT to hand back to the sender out of band.
+     */
+    proposalPsbtBase64: string
+}
+
+/**
+ * Generated factory for {@link ManualFinalizeResult} record objects.
+ */
+export const ManualFinalizeResult = (() => {
+    const defaults = () => ({
+    });
+    const create = (() => {
+        return uniffiCreateRecord<ManualFinalizeResult, ReturnType<typeof defaults>>(defaults);
+    })();
+    return Object.freeze({
+        create,
+        new: create,
+        defaults: () => Object.freeze(defaults()) as Partial<ManualFinalizeResult>,
+    });
+})();
+
+const FfiConverterTypeManualFinalizeResult = (() => {
+    type TypeName = ManualFinalizeResult;
+    class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
+        read(from: RustBuffer): TypeName {
+            return {
+                proposalPsbtBase64: FfiConverterString.read(from)
+            };
+        }
+        write(value: TypeName, into: RustBuffer): void {
+            FfiConverterString.write(value.proposalPsbtBase64, into);
+        }
+        allocationSize(value: TypeName): number {
+            return FfiConverterString.allocationSize(value.proposalPsbtBase64);
+            
+        }
+    };
+    return new FFIConverter();
+})();
+
+/**
+ * A wallet UTXO offered as the receiver's contribution.
+ */
+export type ManualReceiverInput = {
+    /**
+     * Hex-encoded txid (big-endian), as displayed by explorers.
+     */
+    txid: string,
+    /**
+     * Output index.
+     */
+    vout: number,
+    /**
+     * Amount in satoshis.
+     */
+    value: bigint,
+    /**
+     * Hex-encoded scriptPubKey.
+     */
+    scriptHex: string
+}
+
+/**
+ * Generated factory for {@link ManualReceiverInput} record objects.
+ */
+export const ManualReceiverInput = (() => {
+    const defaults = () => ({
+    });
+    const create = (() => {
+        return uniffiCreateRecord<ManualReceiverInput, ReturnType<typeof defaults>>(defaults);
+    })();
+    return Object.freeze({
+        create,
+        new: create,
+        defaults: () => Object.freeze(defaults()) as Partial<ManualReceiverInput>,
+    });
+})();
+
+const FfiConverterTypeManualReceiverInput = (() => {
+    type TypeName = ManualReceiverInput;
+    class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
+        read(from: RustBuffer): TypeName {
+            return {
+                txid: FfiConverterString.read(from), 
+                vout: FfiConverterUInt32.read(from), 
+                value: FfiConverterUInt64.read(from), 
+                scriptHex: FfiConverterString.read(from)
+            };
+        }
+        write(value: TypeName, into: RustBuffer): void {
+            FfiConverterString.write(value.txid, into);
+            FfiConverterUInt32.write(value.vout, into);
+            FfiConverterUInt64.write(value.value, into);
+            FfiConverterString.write(value.scriptHex, into);
+        }
+        allocationSize(value: TypeName): number {
+            return FfiConverterString.allocationSize(value.txid) +
+             FfiConverterUInt32.allocationSize(value.vout) +
+             FfiConverterUInt64.allocationSize(value.value) +
+             FfiConverterString.allocationSize(value.scriptHex);
+            
+        }
+    };
+    return new FFIConverter();
+})();
 
 /**
  * Primitive representation of an outpoint for the FFI boundary.
@@ -10610,6 +10870,171 @@ const FfiConverterTypeInputPairError = (() => {
 })();
 
 
+// Error type: ManualReceiveError
+export enum ManualReceiveError_Tags {
+    Invalid = "Invalid",
+    Check = "Check"
+}
+/**
+ * Errors from the offline receiver primitives.
+ */
+export const ManualReceiveError = (() => {
+
+    type Invalid__interface = {
+        tag: ManualReceiveError_Tags.Invalid;
+        inner: 
+Readonly<{message: string}>
+    };
+    /**
+     * An input, address, script, or PSBT could not be parsed.
+     */
+    class Invalid_ extends UniffiError implements Invalid__interface {
+        /**
+         * @private
+         * This field is private and should not be used, use `tag` instead.
+         */
+        readonly [uniffiTypeNameSymbol] = "ManualReceiveError";
+        readonly tag = ManualReceiveError_Tags.Invalid;
+        readonly inner: 
+Readonly<{message: string}>;
+        constructor(
+inner: {message: string }) {
+            super("ManualReceiveError", "Invalid");
+
+            this.inner = Object.freeze(inner);
+        }
+        static new(
+inner: {message: string }): Invalid_ {
+            return new Invalid_(inner);
+        }
+
+        static instanceOf(obj: any): obj is Invalid_ {
+            return obj.tag === ManualReceiveError_Tags.Invalid;
+        }
+        static hasInner(obj: any): obj is Invalid_ {
+            return Invalid_.instanceOf(obj);
+        }
+
+        static getInner(obj: Invalid_): 
+Readonly<{message: string}> {
+            return obj.inner;
+        }
+
+    }
+
+    type Check__interface = {
+        tag: ManualReceiveError_Tags.Check;
+        inner: 
+Readonly<{message: string}>
+    };
+    /**
+     * A receiver protocol check rejected the sender's Original PSBT.
+     */
+    class Check_ extends UniffiError implements Check__interface {
+        /**
+         * @private
+         * This field is private and should not be used, use `tag` instead.
+         */
+        readonly [uniffiTypeNameSymbol] = "ManualReceiveError";
+        readonly tag = ManualReceiveError_Tags.Check;
+        readonly inner: 
+Readonly<{message: string}>;
+        constructor(
+inner: {message: string }) {
+            super("ManualReceiveError", "Check");
+
+            this.inner = Object.freeze(inner);
+        }
+        static new(
+inner: {message: string }): Check_ {
+            return new Check_(inner);
+        }
+
+        static instanceOf(obj: any): obj is Check_ {
+            return obj.tag === ManualReceiveError_Tags.Check;
+        }
+        static hasInner(obj: any): obj is Check_ {
+            return Check_.instanceOf(obj);
+        }
+
+        static getInner(obj: Check_): 
+Readonly<{message: string}> {
+            return obj.inner;
+        }
+
+    }
+
+    function instanceOf(obj: any): obj is ManualReceiveError {
+        return obj[uniffiTypeNameSymbol] === "ManualReceiveError";
+    }
+
+    return Object.freeze({
+        instanceOf,
+  Invalid: Invalid_, 
+  Check: Check_
+    });
+
+})();
+/**
+ * Errors from the offline receiver primitives.
+ */
+export type ManualReceiveError = InstanceType<
+    typeof ManualReceiveError['Invalid' | 'Check']
+>;
+
+// FfiConverter for enum ManualReceiveError
+const FfiConverterTypeManualReceiveError = (() => {
+    const ordinalConverter = FfiConverterInt32;
+    type TypeName = ManualReceiveError;
+    class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
+        read(from: RustBuffer): TypeName {
+            switch (ordinalConverter.read(from)) {
+                case 1: return new ManualReceiveError.Invalid({message: FfiConverterString.read(from) });
+                case 2: return new ManualReceiveError.Check({message: FfiConverterString.read(from) });
+                default: throw new UniffiInternalError.UnexpectedEnumCase();
+            }
+        }
+        write(value: TypeName, into: RustBuffer): void {
+            switch (value.tag) {
+                case ManualReceiveError_Tags.Invalid: {
+                    ordinalConverter.write(1, into);
+                    const inner = value.inner;
+                    FfiConverterString.write(inner.message, into);
+                    return;
+                }
+                case ManualReceiveError_Tags.Check: {
+                    ordinalConverter.write(2, into);
+                    const inner = value.inner;
+                    FfiConverterString.write(inner.message, into);
+                    return;
+                }
+                default:
+                    // Throwing from here means that ManualReceiveError_Tags hasn't matched an ordinal.
+                    throw new UniffiInternalError.UnexpectedEnumCase();
+            }
+        }
+        allocationSize(value: TypeName): number {
+            switch (value.tag) {
+                case ManualReceiveError_Tags.Invalid: {
+                    const inner = value.inner;
+                    let size = ordinalConverter.allocationSize(1);
+                    size += FfiConverterString.allocationSize(inner.message);
+                    return size;
+                }
+                case ManualReceiveError_Tags.Check: {
+                    const inner = value.inner;
+                    let size = ordinalConverter.allocationSize(2);
+                    size += FfiConverterString.allocationSize(inner.message);
+                    return size;
+                }
+                default: throw new UniffiInternalError.UnexpectedEnumCase();
+            }
+        }
+    }
+    return new FFIConverter();
+})();
+
+
 // Error type: OhttpKeysFetchError
 export enum OhttpKeysFetchError_Tags {
     Fetch = "Fetch"
@@ -19372,6 +19797,15 @@ function uniffiEnsureInitialized() {
     if (nativeModule().ubrn_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys() !== 38113) {
         throw new UniffiInternalError.ApiChecksumMismatch("uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys");
     }
+    if (nativeModule().ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs() !== 47822) {
+        throw new UniffiInternalError.ApiChecksumMismatch("uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs");
+    }
+    if (nativeModule().ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute() !== 1898) {
+        throw new UniffiInternalError.ApiChecksumMismatch("uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute");
+    }
+    if (nativeModule().ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize() !== 39445) {
+        throw new UniffiInternalError.ApiChecksumMismatch("uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize");
+    }
     if (nativeModule().ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log() !== 13704) {
         throw new UniffiInternalError.ApiChecksumMismatch("uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log");
     }
@@ -19941,6 +20375,10 @@ export default Object.freeze({
     FfiConverterTypeJsonReply,
     FfiConverterTypeJsonSenderSessionPersister,
     FfiConverterTypeJsonSenderSessionPersisterAsync,
+    FfiConverterTypeManualContributeResult,
+    FfiConverterTypeManualFinalizeResult,
+    FfiConverterTypeManualReceiveError,
+    FfiConverterTypeManualReceiverInput,
     FfiConverterTypeMaybeInputsOwned,
     FfiConverterTypeMaybeInputsOwnedTransition,
     FfiConverterTypeMaybeInputsSeen,

@@ -260,6 +260,9 @@ interface NativeModuleInterface {
     ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_processpsbt(vtable: UniffiVTableCallbackInterfacePayjoinProcessPsbt): void;
     ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_transactionfinder(vtable: UniffiVTableCallbackInterfacePayjoinTransactionFinder): void;
     ubrn_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(ohttpRelay: Uint8Array, payjoinDirectory: Uint8Array): bigint;
+    ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(clearedPsbtBase64: Uint8Array, signedPsbtBase64: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
+    ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(originalPsbtBase64: Uint8Array, receiveAddress: Uint8Array, disableOutputSubstitution: number, input: Uint8Array, ownedScriptsHex: Uint8Array, ownedOutpoints: Uint8Array, seenOutpoints: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
+    ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(provisionalState: Uint8Array, signedPsbtBase64: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
     ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
     ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log_async(persister: bigint): bigint;
     ubrn_uniffi_payjoin_ffi_fn_func_replay_sender_event_log(persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
@@ -487,6 +490,9 @@ interface NativeModuleInterface {
     ubrn_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
     ubrn_ffi_payjoin_ffi_uniffi_contract_version(): number;
     ubrn_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(): number;
+    ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(): number;
+    ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(): number;
+    ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(): number;
     ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log(): number;
     ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log_async(): number;
     ubrn_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log(): number;
