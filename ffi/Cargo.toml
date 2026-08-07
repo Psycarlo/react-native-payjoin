@@ -20,19 +20,19 @@ doctest = false
 # NOTE: payjoin-ffi is NOT published to crates.io (its 0.24.0 version is
 # internal to the monorepo), and it exists only on `master` — no release tag
 # contains it. So we pin an exact commit for reproducibility.
-payjoin-ffi = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "c23380a4fa01765e11efafff121bfefac7ec9449" }
+payjoin-ffi = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "e4f5a0b384462458b3d68aeec042c20ceffb8d80" }
 
 # The `io` feature adds fetch_ohttp_keys(), which needs an HTTP CONNECT
 # proxy to keep the client IP off the payjoin directory. RN's fetch/XHR
 # cannot do CONNECT, so this must live on the Rust side.
 #
 # Pinned to the same git rev as payjoin-ffi, not crates.io. payjoin-ffi
-# declares `payjoin = "1.0.0-rc.6"` but is developed against the in-tree
+# declares `payjoin = "1.0.0-rc.8"` but is developed against the in-tree
 # `payjoin` via the workspace's `[patch.crates-io]`. As an external consumer
-# we do not inherit that patch, so taking rc.6 from crates.io pairs the
+# we do not inherit that patch, so taking rc.8 from crates.io pairs the
 # wrapper with a core that predates its own API changes and fails to build.
 # See the [patch.crates-io] section below, which unifies both on one source.
-payjoin = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "c23380a4fa01765e11efafff121bfefac7ec9449", features = ["v1", "v2", "io"] }
+payjoin = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "e4f5a0b384462458b3d68aeec042c20ceffb8d80", features = ["v1", "v2", "io"] }
 
 # Must match the uniffi version used by payjoin-ffi 0.24.0.
 uniffi = { version = "=0.31.2", features = ["tokio"] }
@@ -68,4 +68,4 @@ strip = "debuginfo"
 # the git rev above so the wrapper and the core it was written against resolve
 # to a single crate instance — mirroring the monorepo's own [patch.crates-io].
 [patch.crates-io]
-payjoin = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "c23380a4fa01765e11efafff121bfefac7ec9449" }
+payjoin = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "e4f5a0b384462458b3d68aeec042c20ceffb8d80" }

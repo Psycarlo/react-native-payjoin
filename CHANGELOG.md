@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.0] - 2026-08-07
+
+### Changed
+
+- Updated `payjoin` to `1.0.0-rc.8` (`payjoin-ffi 0.24.0` at rev `e4f5a0b`).
+  No API changes.
+
 ## [0.2.0] - 2026-08-01
 
 Minor release: adds fully offline (out-of-band) BIP78 receiver support. Built
