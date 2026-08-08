@@ -5,15 +5,42 @@ project(Payjoin)
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_STANDARD 17)
 
-# Resolve the path to the uniffi-bindgen-react-native package
+# Resolve the path to the uniffi-bindgen-react-native package.
+#
+# PATCHED by scripts/patch-bindings.sh -- do not hand-edit; see that script.
+#
+# The ubrn template resolves 'uniffi-bindgen-react-native/package.json', but
+# 0.31.0-3 added an "exports" map that does not expose "./package.json", so
+# require.resolve throws ERR_PACKAGE_PATH_NOT_EXPORTED. execute_process leaves
+# OUTPUT_VARIABLE empty on failure, the include path silently degrades to
+# "/cpp/includes", and the build dies much later with a confusing
+# "'UniffiCallInvoker.h' file not found".
+#
+# Instead resolve the "." export (always present) and walk up to whichever
+# directory actually contains cpp/includes. That works whether the package is
+# hoisted to the app's root node_modules or nested under this library.
+#
+# Resolution is anchored to CMAKE_CURRENT_SOURCE_DIR, passed as argv[1]:
+# execute_process runs in the *build* directory, which lives under .cxx/ and
+# would resolve to the wrong node_modules (or none at all).
 execute_process(
-    COMMAND node -p "require.resolve('uniffi-bindgen-react-native/package.json')"
+    COMMAND node -e "const path=require('path'),fs=require('fs');const{createRequire}=require('module');const req=createRequire(path.join(process.argv[1],'noop.js'));let d=path.dirname(req.resolve('uniffi-bindgen-react-native'));while(d!==path.parse(d).root&&!fs.existsSync(path.join(d,'cpp','includes')))d=path.dirname(d);process.stdout.write(d)" "${CMAKE_CURRENT_SOURCE_DIR}"
     OUTPUT_VARIABLE UNIFFI_BINDGEN_PATH
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
-# Get the directory; get_filename_component and cmake_path will normalize
-# paths with Windows path separators.
-get_filename_component(UNIFFI_BINDGEN_PATH "${UNIFFI_BINDGEN_PATH}" DIRECTORY)
+# get_filename_component normalizes Windows path separators.
+get_filename_component(UNIFFI_BINDGEN_PATH "${UNIFFI_BINDGEN_PATH}" ABSOLUTE)
+
+# Fail at configure time rather than emitting a broken -I flag and failing in
+# the middle of the C++ compile.
+if (NOT EXISTS "${UNIFFI_BINDGEN_PATH}/cpp/includes/UniffiCallInvoker.h")
+  message(FATAL_ERROR
+    "Could not locate the uniffi-bindgen-react-native C++ includes.\n"
+    "Resolved to: '${UNIFFI_BINDGEN_PATH}'\n"
+    "Expected:    '${UNIFFI_BINDGEN_PATH}/cpp/includes/UniffiCallInvoker.h'\n"
+    "Is uniffi-bindgen-react-native installed and resolvable from "
+    "${CMAKE_CURRENT_SOURCE_DIR}?")
+endif()
 
 # Specifies a path to native header files.
 include_directories(

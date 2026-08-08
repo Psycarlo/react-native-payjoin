@@ -43,6 +43,7 @@
     "react-native.config.js",
     "scripts",
     "!scripts/patch-bindings.sh",
+    "!scripts/patch-cmake-uniffi-path.js",
     "plugin",
     "!plugin/src",
     "!ios/build",
