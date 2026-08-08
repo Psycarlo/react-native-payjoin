@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.4.1] - 2026-08-08
+
+Patch release: fixes an unresolvable import that made 0.4.0 fail to bundle. No
+API or upstream changes.
+
+### Fixed
+
+- Metro failed with `Unable to resolve "@ubjs/core"`. Release `0.31.0-3` of
+  `uniffi-bindgen-react-native` split its runtime into a separate `@ubjs/core`
+  package, which the generated bindings import but `package.json` did not
+  declare, so it was never installed. Added as a pinned dependency.
+
 ## [0.4.0] - 2026-08-08
 
 Android build fix for consumers on `uniffi-bindgen-react-native 0.31.0-3`. No
