@@ -62,6 +62,54 @@ else
 fi
 
 # ----------------------------------------------------------------------------
+#    Fix the uniffi-bindgen-react-native include path in android/CMakeLists.txt.
+#
+#    The ubrn template resolves the package via
+#    require.resolve('uniffi-bindgen-react-native/package.json'), but 0.31.0-3
+#    added an "exports" map that does not expose "./package.json". Node then
+#    throws ERR_PACKAGE_PATH_NOT_EXPORTED, CMake's execute_process leaves
+#    OUTPUT_VARIABLE empty, and the include path silently degrades to
+#    "/cpp/includes" -- surfacing minutes later as
+#    "fatal error: 'UniffiCallInvoker.h' file not found".
+#
+#    Replace it with a resolution of the "." export (always present) plus a
+#    walk up to the directory that actually holds cpp/includes, so it works
+#    whether the package is hoisted or nested. Anchored to
+#    CMAKE_CURRENT_SOURCE_DIR because execute_process runs in the build dir
+#    (under .cxx/), not the source dir. A configure-time guard makes any future
+#    resolution failure loud instead of silent.
+# ----------------------------------------------------------------------------
+#    The marker below (not a "package.json" grep) is the idempotency sentinel:
+#    the patched text quotes "./package.json" while explaining the bug, so a
+#    naive grep would report an already-patched file as unpatched.
+# ----------------------------------------------------------------------------
+CMAKELISTS="$PROJECT_DIR/android/CMakeLists.txt"
+CMAKE_PATCH_MARKER="PATCHED by scripts/patch-bindings.sh"
+if [ -f "$CMAKELISTS" ]; then
+  if ! grep -q "$CMAKE_PATCH_MARKER" "$CMAKELISTS"; then
+    echo "  Patching android/CMakeLists.txt (uniffi include path resolution)..."
+    # node rather than sed: this replaces a multi-line block. node is also
+    # guaranteed present here, unlike python3 vs python across CI and Windows.
+    node "$SCRIPT_DIR/patch-cmake-uniffi-path.js" "$CMAKELISTS"
+
+    # Verify, rather than trusting the edit landed.
+    if ! grep -q "$CMAKE_PATCH_MARKER" "$CMAKELISTS"; then
+      echo "::error::Failed to patch uniffi include path in android/CMakeLists.txt" >&2
+      exit 1
+    fi
+    if ! grep -q "UniffiCallInvoker.h" "$CMAKELISTS"; then
+      echo "::error::Patched android/CMakeLists.txt is missing the include guard" >&2
+      exit 1
+    fi
+    echo "  android/CMakeLists.txt patched"
+  else
+    echo "  android/CMakeLists.txt already patched, skipping"
+  fi
+else
+  echo "  android/CMakeLists.txt not found, skipping"
+fi
+
+# ----------------------------------------------------------------------------
 #    Fix C++ reserved keywords used as parameter names in generated FFI code.
 #    Some words are valid Rust identifiers but reserved in C++, so the uniffi
 #    codegen emits them verbatim into extern "C" declarations and the C++

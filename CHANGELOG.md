@@ -2,6 +2,29 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.4.0] - 2026-08-08
+
+Android build fix for consumers on `uniffi-bindgen-react-native 0.31.0-3`. No
+API or upstream changes (still `payjoin 1.0.0-rc.8` / `payjoin-ffi 0.24.0` at
+rev `e4f5a0b`).
+
+### Fixed
+
+- Android builds failed with `fatal error: 'UniffiCallInvoker.h' file not
+  found`. `uniffi-bindgen-react-native 0.31.0-3` added an `exports` map that
+  does not expose `./package.json`, so the include-path lookup in the generated
+  `android/CMakeLists.txt` threw and silently resolved to `/cpp/includes`. It
+  now resolves the `.` export and walks up to the directory containing
+  `cpp/includes`, working whether the package is hoisted or nested. Consumers
+  pinning `0.31.0-2` were unaffected.
+
+### Changed
+
+- `android/CMakeLists.txt` now fails at CMake configure time, naming the
+  resolved path, instead of emitting a broken `-I` flag that surfaces mid-compile.
+- `patch-bindings.sh` re-applies both changes after regeneration, via the new
+  `scripts/patch-cmake-uniffi-path.js`.
+
 ## [0.3.0] - 2026-08-07
 
 ### Changed

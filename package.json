@@ -1,6 +1,6 @@
 {
   "name": "react-native-payjoin",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React Native language bindings for the Payjoin Dev Kit",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -43,6 +43,7 @@
     "react-native.config.js",
     "scripts",
     "!scripts/patch-bindings.sh",
+    "!scripts/patch-cmake-uniffi-path.js",
     "plugin",
     "!plugin/src",
     "!ios/build",
