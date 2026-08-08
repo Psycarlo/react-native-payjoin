@@ -12,805 +12,2545 @@ import {
   type UniffiGcObject,
   type UniffiRustFutureContinuationCallback as RuntimeUniffiRustFutureContinuationCallback,
   type UniffiResult,
- } from '@ubjs/core';
+} from "@ubjs/core";
 
 interface NativeModuleInterface {
-    ubrn_uniffi_internal_fn_func_ffi__string_to_byte_length(string: string, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_internal_fn_func_ffi__string_to_buffer(string: string, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_internal_fn_func_ffi__string_from_buffer(buffer: Uint8Array, uniffi_out_err: UniffiRustCallStatus): string;
-    ubrn_uniffi_internal_fn_func_ffi__read_string_from_buffer(buffer: any, offset: number, length: number): string;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_u8(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_u8(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_u8(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_u8(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_i8(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_i8(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_i8(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_i8(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_u16(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_u16(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_u16(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_u16(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_i16(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_i16(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_i16(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_i16(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_u32(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_u32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_u32(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_u32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_i32(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_i32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_i32(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_i32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_u64(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_u64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_u64(handle: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_ffi_payjoin_ffi_rust_future_free_u64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_i64(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_i64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_i64(handle: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_ffi_payjoin_ffi_rust_future_free_i64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_f32(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_f32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_f32(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_f32(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_f64(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_f64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_f64(handle: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_ffi_payjoin_ffi_rust_future_free_f64(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_rust_buffer(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_rust_buffer(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_rust_buffer(handle: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_ffi_payjoin_ffi_rust_future_free_rust_buffer(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_poll_void(handle: bigint, callback: UniffiRustFutureContinuationCallback, callbackData: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_cancel_void(handle: bigint): void;
-    ubrn_ffi_payjoin_ffi_rust_future_complete_void(handle: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_ffi_payjoin_ffi_rust_future_free_void(handle: bigint): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_addressparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_addressparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_assumeinteractivetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_assumeinteractivetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_broadcastedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_broadcastedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_canbroadcast(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_canbroadcast(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_canceltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_canceltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_clientresponse(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_clientresponse(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_coinselectionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_coinselectionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_createrequesterror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_createrequesterror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_decapsulationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_decapsulationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_feerateerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_feerateerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_hasreplyableerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_hasreplyableerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_hasreplyableerrortransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_hasreplyableerrortransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_implementationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_implementationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_initialreceivetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_initialreceivetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_initialsendtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_initialsendtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_initialized(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_initialized(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_initializedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_initializedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_inputcontributionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_inputcontributionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_inputpair(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_inputpair(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_intourlerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_intourlerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_isinputowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_isinputowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_isoutputknown(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_isoutputknown(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_isscriptowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_isscriptowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_jsonreceiversessionpersister(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_jsonreceiversessionpersister(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_jsonreceiversessionpersisterasync(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_jsonreceiversessionpersisterasync(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_jsonreply(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_jsonreply(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_jsonsendersessionpersister(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_jsonsendersessionpersister(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_jsonsendersessionpersisterasync(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_jsonsendersessionpersisterasync(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsowned(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsownedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsownedtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsseen(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsseen(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsseentransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsseentransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_monitor(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_monitor(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_monitortransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_monitortransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_ohttperror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_ohttperror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_ohttpkeys(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_ohttpkeys(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_outputsubstitutionprotocolerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_outputsubstitutionprotocolerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknown(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_outputsunknown(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknowntransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_outputsunknowntransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_payjoinproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_payjoinproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_payjoinproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_payjoinproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pendingfallbacktransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pendingfallbacktransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pjnotsupported(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pjnotsupported(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pjparam(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pjparam(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pjuri(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pjuri(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pollingforproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pollingforproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_pollingforproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_pollingforproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_processpsbt(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_processpsbt(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_protocolerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_protocolerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_provisionalproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_provisionalproposal(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_provisionalproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_provisionalproposaltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_psbtinputerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_psbtinputerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiverbuilder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiverbuilder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receivercreaterequesterror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receivercreaterequesterror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiverpendingfallback(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiverpendingfallback(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiverreplayerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiverreplayerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionevent(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiversessionevent(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionhistory(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiversessionhistory(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionoutcome(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiversessionoutcome(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionstatus(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_receiversessionstatus(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_replayresult(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_replayresult(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_senderbuilder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_senderbuilder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_senderbuildererror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_senderbuildererror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sendercanceltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sendercanceltransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_senderpendingfallback(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_senderpendingfallback(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_senderreplayerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_senderreplayerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_senderreplayresult(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_senderreplayresult(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionevent(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sendersessionevent(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionhistory(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sendersessionhistory(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionoutcome(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sendersessionoutcome(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionstatus(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sendersessionstatus(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_serdejsonerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_serdejsonerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_sessionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_sessionerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_transactionfinder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_transactionfinder(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayload(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayload(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayloadtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayloadtransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_uri(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_uri(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_uriparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_uriparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_url(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_url(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_urlparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_urlparseerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_v1context(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_v1context(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_validationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_validationerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsfeerange(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsfeerange(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsfeerangetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsfeerangetransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsinputs(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsinputs(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsinputstransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsinputstransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsoutputs(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsoutputs(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wantsoutputstransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wantsoutputstransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_wellknownerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_wellknownerror(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_withreplykey(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_withreplykey(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_clone_withreplykeytransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_free_withreplykeytransition(ptr: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_canbroadcast(vtable: UniffiVTableCallbackInterfacePayjoinCanBroadcast): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isinputowned(vtable: UniffiVTableCallbackInterfacePayjoinIsInputOwned): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isoutputknown(vtable: UniffiVTableCallbackInterfacePayjoinIsOutputKnown): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isscriptowned(vtable: UniffiVTableCallbackInterfacePayjoinIsScriptOwned): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonreceiversessionpersister(vtable: UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersister): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonreceiversessionpersisterasync(vtable: UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersisterAsync): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonsendersessionpersister(vtable: UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersister): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonsendersessionpersisterasync(vtable: UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersisterAsync): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_processpsbt(vtable: UniffiVTableCallbackInterfacePayjoinProcessPsbt): void;
-    ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_transactionfinder(vtable: UniffiVTableCallbackInterfacePayjoinTransactionFinder): void;
-    ubrn_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(ohttpRelay: Uint8Array, payjoinDirectory: Uint8Array): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(clearedPsbtBase64: Uint8Array, signedPsbtBase64: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(originalPsbtBase64: Uint8Array, receiveAddress: Uint8Array, disableOutputSubstitution: number, input: Uint8Array, ownedScriptsHex: Uint8Array, ownedOutpoints: Uint8Array, seenOutpoints: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(provisionalState: Uint8Array, signedPsbtBase64: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log_async(persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_func_replay_sender_event_log(persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_func_replay_sender_event_log_async(persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_assumeinteractivetransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_assumeinteractivetransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_broadcastedtransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_broadcastedtransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_canbroadcast_callback(uniffiSelf: bigint, tx: Uint8Array, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_is_expired(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_create_error_request(uniffiSelf: bigint, ohttpRelay: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_process_error_response(uniffiSelf: bigint, body: Uint8Array, ohttpContext: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialreceivetransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialreceivetransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialsendtransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialsendtransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialized_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialized_create_poll_request(uniffiSelf: bigint, ohttpRelay: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialized_pj_uri(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initialized_process_response(uniffiSelf: bigint, body: Uint8Array, ctx: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new(txin: Uint8Array, psbtin: Uint8Array, expectedWeight: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_isinputowned_callback(uniffiSelf: bigint, outpoint: Uint8Array, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_isoutputknown_callback(uniffiSelf: bigint, outpoint: Uint8Array, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_isscriptowned_callback(uniffiSelf: bigint, script: Uint8Array, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_save(uniffiSelf: bigint, event: Uint8Array, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_load(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_close(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_save(uniffiSelf: bigint, event: Uint8Array): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_load(uniffiSelf: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_close(uniffiSelf: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_eq_eq(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_eq_ne(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_save(uniffiSelf: bigint, event: Uint8Array, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_load(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_close(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_save(uniffiSelf: bigint, event: Uint8Array): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_load(uniffiSelf: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_close(uniffiSelf: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_check_inputs_not_owned(uniffiSelf: bigint, isOwned: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsownedtransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsownedtransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_check_no_inputs_seen_before(uniffiSelf: bigint, isKnown: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseentransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseentransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_monitor_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_monitor_check_for_transaction(uniffiSelf: bigint, findTransaction: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_monitor_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_monitortransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_monitortransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_ohttpkeys_decode(bytes: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_identify_receiver_outputs(uniffiSelf: bigint, isReceiverOutput: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsunknowntransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_outputsunknowntransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_create_post_request(uniffiSelf: bigint, ohttpRelay: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_process_response(uniffiSelf: bigint, body: Uint8Array, ohttpContext: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_psbt(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposaltransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposaltransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_pendingfallbacktransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): void;
-    ubrn_uniffi_payjoin_ffi_fn_method_pendingfallbacktransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_eq_eq(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_eq_ne(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjparam_receiver_pubkey(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjuri_address(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjuri_amount_sats(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjuri_as_string(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjuri_pj_endpoint(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pjuri_set_amount_sats(uniffiSelf: bigint, amountSats: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_create_poll_request(uniffiSelf: bigint, ohttpRelay: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_process_response(uniffiSelf: bigint, response: Uint8Array, ohttpCtx: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_processpsbt_callback(uniffiSelf: bigint, psbt: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(uniffiSelf: bigint, processPsbt: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_psbt_to_sign(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposaltransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposaltransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_receiverbuilder_new(address: Uint8Array, directory: Uint8Array, ohttpKeys: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_build(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_amount(uniffiSelf: bigint, amountSats: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_expiration(uniffiSelf: bigint, expirationSecs: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_max_fee_rate(uniffiSelf: bigint, maxEffectiveFeeRateSatPerVb: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_is_expired(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_close(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_fallback_tx(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_is_expired(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_receiversessionevent_from_json(json: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiversessionevent_to_json(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_fallback_tx(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_pj_uri(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_status(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_replayresult_session_history(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_replayresult_state(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_senderbuilder_new(psbt: Uint8Array, uri: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_always_disable_output_substitution(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_non_incentivizing(uniffiSelf: bigint, minFeeRateSatPerKwu: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_recommended(uniffiSelf: bigint, minFeeRateSatPerKwu: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_with_additional_fee(uniffiSelf: bigint, maxFeeContributionSats: bigint, changeIndex: Uint8Array, minFeeRateSatPerKwu: bigint, clampFeeContribution: number, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(uniffiSelf: bigint, other: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendercanceltransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendercanceltransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_close(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_fallback_tx(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_is_expired(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_session_history(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_state(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_sendersessionevent_from_json(json: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionevent_to_json(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_fallback_tx(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_pj_param(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_status(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_is_aborted(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_is_success(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_success_psbt_base64(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_transactionfinder_callback(uniffiSelf: bigint, txid: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_check_broadcast_suitability(uniffiSelf: bigint, minFeeRateSatPerKwu: Uint8Array, canBroadcast: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayloadtransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayloadtransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_uri_parse(uri: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_address(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_amount_sats(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_as_string(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_check_pj_supported(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_label(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uri_message(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_constructor_url_parse(input: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_url_as_string(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_url_query(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_v1context_process_response(uniffiSelf: bigint, response: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_apply_fee_range(uniffiSelf: bigint, minFeeRateSatPerVb: Uint8Array, maxEffectiveFeeRateSatPerVb: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerangetransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerangetransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_commit_inputs(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_contribute_inputs(uniffiSelf: bigint, replacementInputs: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_try_preserving_privacy(uniffiSelf: bigint, candidateInputs: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputstransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsinputstransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_commit_outputs(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_output_substitution(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_proposal_txid_is_stable(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): number;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_replace_receiver_outputs(uniffiSelf: bigint, replacementOutputs: Uint8Array, drainScriptPubkey: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_substitute_receiver_script(uniffiSelf: bigint, outputScriptPubkey: Uint8Array, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputstransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputstransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_code(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_debug(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_display(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_cancel(uniffiSelf: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_create_v2_post_request(uniffiSelf: bigint, ohttpRelay: Uint8Array, uniffi_out_err: UniffiRustCallStatus): Uint8Array;
-    ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_process_response(uniffiSelf: bigint, response: Uint8Array, postCtx: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save(uniffiSelf: bigint, persister: bigint, uniffi_out_err: UniffiRustCallStatus): bigint;
-    ubrn_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save_async(uniffiSelf: bigint, persister: bigint): bigint;
-    ubrn_ffi_payjoin_ffi_uniffi_contract_version(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_assumeinteractivetransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_assumeinteractivetransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_broadcastedtransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_broadcastedtransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_canbroadcast_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_canceltransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_canceltransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_createrequesterror_is_expired(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_create_error_request(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_process_error_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerrortransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerrortransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialreceivetransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialreceivetransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialsendtransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialsendtransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialized_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialized_create_poll_request(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialized_pj_uri(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initialized_process_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_isinputowned_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_isoutputknown_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_isscriptowned_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_load(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_load(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_load(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_load(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_check_inputs_not_owned(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_monitor_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_monitor_check_for_transaction(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_monitor_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_ohttpkeys_decode(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_create_post_request(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_process_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_psbt(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposaltransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposaltransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pendingfallbacktransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pendingfallbacktransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjparam_receiver_pubkey(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_address(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_amount_sats(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_as_string(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_pj_endpoint(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_set_amount_sats(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_create_poll_request(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_process_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposaltransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposaltransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_processpsbt_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_psbt_to_sign(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposaltransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposaltransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_receiverbuilder_new(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_build(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_amount(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_expiration(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_max_fee_rate(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receivercreaterequesterror_is_expired(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverpendingfallback_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverpendingfallback_fallback_tx(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiverreplayerror_is_expired(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_receiversessionevent_from_json(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionevent_to_json(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_fallback_tx(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_pj_uri(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_status(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_replayresult_session_history(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_replayresult_state(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_senderbuilder_new(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_always_disable_output_substitution(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_non_incentivizing(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_recommended(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_with_additional_fee(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendercanceltransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendercanceltransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderpendingfallback_close(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderpendingfallback_fallback_tx(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayerror_is_expired(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayresult_session_history(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayresult_state(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_sendersessionevent_from_json(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionevent_to_json(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_fallback_tx(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_pj_param(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_status(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_is_aborted(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_is_success(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_success_psbt_base64(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_transactionfinder_callback(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_uri_parse(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_address(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_amount_sats(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_as_string(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_check_pj_supported(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_label(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_uri_message(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_constructor_url_parse(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_url_as_string(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_url_query(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_v1context_process_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_apply_fee_range(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerangetransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerangetransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_commit_inputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_contribute_inputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_try_preserving_privacy(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputstransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputstransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_commit_outputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_output_substitution(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_proposal_txid_is_stable(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_replace_receiver_outputs(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_substitute_receiver_script(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputstransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputstransition_save_async(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_wellknownerror_code(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_cancel(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_create_v2_post_request(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_process_response(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_withreplykeytransition_save(): number;
-    ubrn_uniffi_payjoin_ffi_checksum_method_withreplykeytransition_save_async(): number;
-    ubrn_uniffi_internal_fn_method_clientresponse_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wellknownerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_validationerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_v1context_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_jsonreceiversessionpersister_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_protocolerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_implementationerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_intourlerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_jsonreceiversessionpersisterasync_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pendingfallbacktransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiverpendingfallback_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_canceltransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_isinputowned_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_isoutputknown_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_isscriptowned_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_processpsbt_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receivercreaterequesterror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_transactionfinder_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_monitortransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_monitor_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_payjoinproposaltransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_payjoinproposal_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_provisionalproposaltransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_provisionalproposal_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsfeerangetransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsfeerange_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsinputstransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_inputpair_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_inputcontributionerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_coinselectionerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsinputs_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsoutputstransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_outputsubstitutionprotocolerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_wantsoutputs_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_outputsunknowntransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_outputsunknown_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_maybeinputsseentransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_maybeinputsseen_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_maybeinputsownedtransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_maybeinputsowned_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_assumeinteractivetransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_canbroadcast_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_uncheckedoriginalpayloadtransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_uncheckedoriginalpayload_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pjuri_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_initializedtransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_initialized_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_psbtinputerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_jsonsendersessionpersister_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_decapsulationerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_jsonsendersessionpersisterasync_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_broadcastedtransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_senderpendingfallback_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sendercanceltransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_createrequesterror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pollingforproposaltransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pollingforproposal_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_hasreplyableerrortransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_hasreplyableerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiversessionoutcome_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_addressparseerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_withreplykeytransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_withreplykey_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sendersessionoutcome_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_feerateerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_initialreceivetransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_initialsendtransition_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_jsonreply_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_ohttperror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_ohttpkeys_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pjnotsupported_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_pjparam_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiverbuilder_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiverreplayerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_serdejsonerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiversessionevent_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiversessionstatus_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_receiversessionhistory_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_replayresult_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_senderbuilder_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_senderreplayerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sendersessionstatus_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sendersessionhistory_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_senderreplayresult_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sendersessionevent_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_sessionerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_uri_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_uriparseerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_url_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    ubrn_uniffi_internal_fn_method_urlparseerror_ffi__bless_pointer(pointer: bigint, uniffi_out_err: UniffiRustCallStatus): UniffiGcObject;
-    // Codegen call sites use these via `nativeModule().rustbuffer_alloc(...)`
-    // and `nativeModule().rustbuffer_free(...)`. The JSI host object exposes
-    // them as properties; see `props["rustbuffer_alloc"]` / `props["rustbuffer_free"]`
-    // in the C++ wrapper template.
-    rustbuffer_alloc(n: number): Uint8Array;
-    rustbuffer_free(view: Uint8Array): void;
+  ubrn_uniffi_internal_fn_func_ffi__string_to_byte_length(
+    string: string,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_internal_fn_func_ffi__string_to_buffer(
+    string: string,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_internal_fn_func_ffi__string_from_buffer(
+    buffer: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): string;
+  ubrn_uniffi_internal_fn_func_ffi__read_string_from_buffer(
+    buffer: any,
+    offset: number,
+    length: number
+  ): string;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_u8(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_u8(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_u8(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_u8(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_i8(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_i8(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_i8(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_i8(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_u16(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_u16(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_u16(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_u16(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_i16(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_i16(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_i16(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_i16(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_u32(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_u32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_u32(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_u32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_i32(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_i32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_i32(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_i32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_u64(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_u64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_u64(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_ffi_payjoin_ffi_rust_future_free_u64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_i64(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_i64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_i64(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_ffi_payjoin_ffi_rust_future_free_i64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_f32(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_f32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_f32(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_f32(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_f64(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_f64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_f64(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_ffi_payjoin_ffi_rust_future_free_f64(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_rust_buffer(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_rust_buffer(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_rust_buffer(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_ffi_payjoin_ffi_rust_future_free_rust_buffer(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_poll_void(
+    handle: bigint,
+    callback: UniffiRustFutureContinuationCallback,
+    callbackData: bigint
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_cancel_void(handle: bigint): void;
+  ubrn_ffi_payjoin_ffi_rust_future_complete_void(
+    handle: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_ffi_payjoin_ffi_rust_future_free_void(handle: bigint): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_addressparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_addressparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_assumeinteractivetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_assumeinteractivetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_broadcastedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_broadcastedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_canbroadcast(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_canbroadcast(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_canceltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_canceltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_clientresponse(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_clientresponse(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_coinselectionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_coinselectionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_createrequesterror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_createrequesterror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_decapsulationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_decapsulationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_feerateerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_feerateerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_hasreplyableerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_hasreplyableerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_hasreplyableerrortransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_hasreplyableerrortransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_implementationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_implementationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_initialreceivetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_initialreceivetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_initialsendtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_initialsendtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_initialized(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_initialized(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_initializedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_initializedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_inputcontributionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_inputcontributionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_inputpair(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_inputpair(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_intourlerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_intourlerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_isinputowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_isinputowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_isoutputknown(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_isoutputknown(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_isscriptowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_isscriptowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_jsonreceiversessionpersister(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_jsonreceiversessionpersister(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_jsonreceiversessionpersisterasync(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_jsonreceiversessionpersisterasync(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_jsonreply(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_jsonreply(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_jsonsendersessionpersister(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_jsonsendersessionpersister(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_jsonsendersessionpersisterasync(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_jsonsendersessionpersisterasync(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsowned(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsownedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsownedtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsseen(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsseen(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsseentransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_maybeinputsseentransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_monitor(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_monitor(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_monitortransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_monitortransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_ohttperror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_ohttperror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_ohttpkeys(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_ohttpkeys(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_outputsubstitutionprotocolerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_outputsubstitutionprotocolerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknown(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_outputsunknown(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknowntransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_outputsunknowntransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_payjoinproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_payjoinproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_payjoinproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_payjoinproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pendingfallbacktransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pendingfallbacktransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pjnotsupported(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pjnotsupported(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pjparam(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pjparam(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pjuri(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pjuri(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pollingforproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pollingforproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_pollingforproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_pollingforproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_processpsbt(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_processpsbt(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_protocolerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_protocolerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_provisionalproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_provisionalproposal(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_provisionalproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_provisionalproposaltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_psbtinputerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_psbtinputerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiverbuilder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiverbuilder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receivercreaterequesterror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receivercreaterequesterror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiverpendingfallback(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiverpendingfallback(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiverreplayerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiverreplayerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionevent(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiversessionevent(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionhistory(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiversessionhistory(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionoutcome(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiversessionoutcome(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_receiversessionstatus(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_receiversessionstatus(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_replayresult(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_replayresult(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_senderbuilder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_senderbuilder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_senderbuildererror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_senderbuildererror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sendercanceltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sendercanceltransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_senderpendingfallback(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_senderpendingfallback(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_senderreplayerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_senderreplayerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_senderreplayresult(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_senderreplayresult(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionevent(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sendersessionevent(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionhistory(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sendersessionhistory(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionoutcome(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sendersessionoutcome(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sendersessionstatus(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sendersessionstatus(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_serdejsonerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_serdejsonerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_sessionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_sessionerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_transactionfinder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_transactionfinder(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayload(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayload(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayloadtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayloadtransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_uri(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_uri(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_uriparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_uriparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_url(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_url(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_urlparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_urlparseerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_v1context(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_v1context(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_validationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_validationerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsfeerange(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsfeerange(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsfeerangetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsfeerangetransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsinputs(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsinputs(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsinputstransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsinputstransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsoutputs(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsoutputs(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wantsoutputstransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wantsoutputstransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_wellknownerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_wellknownerror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_withreplykey(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_withreplykey(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_withreplykeytransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_withreplykeytransition(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_canbroadcast(
+    vtable: UniffiVTableCallbackInterfacePayjoinCanBroadcast
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isinputowned(
+    vtable: UniffiVTableCallbackInterfacePayjoinIsInputOwned
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isoutputknown(
+    vtable: UniffiVTableCallbackInterfacePayjoinIsOutputKnown
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_isscriptowned(
+    vtable: UniffiVTableCallbackInterfacePayjoinIsScriptOwned
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonreceiversessionpersister(
+    vtable: UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersister
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonreceiversessionpersisterasync(
+    vtable: UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersisterAsync
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonsendersessionpersister(
+    vtable: UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersister
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_jsonsendersessionpersisterasync(
+    vtable: UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersisterAsync
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_processpsbt(
+    vtable: UniffiVTableCallbackInterfacePayjoinProcessPsbt
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_init_callback_vtable_transactionfinder(
+    vtable: UniffiVTableCallbackInterfacePayjoinTransactionFinder
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_func_fetch_ohttp_keys(
+    ohttpRelay: Uint8Array,
+    payjoinDirectory: Uint8Array
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(
+    clearedPsbtBase64: Uint8Array,
+    signedPsbtBase64: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(
+    originalPsbtBase64: Uint8Array,
+    receiveAddress: Uint8Array,
+    disableOutputSubstitution: number,
+    input: Uint8Array,
+    ownedScriptsHex: Uint8Array,
+    ownedOutpoints: Uint8Array,
+    seenOutpoints: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(
+    provisionalState: Uint8Array,
+    signedPsbtBase64: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log(
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_func_replay_receiver_event_log_async(
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_func_replay_sender_event_log(
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_func_replay_sender_event_log_async(
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_assumeinteractivetransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_assumeinteractivetransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_broadcastedtransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_broadcastedtransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_canbroadcast_callback(
+    uniffiSelf: bigint,
+    tx: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_is_expired(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_create_error_request(
+    uniffiSelf: bigint,
+    ohttpRelay: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_process_error_response(
+    uniffiSelf: bigint,
+    body: Uint8Array,
+    ohttpContext: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialreceivetransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialreceivetransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialsendtransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialsendtransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialized_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialized_create_poll_request(
+    uniffiSelf: bigint,
+    ohttpRelay: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialized_pj_uri(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initialized_process_response(
+    uniffiSelf: bigint,
+    body: Uint8Array,
+    ctx: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new(
+    txin: Uint8Array,
+    psbtin: Uint8Array,
+    expectedWeight: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_isinputowned_callback(
+    uniffiSelf: bigint,
+    outpoint: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_isoutputknown_callback(
+    uniffiSelf: bigint,
+    outpoint: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_isscriptowned_callback(
+    uniffiSelf: bigint,
+    script: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_save(
+    uniffiSelf: bigint,
+    event: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_load(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_close(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_save(
+    uniffiSelf: bigint,
+    event: Uint8Array
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_load(
+    uniffiSelf: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_close(
+    uniffiSelf: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_eq_eq(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_eq_ne(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_save(
+    uniffiSelf: bigint,
+    event: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_load(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_close(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_save(
+    uniffiSelf: bigint,
+    event: Uint8Array
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_load(
+    uniffiSelf: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_close(
+    uniffiSelf: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_check_inputs_not_owned(
+    uniffiSelf: bigint,
+    isOwned: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsownedtransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsownedtransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_check_no_inputs_seen_before(
+    uniffiSelf: bigint,
+    isKnown: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseentransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseentransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_monitor_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_monitor_check_for_transaction(
+    uniffiSelf: bigint,
+    findTransaction: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_monitor_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_monitortransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_monitortransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_ohttpkeys_decode(
+    bytes: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_identify_receiver_outputs(
+    uniffiSelf: bigint,
+    isReceiverOutput: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknowntransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknowntransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_create_post_request(
+    uniffiSelf: bigint,
+    ohttpRelay: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_process_response(
+    uniffiSelf: bigint,
+    body: Uint8Array,
+    ohttpContext: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_psbt(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposaltransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposaltransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_pendingfallbacktransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_method_pendingfallbacktransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_eq_eq(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_eq_ne(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjparam_receiver_pubkey(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjuri_address(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjuri_amount_sats(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjuri_as_string(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjuri_pj_endpoint(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pjuri_set_amount_sats(
+    uniffiSelf: bigint,
+    amountSats: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_create_poll_request(
+    uniffiSelf: bigint,
+    ohttpRelay: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_process_response(
+    uniffiSelf: bigint,
+    response: Uint8Array,
+    ohttpCtx: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_processpsbt_callback(
+    uniffiSelf: bigint,
+    psbt: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(
+    uniffiSelf: bigint,
+    processPsbt: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_psbt_to_sign(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposaltransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposaltransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_receiverbuilder_new(
+    address: Uint8Array,
+    directory: Uint8Array,
+    ohttpKeys: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_build(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_amount(
+    uniffiSelf: bigint,
+    amountSats: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_expiration(
+    uniffiSelf: bigint,
+    expirationSecs: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverbuilder_with_max_fee_rate(
+    uniffiSelf: bigint,
+    maxEffectiveFeeRateSatPerVb: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_is_expired(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_close(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_fallback_tx(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_is_expired(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_receiversessionevent_from_json(
+    json: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiversessionevent_to_json(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_fallback_tx(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_pj_uri(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_status(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_replayresult_session_history(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_replayresult_state(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_senderbuilder_new(
+    psbt: Uint8Array,
+    uri: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_always_disable_output_substitution(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_non_incentivizing(
+    uniffiSelf: bigint,
+    minFeeRateSatPerKwu: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_recommended(
+    uniffiSelf: bigint,
+    minFeeRateSatPerKwu: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuilder_build_with_additional_fee(
+    uniffiSelf: bigint,
+    maxFeeContributionSats: bigint,
+    changeIndex: Uint8Array,
+    minFeeRateSatPerKwu: bigint,
+    clampFeeContribution: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendercanceltransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendercanceltransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_close(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_fallback_tx(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_is_expired(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_session_history(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_state(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_sendersessionevent_from_json(
+    json: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionevent_to_json(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_fallback_tx(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_pj_param(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_status(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_is_aborted(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_is_success(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_success_psbt_base64(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_transactionfinder_callback(
+    uniffiSelf: bigint,
+    txid: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_check_broadcast_suitability(
+    uniffiSelf: bigint,
+    minFeeRateSatPerKwu: Uint8Array,
+    canBroadcast: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayloadtransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayloadtransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_uri_parse(
+    uri: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_address(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_amount_sats(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_as_string(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_check_pj_supported(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_label(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uri_message(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_url_parse(
+    input: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_url_as_string(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_url_query(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_v1context_process_response(
+    uniffiSelf: bigint,
+    response: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_apply_fee_range(
+    uniffiSelf: bigint,
+    minFeeRateSatPerVb: Uint8Array,
+    maxEffectiveFeeRateSatPerVb: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerange_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerangetransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsfeerangetransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_commit_inputs(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_contribute_inputs(
+    uniffiSelf: bigint,
+    replacementInputs: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputs_try_preserving_privacy(
+    uniffiSelf: bigint,
+    candidateInputs: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputstransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsinputstransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_commit_outputs(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_output_substitution(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_proposal_txid_is_stable(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_replace_receiver_outputs(
+    uniffiSelf: bigint,
+    replacementOutputs: Uint8Array,
+    drainScriptPubkey: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_substitute_receiver_script(
+    uniffiSelf: bigint,
+    outputScriptPubkey: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputstransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputstransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_code(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_cancel(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_create_v2_post_request(
+    uniffiSelf: bigint,
+    ohttpRelay: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_process_response(
+    uniffiSelf: bigint,
+    response: Uint8Array,
+    postCtx: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save(
+    uniffiSelf: bigint,
+    persister: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save_async(
+    uniffiSelf: bigint,
+    persister: bigint
+  ): bigint;
+  ubrn_ffi_payjoin_ffi_uniffi_contract_version(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_fetch_ohttp_keys(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_merge_finalized_proposal_inputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_contribute(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_receiver_manual_finalize(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_replay_receiver_event_log_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_func_replay_sender_event_log_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_assumeinteractivetransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_assumeinteractivetransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_broadcastedtransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_broadcastedtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_canbroadcast_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_canceltransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_canceltransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_createrequesterror_is_expired(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_create_error_request(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerror_process_error_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerrortransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_hasreplyableerrortransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialreceivetransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialreceivetransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialsendtransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialsendtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialized_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialized_create_poll_request(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialized_pj_uri(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initialized_process_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_isinputowned_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_isoutputknown_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_isscriptowned_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_load(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersister_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_load(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_load(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersister_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_load(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_check_inputs_not_owned(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_monitor_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_monitor_check_for_transaction(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_monitor_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_ohttpkeys_decode(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_create_post_request(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_process_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposal_psbt(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposaltransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_payjoinproposaltransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pendingfallbacktransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pendingfallbacktransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjparam_receiver_pubkey(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_address(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_amount_sats(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_as_string(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_pj_endpoint(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pjuri_set_amount_sats(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_create_poll_request(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposal_process_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposaltransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_pollingforproposaltransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_processpsbt_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_psbt_to_sign(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposaltransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposaltransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_receiverbuilder_new(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_build(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_amount(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_expiration(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverbuilder_with_max_fee_rate(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receivercreaterequesterror_is_expired(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverpendingfallback_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverpendingfallback_fallback_tx(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiverreplayerror_is_expired(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_receiversessionevent_from_json(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionevent_to_json(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_fallback_tx(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_pj_uri(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_receiversessionhistory_status(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_replayresult_session_history(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_replayresult_state(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_senderbuilder_new(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_always_disable_output_substitution(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_non_incentivizing(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_recommended(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderbuilder_build_with_additional_fee(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendercanceltransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendercanceltransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderpendingfallback_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderpendingfallback_fallback_tx(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayerror_is_expired(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayresult_session_history(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_senderreplayresult_state(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_sendersessionevent_from_json(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionevent_to_json(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_fallback_tx(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_pj_param(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionhistory_status(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_is_aborted(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_is_success(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_success_psbt_base64(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_transactionfinder_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_uri_parse(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_address(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_amount_sats(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_as_string(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_check_pj_supported(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_label(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uri_message(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_url_parse(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_url_as_string(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_url_query(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_v1context_process_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_apply_fee_range(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerange_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerangetransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsfeerangetransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_commit_inputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_contribute_inputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputs_try_preserving_privacy(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputstransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsinputstransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_commit_outputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_output_substitution(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_proposal_txid_is_stable(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_replace_receiver_outputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputs_substitute_receiver_script(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputstransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wantsoutputstransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_wellknownerror_code(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_cancel(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_create_v2_post_request(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_withreplykey_process_response(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_withreplykeytransition_save(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_withreplykeytransition_save_async(): number;
+  ubrn_uniffi_internal_fn_method_clientresponse_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wellknownerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_validationerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_v1context_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_jsonreceiversessionpersister_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_protocolerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_implementationerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_intourlerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_jsonreceiversessionpersisterasync_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pendingfallbacktransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiverpendingfallback_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_canceltransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isinputowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isoutputknown_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isscriptowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_processpsbt_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receivercreaterequesterror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_transactionfinder_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_monitortransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_monitor_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_payjoinproposaltransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_payjoinproposal_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_provisionalproposaltransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_provisionalproposal_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsfeerangetransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsfeerange_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsinputstransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_inputpair_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_inputcontributionerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_coinselectionerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsinputs_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsoutputstransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_outputsubstitutionprotocolerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_wantsoutputs_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_outputsunknowntransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_outputsunknown_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_maybeinputsseentransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_maybeinputsseen_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_maybeinputsownedtransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_maybeinputsowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_assumeinteractivetransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_canbroadcast_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_uncheckedoriginalpayloadtransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_uncheckedoriginalpayload_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pjuri_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_initializedtransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_initialized_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_psbtinputerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_jsonsendersessionpersister_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_decapsulationerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_jsonsendersessionpersisterasync_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_broadcastedtransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_senderpendingfallback_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sendercanceltransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_createrequesterror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pollingforproposaltransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pollingforproposal_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_hasreplyableerrortransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_hasreplyableerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiversessionoutcome_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_addressparseerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_withreplykeytransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_withreplykey_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sendersessionoutcome_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_feerateerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_initialreceivetransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_initialsendtransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_jsonreply_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_ohttperror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_ohttpkeys_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pjnotsupported_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_pjparam_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiverbuilder_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiverreplayerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_serdejsonerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiversessionevent_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiversessionstatus_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_receiversessionhistory_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_replayresult_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_senderbuilder_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_senderreplayerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sendersessionstatus_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sendersessionhistory_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_senderreplayresult_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sendersessionevent_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_sessionerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_uri_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_uriparseerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_url_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_urlparseerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  // Codegen call sites use these via `nativeModule().rustbuffer_alloc(...)`
+  // and `nativeModule().rustbuffer_free(...)`. The JSI host object exposes
+  // them as properties; see `props["rustbuffer_alloc"]` / `props["rustbuffer_free"]`
+  // in the C++ wrapper template.
+  rustbuffer_alloc(n: number): Uint8Array;
+  rustbuffer_free(view: Uint8Array): void;
 }
 
-const getter: () => NativeModuleInterface = () => (globalThis as any).NativePayjoin;
+const getter: () => NativeModuleInterface = () =>
+  (globalThis as any).NativePayjoin;
 export default getter;
 
 // Structs and function types for calling back into Typescript from Rust.
-export type UniffiRustFutureContinuationCallback = (data: bigint, pollResult: number) => void;
+export type UniffiRustFutureContinuationCallback = (
+  data: bigint,
+  pollResult: number
+) => void;
 export type UniffiForeignFutureDroppedCallback = (handle: bigint) => void;
 export type UniffiForeignFutureDroppedCallbackStruct = {
   handle: bigint;
   free: UniffiForeignFutureDroppedCallback;
 };
-type UniffiCallbackInterfacePayjoinCanBroadcastMethod0 = (uniffiHandle: bigint, tx: Uint8Array) => number;
-type UniffiCallbackInterfaceClonePayjoinCanBroadcast = (handle: bigint) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinCanBroadcastMethod0 = (
+  uniffiHandle: bigint,
+  tx: Uint8Array
+) => number;
+type UniffiCallbackInterfaceClonePayjoinCanBroadcast = (
+  handle: bigint
+) => UniffiResult<void>;
 type UniffiCallbackInterfaceFreePayjoinCanBroadcast = (handle: bigint) => void;
 export type UniffiVTableCallbackInterfacePayjoinCanBroadcast = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinCanBroadcast;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinCanBroadcast;
   callback: UniffiCallbackInterfacePayjoinCanBroadcastMethod0;
 };
-type UniffiCallbackInterfacePayjoinIsInputOwnedMethod0 = (uniffiHandle: bigint, outpoint: Uint8Array) => number;
-type UniffiCallbackInterfaceClonePayjoinIsInputOwned = (handle: bigint) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinIsInputOwnedMethod0 = (
+  uniffiHandle: bigint,
+  outpoint: Uint8Array
+) => number;
+type UniffiCallbackInterfaceClonePayjoinIsInputOwned = (
+  handle: bigint
+) => UniffiResult<void>;
 type UniffiCallbackInterfaceFreePayjoinIsInputOwned = (handle: bigint) => void;
 export type UniffiVTableCallbackInterfacePayjoinIsInputOwned = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinIsInputOwned;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinIsInputOwned;
   callback: UniffiCallbackInterfacePayjoinIsInputOwnedMethod0;
 };
-type UniffiCallbackInterfacePayjoinIsOutputKnownMethod0 = (uniffiHandle: bigint, outpoint: Uint8Array) => number;
-type UniffiCallbackInterfaceClonePayjoinIsOutputKnown = (handle: bigint) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinIsOutputKnownMethod0 = (
+  uniffiHandle: bigint,
+  outpoint: Uint8Array
+) => number;
+type UniffiCallbackInterfaceClonePayjoinIsOutputKnown = (
+  handle: bigint
+) => UniffiResult<void>;
 type UniffiCallbackInterfaceFreePayjoinIsOutputKnown = (handle: bigint) => void;
 export type UniffiVTableCallbackInterfacePayjoinIsOutputKnown = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinIsOutputKnown;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinIsOutputKnown;
   callback: UniffiCallbackInterfacePayjoinIsOutputKnownMethod0;
 };
-type UniffiCallbackInterfacePayjoinIsScriptOwnedMethod0 = (uniffiHandle: bigint, script: Uint8Array) => number;
-type UniffiCallbackInterfaceClonePayjoinIsScriptOwned = (handle: bigint) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinIsScriptOwnedMethod0 = (
+  uniffiHandle: bigint,
+  script: Uint8Array
+) => number;
+type UniffiCallbackInterfaceClonePayjoinIsScriptOwned = (
+  handle: bigint
+) => UniffiResult<void>;
 type UniffiCallbackInterfaceFreePayjoinIsScriptOwned = (handle: bigint) => void;
 export type UniffiVTableCallbackInterfacePayjoinIsScriptOwned = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinIsScriptOwned;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinIsScriptOwned;
   callback: UniffiCallbackInterfacePayjoinIsScriptOwnedMethod0;
 };
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod0 = (uniffiHandle: bigint, event: Uint8Array) => UniffiResult<void>;
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod1 = (uniffiHandle: bigint) => Uint8Array;
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod2 = (uniffiHandle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersister = (handle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersister = (handle: bigint) => void;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod0 = (
+  uniffiHandle: bigint,
+  event: Uint8Array
+) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod1 = (
+  uniffiHandle: bigint
+) => Uint8Array;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterMethod2 = (
+  uniffiHandle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersister = (
+  handle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersister = (
+  handle: bigint
+) => void;
 export type UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersister = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersister;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersister;
@@ -821,29 +2561,64 @@ export type UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersister = {
 export type UniffiForeignFutureResultVoid = {
   call_status: UniffiRustCallStatus;
 };
-export type UniffiForeignFutureCompletevoid = (callbackData: bigint, result: UniffiForeignFutureResultVoid) => void;
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod0 = (uniffiHandle: bigint, event: Uint8Array, uniffiFutureCallback: UniffiForeignFutureCompletevoid, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
+export type UniffiForeignFutureCompletevoid = (
+  callbackData: bigint,
+  result: UniffiForeignFutureResultVoid
+) => void;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod0 = (
+  uniffiHandle: bigint,
+  event: Uint8Array,
+  uniffiFutureCallback: UniffiForeignFutureCompletevoid,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
 export type UniffiForeignFutureResultRustBuffer = {
   return_value: Uint8Array;
   call_status: UniffiRustCallStatus;
 };
-export type UniffiForeignFutureCompleterustBuffer = (callbackData: bigint, result: UniffiForeignFutureResultRustBuffer) => void;
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod1 = (uniffiHandle: bigint, uniffiFutureCallback: UniffiForeignFutureCompleterustBuffer, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
-type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod2 = (uniffiHandle: bigint, uniffiFutureCallback: UniffiForeignFutureCompletevoid, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
-type UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersisterAsync = (handle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersisterAsync = (handle: bigint) => void;
-export type UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersisterAsync = {
-  uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersisterAsync;
-  uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersisterAsync;
-  save: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod0;
-  load: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod1;
-  close: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod2;
-};
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod0 = (uniffiHandle: bigint, event: Uint8Array) => UniffiResult<void>;
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod1 = (uniffiHandle: bigint) => Uint8Array;
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod2 = (uniffiHandle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersister = (handle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersister = (handle: bigint) => void;
+export type UniffiForeignFutureCompleterustBuffer = (
+  callbackData: bigint,
+  result: UniffiForeignFutureResultRustBuffer
+) => void;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod1 = (
+  uniffiHandle: bigint,
+  uniffiFutureCallback: UniffiForeignFutureCompleterustBuffer,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
+type UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod2 = (
+  uniffiHandle: bigint,
+  uniffiFutureCallback: UniffiForeignFutureCompletevoid,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
+type UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersisterAsync = (
+  handle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersisterAsync = (
+  handle: bigint
+) => void;
+export type UniffiVTableCallbackInterfacePayjoinJsonReceiverSessionPersisterAsync =
+  {
+    uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonReceiverSessionPersisterAsync;
+    uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonReceiverSessionPersisterAsync;
+    save: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod0;
+    load: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod1;
+    close: UniffiCallbackInterfacePayjoinJsonReceiverSessionPersisterAsyncMethod2;
+  };
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod0 = (
+  uniffiHandle: bigint,
+  event: Uint8Array
+) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod1 = (
+  uniffiHandle: bigint
+) => Uint8Array;
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod2 = (
+  uniffiHandle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersister = (
+  handle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersister = (
+  handle: bigint
+) => void;
 export type UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersister = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersister;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersister;
@@ -851,29 +2626,59 @@ export type UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersister = {
   load: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod1;
   close: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterMethod2;
 };
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod0 = (uniffiHandle: bigint, event: Uint8Array, uniffiFutureCallback: UniffiForeignFutureCompletevoid, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod1 = (uniffiHandle: bigint, uniffiFutureCallback: UniffiForeignFutureCompleterustBuffer, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
-type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod2 = (uniffiHandle: bigint, uniffiFutureCallback: UniffiForeignFutureCompletevoid, uniffiCallbackData: bigint) => UniffiForeignFutureDroppedCallbackStruct;
-type UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersisterAsync = (handle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersisterAsync = (handle: bigint) => void;
-export type UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersisterAsync = {
-  uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersisterAsync;
-  uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersisterAsync;
-  save: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod0;
-  load: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod1;
-  close: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod2;
-};
-type UniffiCallbackInterfacePayjoinProcessPsbtMethod0 = (uniffiHandle: bigint, psbt: Uint8Array) => Uint8Array;
-type UniffiCallbackInterfaceClonePayjoinProcessPsbt = (handle: bigint) => UniffiResult<void>;
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod0 = (
+  uniffiHandle: bigint,
+  event: Uint8Array,
+  uniffiFutureCallback: UniffiForeignFutureCompletevoid,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod1 = (
+  uniffiHandle: bigint,
+  uniffiFutureCallback: UniffiForeignFutureCompleterustBuffer,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
+type UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod2 = (
+  uniffiHandle: bigint,
+  uniffiFutureCallback: UniffiForeignFutureCompletevoid,
+  uniffiCallbackData: bigint
+) => UniffiForeignFutureDroppedCallbackStruct;
+type UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersisterAsync = (
+  handle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersisterAsync = (
+  handle: bigint
+) => void;
+export type UniffiVTableCallbackInterfacePayjoinJsonSenderSessionPersisterAsync =
+  {
+    uniffi_free: UniffiCallbackInterfaceFreePayjoinJsonSenderSessionPersisterAsync;
+    uniffi_clone: UniffiCallbackInterfaceClonePayjoinJsonSenderSessionPersisterAsync;
+    save: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod0;
+    load: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod1;
+    close: UniffiCallbackInterfacePayjoinJsonSenderSessionPersisterAsyncMethod2;
+  };
+type UniffiCallbackInterfacePayjoinProcessPsbtMethod0 = (
+  uniffiHandle: bigint,
+  psbt: Uint8Array
+) => Uint8Array;
+type UniffiCallbackInterfaceClonePayjoinProcessPsbt = (
+  handle: bigint
+) => UniffiResult<void>;
 type UniffiCallbackInterfaceFreePayjoinProcessPsbt = (handle: bigint) => void;
 export type UniffiVTableCallbackInterfacePayjoinProcessPsbt = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinProcessPsbt;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinProcessPsbt;
   callback: UniffiCallbackInterfacePayjoinProcessPsbtMethod0;
 };
-type UniffiCallbackInterfacePayjoinTransactionFinderMethod0 = (uniffiHandle: bigint, txid: Uint8Array) => Uint8Array;
-type UniffiCallbackInterfaceClonePayjoinTransactionFinder = (handle: bigint) => UniffiResult<void>;
-type UniffiCallbackInterfaceFreePayjoinTransactionFinder = (handle: bigint) => void;
+type UniffiCallbackInterfacePayjoinTransactionFinderMethod0 = (
+  uniffiHandle: bigint,
+  txid: Uint8Array
+) => Uint8Array;
+type UniffiCallbackInterfaceClonePayjoinTransactionFinder = (
+  handle: bigint
+) => UniffiResult<void>;
+type UniffiCallbackInterfaceFreePayjoinTransactionFinder = (
+  handle: bigint
+) => void;
 export type UniffiVTableCallbackInterfacePayjoinTransactionFinder = {
   uniffi_free: UniffiCallbackInterfaceFreePayjoinTransactionFinder;
   uniffi_clone: UniffiCallbackInterfaceClonePayjoinTransactionFinder;
