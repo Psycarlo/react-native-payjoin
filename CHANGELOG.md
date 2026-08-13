@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.5.0] - 2026-08-13
+
+Upstream upgrade to the first stable payjoin release. No API changes: the
+generated bindings are byte-identical in C++ and carry all 176 uniffi API
+checksums unchanged.
+
+### Changed
+
+- Updated `payjoin` to `1.0.0` (`payjoin-ffi 0.24.0` at rev `aa48553`). Between
+  `1.0.0-rc.8` and `1.0.0` upstream changed only version numbers and tests.
+- `payjoin` now comes from crates.io instead of a git rev, and the
+  `[patch.crates-io]` redirect is gone. It existed because `payjoin-ffi` was
+  developed against an in-tree `payjoin` with no published counterpart; `1.0.0`
+  is published and is exactly what `payjoin-ffi` requests, so wrapper and core
+  resolve to one crate instance without a patch.
+
 ## [0.4.1] - 2026-08-08
 
 Patch release: fixes an unresolvable import that made 0.4.0 fail to bundle. No

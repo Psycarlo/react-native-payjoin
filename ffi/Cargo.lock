@@ -1167,8 +1167,9 @@ checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "payjoin"
-version = "1.0.0-rc.8"
-source = "git+https://github.com/payjoin/rust-payjoin.git?rev=e4f5a0b384462458b3d68aeec042c20ceffb8d80#e4f5a0b384462458b3d68aeec042c20ceffb8d80"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "44bff1a63fc33a2109b313a1d2123334c440cc4593603271cb1c56a68db191af"
 dependencies = [
  "bhttp",
  "bitcoin",
@@ -1189,7 +1190,7 @@ dependencies = [
 [[package]]
 name = "payjoin-ffi"
 version = "0.24.0"
-source = "git+https://github.com/payjoin/rust-payjoin.git?rev=e4f5a0b384462458b3d68aeec042c20ceffb8d80#e4f5a0b384462458b3d68aeec042c20ceffb8d80"
+source = "git+https://github.com/payjoin/rust-payjoin.git?rev=aa48553019497f59e5b8f703a6bc3eafe44f528b#aa48553019497f59e5b8f703a6bc3eafe44f528b"
 dependencies = [
  "async-trait",
  "getrandom 0.2.17",
