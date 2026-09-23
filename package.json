@@ -1,6 +1,6 @@
 {
   "name": "react-native-payjoin",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "React Native language bindings for the Payjoin Dev Kit",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -92,8 +92,8 @@
     "ios": ""
   },
   "dependencies": {
-    "@ubjs/core": "0.31.0-3",
-    "uniffi-bindgen-react-native": "0.31.0-3"
+    "@ubjs/core": "0.31.0-5",
+    "uniffi-bindgen-react-native": "0.31.0-5"
   },
   "peerDependencies": {
     "react": "*",
