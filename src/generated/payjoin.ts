@@ -32,10 +32,10 @@ import {
   type UniffiReferenceHolder,
   type UniffiRustCallStatus,
   AbstractFfiConverterByteArray,
+  Cursor,
   FfiConverterArray,
   FfiConverterArrayBuffer,
   FfiConverterBool,
-  FfiConverterInt32,
   FfiConverterObject,
   FfiConverterObjectAsError,
   FfiConverterObjectWithCallbacks,
@@ -144,33 +144,30 @@ export function mergeFinalizedProposalInputs(
   clearedPsbtBase64: string,
   signedPsbtBase64: string
 ): string /*throws*/ {
-  return ((__rb: Uint8Array) => {
-    try {
-      return FfiConverterString.lift(__rb);
-    } finally {
-      nativeModule().rustbuffer_free(__rb);
-    }
-  })(
-    uniffiCaller.rustCallWithError(
-      /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
-        FfiConverterTypeManualReceiveError
-      ),
-      /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(
-          FfiConverterString.lower(
-            clearedPsbtBase64,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterString.lower(
-            signedPsbtBase64,
-            nativeModule().rustbuffer_alloc
-          ),
-          callStatus
-        );
-      },
-      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-    )
+  const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+    /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
+      FfiConverterTypeManualReceiveError
+    ),
+    /*caller:*/ (callStatus) => {
+      return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_merge_finalized_proposal_inputs(
+        FfiConverterString.lower(
+          clearedPsbtBase64,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterString.lower(
+          signedPsbtBase64,
+          nativeModule().rustbuffer_alloc
+        ),
+        callStatus
+      );
+    },
+    /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
   );
+  try {
+    return FfiConverterString.lift(__rb);
+  } finally {
+    nativeModule().rustbuffer_free(__rb);
+  }
 }
 
 /**
@@ -199,53 +196,50 @@ export function receiverManualContribute(
   ownedOutpoints: Array<string>,
   seenOutpoints: Array<string>
 ): ManualContributeResult /*throws*/ {
-  return ((__rb: Uint8Array) => {
-    try {
-      return FfiConverterTypeManualContributeResult.lift(__rb);
-    } finally {
-      nativeModule().rustbuffer_free(__rb);
-    }
-  })(
-    uniffiCaller.rustCallWithError(
-      /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
-        FfiConverterTypeManualReceiveError
-      ),
-      /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(
-          FfiConverterString.lower(
-            originalPsbtBase64,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterString.lower(
-            receiveAddress,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterBool.lower(
-            disableOutputSubstitution,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterTypeManualReceiverInput.lower(
-            input,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterSequenceString.lower(
-            ownedScriptsHex,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterSequenceString.lower(
-            ownedOutpoints,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterSequenceString.lower(
-            seenOutpoints,
-            nativeModule().rustbuffer_alloc
-          ),
-          callStatus
-        );
-      },
-      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-    )
+  const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+    /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
+      FfiConverterTypeManualReceiveError
+    ),
+    /*caller:*/ (callStatus) => {
+      return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_contribute(
+        FfiConverterString.lower(
+          originalPsbtBase64,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterString.lower(
+          receiveAddress,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterBool.lower(
+          disableOutputSubstitution,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterTypeManualReceiverInput.lower(
+          input,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterSequenceString.lower(
+          ownedScriptsHex,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterSequenceString.lower(
+          ownedOutpoints,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterSequenceString.lower(
+          seenOutpoints,
+          nativeModule().rustbuffer_alloc
+        ),
+        callStatus
+      );
+    },
+    /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
   );
+  try {
+    return FfiConverterTypeManualContributeResult.lift(__rb);
+  } finally {
+    nativeModule().rustbuffer_free(__rb);
+  }
 }
 
 /**
@@ -258,33 +252,30 @@ export function receiverManualFinalize(
   provisionalState: string,
   signedPsbtBase64: string
 ): ManualFinalizeResult /*throws*/ {
-  return ((__rb: Uint8Array) => {
-    try {
-      return FfiConverterTypeManualFinalizeResult.lift(__rb);
-    } finally {
-      nativeModule().rustbuffer_free(__rb);
-    }
-  })(
-    uniffiCaller.rustCallWithError(
-      /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
-        FfiConverterTypeManualReceiveError
-      ),
-      /*caller:*/ (callStatus) => {
-        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(
-          FfiConverterString.lower(
-            provisionalState,
-            nativeModule().rustbuffer_alloc
-          ),
-          FfiConverterString.lower(
-            signedPsbtBase64,
-            nativeModule().rustbuffer_alloc
-          ),
-          callStatus
-        );
-      },
-      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-    )
+  const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+    /*liftError:*/ FfiConverterTypeManualReceiveError.lift.bind(
+      FfiConverterTypeManualReceiveError
+    ),
+    /*caller:*/ (callStatus) => {
+      return nativeModule().ubrn_uniffi_payjoin_ffi_fn_func_receiver_manual_finalize(
+        FfiConverterString.lower(
+          provisionalState,
+          nativeModule().rustbuffer_alloc
+        ),
+        FfiConverterString.lower(
+          signedPsbtBase64,
+          nativeModule().rustbuffer_alloc
+        ),
+        callStatus
+      );
+    },
+    /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
   );
+  try {
+    return FfiConverterTypeManualFinalizeResult.lift(__rb);
+  } finally {
+    nativeModule().rustbuffer_free(__rb);
+  }
 }
 
 export function replayReceiverEventLog(
@@ -517,15 +508,15 @@ export const ManualContributeResult = (() => {
 const FfiConverterTypeManualContributeResult = (() => {
   type TypeName = ManualContributeResult;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        provisionalPsbtBase64: FfiConverterString.read(from),
-        provisionalState: FfiConverterString.read(from),
+        provisionalPsbtBase64: FfiConverterString.readFromCursor(c),
+        provisionalState: FfiConverterString.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterString.write(value.provisionalPsbtBase64, into);
-      FfiConverterString.write(value.provisionalState, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterString.writeIntoCursor(value.provisionalPsbtBase64, c);
+      FfiConverterString.writeIntoCursor(value.provisionalState, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -568,13 +559,13 @@ export const ManualFinalizeResult = (() => {
 const FfiConverterTypeManualFinalizeResult = (() => {
   type TypeName = ManualFinalizeResult;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        proposalPsbtBase64: FfiConverterString.read(from),
+        proposalPsbtBase64: FfiConverterString.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterString.write(value.proposalPsbtBase64, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterString.writeIntoCursor(value.proposalPsbtBase64, c);
     }
     allocationSize(value: TypeName): number {
       return FfiConverterString.allocationSize(value.proposalPsbtBase64);
@@ -625,19 +616,19 @@ export const ManualReceiverInput = (() => {
 const FfiConverterTypeManualReceiverInput = (() => {
   type TypeName = ManualReceiverInput;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        txid: FfiConverterString.read(from),
-        vout: FfiConverterUInt32.read(from),
-        value: FfiConverterUInt64.read(from),
-        scriptHex: FfiConverterString.read(from),
+        txid: FfiConverterString.readFromCursor(c),
+        vout: FfiConverterUInt32.readFromCursor(c),
+        value: FfiConverterUInt64.readFromCursor(c),
+        scriptHex: FfiConverterString.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterString.write(value.txid, into);
-      FfiConverterUInt32.write(value.vout, into);
-      FfiConverterUInt64.write(value.value, into);
-      FfiConverterString.write(value.scriptHex, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterString.writeIntoCursor(value.txid, c);
+      FfiConverterUInt32.writeIntoCursor(value.vout, c);
+      FfiConverterUInt64.writeIntoCursor(value.value, c);
+      FfiConverterString.writeIntoCursor(value.scriptHex, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -683,15 +674,15 @@ export const OutPoint = (() => {
 const FfiConverterTypeOutPoint = (() => {
   type TypeName = OutPoint;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        txid: FfiConverterString.read(from),
-        vout: FfiConverterUInt32.read(from),
+        txid: FfiConverterString.readFromCursor(c),
+        vout: FfiConverterUInt32.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterString.write(value.txid, into);
-      FfiConverterUInt32.write(value.vout, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterString.writeIntoCursor(value.txid, c);
+      FfiConverterUInt32.writeIntoCursor(value.vout, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -735,15 +726,15 @@ export const TxOut = (() => {
 const FfiConverterTypeTxOut = (() => {
   type TypeName = TxOut;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        valueSat: FfiConverterUInt64.read(from),
-        scriptPubkey: FfiConverterArrayBuffer.read(from),
+        valueSat: FfiConverterUInt64.readFromCursor(c),
+        scriptPubkey: FfiConverterArrayBuffer.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterUInt64.write(value.valueSat, into);
-      FfiConverterArrayBuffer.write(value.scriptPubkey, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterUInt64.writeIntoCursor(value.valueSat, c);
+      FfiConverterArrayBuffer.writeIntoCursor(value.scriptPubkey, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -782,17 +773,17 @@ export const PsbtInput = (() => {
 const FfiConverterTypePsbtInput = (() => {
   type TypeName = PsbtInput;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        witnessUtxo: FfiConverterOptionalTypeTxOut.read(from),
-        redeemScript: FfiConverterOptionalBytes.read(from),
-        witnessScript: FfiConverterOptionalBytes.read(from),
+        witnessUtxo: FfiConverterOptionalTypeTxOut.readFromCursor(c),
+        redeemScript: FfiConverterOptionalBytes.readFromCursor(c),
+        witnessScript: FfiConverterOptionalBytes.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterOptionalTypeTxOut.write(value.witnessUtxo, into);
-      FfiConverterOptionalBytes.write(value.redeemScript, into);
-      FfiConverterOptionalBytes.write(value.witnessScript, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterOptionalTypeTxOut.writeIntoCursor(value.witnessUtxo, c);
+      FfiConverterOptionalBytes.writeIntoCursor(value.redeemScript, c);
+      FfiConverterOptionalBytes.writeIntoCursor(value.witnessScript, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -848,17 +839,17 @@ export const Request = (() => {
 const FfiConverterTypeRequest = (() => {
   type TypeName = Request;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        url: FfiConverterString.read(from),
-        contentType: FfiConverterString.read(from),
-        body: FfiConverterArrayBuffer.read(from),
+        url: FfiConverterString.readFromCursor(c),
+        contentType: FfiConverterString.readFromCursor(c),
+        body: FfiConverterArrayBuffer.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterString.write(value.url, into);
-      FfiConverterString.write(value.contentType, into);
-      FfiConverterArrayBuffer.write(value.body, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterString.writeIntoCursor(value.url, c);
+      FfiConverterString.writeIntoCursor(value.contentType, c);
+      FfiConverterArrayBuffer.writeIntoCursor(value.body, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -1000,15 +991,15 @@ export const RequestOhttpContext = (() => {
 const FfiConverterTypeRequestOhttpContext = (() => {
   type TypeName = RequestOhttpContext;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        request: FfiConverterTypeRequest.read(from),
-        ohttpCtx: FfiConverterTypeClientResponse.read(from),
+        request: FfiConverterTypeRequest.readFromCursor(c),
+        ohttpCtx: FfiConverterTypeClientResponse.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterTypeRequest.write(value.request, into);
-      FfiConverterTypeClientResponse.write(value.ohttpCtx, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterTypeRequest.writeIntoCursor(value.request, c);
+      FfiConverterTypeClientResponse.writeIntoCursor(value.ohttpCtx, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -1045,15 +1036,15 @@ export const RequestResponse = (() => {
 const FfiConverterTypeRequestResponse = (() => {
   type TypeName = RequestResponse;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        request: FfiConverterTypeRequest.read(from),
-        clientResponse: FfiConverterTypeClientResponse.read(from),
+        request: FfiConverterTypeRequest.readFromCursor(c),
+        clientResponse: FfiConverterTypeClientResponse.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterTypeRequest.write(value.request, into);
-      FfiConverterTypeClientResponse.write(value.clientResponse, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterTypeRequest.writeIntoCursor(value.request, c);
+      FfiConverterTypeClientResponse.writeIntoCursor(value.clientResponse, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -1093,11 +1084,10 @@ export enum ErrorCode {
 }
 
 const FfiConverterTypeErrorCode = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ErrorCode;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return ErrorCode.Unavailable;
         case 2:
@@ -1112,22 +1102,22 @@ const FfiConverterTypeErrorCode = (() => {
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value) {
         case ErrorCode.Unavailable:
-          return ordinalConverter.write(1, into);
+          return c.writeI32(1);
         case ErrorCode.NotEnoughMoney:
-          return ordinalConverter.write(2, into);
+          return c.writeI32(2);
         case ErrorCode.VersionUnsupported:
-          return ordinalConverter.write(3, into);
+          return c.writeI32(3);
         case ErrorCode.OriginalPsbtRejected:
-          return ordinalConverter.write(4, into);
+          return c.writeI32(4);
         case ErrorCode.Unrecognized:
-          return ordinalConverter.write(5, into);
+          return c.writeI32(5);
       }
     }
     allocationSize(value: TypeName): number {
-      return ordinalConverter.allocationSize(0);
+      return 4;
     }
   }
   return new FFIConverter();
@@ -1171,63 +1161,54 @@ export class WellKnownError
    * instead of parsing the Display string.
    */
   code(): ErrorCode {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeErrorCode.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_code(
-            uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_code(
+          uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeErrorCode.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_display(
-            uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_display(
+          uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_debug(
-            uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wellknownerror_uniffi_trait_debug(
+          uniffiTypeWellKnownErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -1341,43 +1322,37 @@ export class ValidationError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_display(
-            uniffiTypeValidationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_display(
+          uniffiTypeValidationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_debug(
-            uniffiTypeValidationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_validationerror_uniffi_trait_debug(
+          uniffiTypeValidationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -1612,47 +1587,46 @@ export type ResponseError = InstanceType<
 
 // FfiConverter for enum ResponseError
 const FfiConverterTypeResponseError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ResponseError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ResponseError.WellKnown(
-            FfiConverterTypeWellKnownError.read(from)
+            FfiConverterTypeWellKnownError.readFromCursor(c)
           );
         case 2:
           return new ResponseError.Validation(
-            FfiConverterTypeValidationError.read(from)
+            FfiConverterTypeValidationError.readFromCursor(c)
           );
         case 3:
           return new ResponseError.Unrecognized({
-            errorCode: FfiConverterString.read(from),
-            msg: FfiConverterString.read(from),
+            errorCode: FfiConverterString.readFromCursor(c),
+            msg: FfiConverterString.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ResponseError_Tags.WellKnown: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeWellKnownError.write(inner[0], into);
+          FfiConverterTypeWellKnownError.writeIntoCursor(inner[0], c);
           return;
         }
         case ResponseError_Tags.Validation: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeValidationError.write(inner[0], into);
+          FfiConverterTypeValidationError.writeIntoCursor(inner[0], c);
           return;
         }
         case ResponseError_Tags.Unrecognized: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterString.write(inner.errorCode, into);
-          FfiConverterString.write(inner.msg, into);
+          FfiConverterString.writeIntoCursor(inner.errorCode, c);
+          FfiConverterString.writeIntoCursor(inner.msg, c);
           return;
         }
         default:
@@ -1664,19 +1638,19 @@ const FfiConverterTypeResponseError = (() => {
       switch (value.tag) {
         case ResponseError_Tags.WellKnown: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeWellKnownError.allocationSize(inner[0]);
           return size;
         }
         case ResponseError_Tags.Validation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeValidationError.allocationSize(inner[0]);
           return size;
         }
         case ResponseError_Tags.Unrecognized: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.errorCode);
           size += FfiConverterString.allocationSize(inner.msg);
           return size;
@@ -1726,30 +1700,27 @@ export class V1Context extends UniffiAbstractObject implements V1ContextLike {
    * Call this method with response from receiver to continue BIP78 flow. If the response is valid you will get appropriate PSBT that you should sign and broadcast.
    */
   processResponse(response: ArrayBuffer): string /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeResponseError.lift.bind(
-          FfiConverterTypeResponseError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_v1context_process_response(
-            uniffiTypeV1ContextObjectFactory.clonePointer(this),
-            FfiConverterArrayBuffer.lower(
-              response,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeResponseError.lift.bind(
+        FfiConverterTypeResponseError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_v1context_process_response(
+          uniffiTypeV1ContextObjectFactory.clonePointer(this),
+          FfiConverterArrayBuffer.lower(
+            response,
+            nativeModule().rustbuffer_alloc
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -1860,15 +1831,15 @@ export const RequestV1Context = (() => {
 const FfiConverterTypeRequestV1Context = (() => {
   type TypeName = RequestV1Context;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        request: FfiConverterTypeRequest.read(from),
-        context: FfiConverterTypeV1Context.read(from),
+        request: FfiConverterTypeRequest.readFromCursor(c),
+        context: FfiConverterTypeV1Context.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterTypeRequest.write(value.request, into);
-      FfiConverterTypeV1Context.write(value.context, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterTypeRequest.writeIntoCursor(value.request, c);
+      FfiConverterTypeV1Context.writeIntoCursor(value.context, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -1908,19 +1879,19 @@ export const TxIn = (() => {
 const FfiConverterTypeTxIn = (() => {
   type TypeName = TxIn;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        previousOutput: FfiConverterTypeOutPoint.read(from),
-        scriptSig: FfiConverterArrayBuffer.read(from),
-        sequence: FfiConverterUInt32.read(from),
-        witness: FfiConverterSequenceBytes.read(from),
+        previousOutput: FfiConverterTypeOutPoint.readFromCursor(c),
+        scriptSig: FfiConverterArrayBuffer.readFromCursor(c),
+        sequence: FfiConverterUInt32.readFromCursor(c),
+        witness: FfiConverterSequenceBytes.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterTypeOutPoint.write(value.previousOutput, into);
-      FfiConverterArrayBuffer.write(value.scriptSig, into);
-      FfiConverterUInt32.write(value.sequence, into);
-      FfiConverterSequenceBytes.write(value.witness, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterTypeOutPoint.writeIntoCursor(value.previousOutput, c);
+      FfiConverterArrayBuffer.writeIntoCursor(value.scriptSig, c);
+      FfiConverterUInt32.writeIntoCursor(value.sequence, c);
+      FfiConverterSequenceBytes.writeIntoCursor(value.witness, c);
     }
     allocationSize(value: TypeName): number {
       return (
@@ -1959,13 +1930,13 @@ export const Weight = (() => {
 const FfiConverterTypeWeight = (() => {
   type TypeName = Weight;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
+    readFromCursor(c: Cursor): TypeName {
       return {
-        weightUnits: FfiConverterUInt64.read(from),
+        weightUnits: FfiConverterUInt64.readFromCursor(c),
       };
     }
-    write(value: TypeName, into: RustBuffer): void {
-      FfiConverterUInt64.write(value.weightUnits, into);
+    writeIntoCursor(value: TypeName, c: Cursor): void {
+      FfiConverterUInt64.writeIntoCursor(value.weightUnits, c);
     }
     allocationSize(value: TypeName): number {
       return FfiConverterUInt64.allocationSize(value.weightUnits);
@@ -2370,125 +2341,124 @@ export type FfiValidationError = InstanceType<
 
 // FfiConverter for enum FfiValidationError
 const FfiConverterTypeFfiValidationError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = FfiValidationError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new FfiValidationError.AmountOutOfRange({
-            amountSat: FfiConverterUInt64.read(from),
-            maxSat: FfiConverterUInt64.read(from),
+            amountSat: FfiConverterUInt64.readFromCursor(c),
+            maxSat: FfiConverterUInt64.readFromCursor(c),
           });
         case 2:
           return new FfiValidationError.ScriptEmpty({
-            field: FfiConverterString.read(from),
+            field: FfiConverterString.readFromCursor(c),
           });
         case 3:
           return new FfiValidationError.ScriptTooLarge({
-            field: FfiConverterString.read(from),
-            len: FfiConverterUInt64.read(from),
-            max: FfiConverterUInt64.read(from),
+            field: FfiConverterString.readFromCursor(c),
+            len: FfiConverterUInt64.readFromCursor(c),
+            max: FfiConverterUInt64.readFromCursor(c),
           });
         case 4:
           return new FfiValidationError.WitnessItemsTooMany({
-            count: FfiConverterUInt64.read(from),
-            max: FfiConverterUInt64.read(from),
+            count: FfiConverterUInt64.readFromCursor(c),
+            max: FfiConverterUInt64.readFromCursor(c),
           });
         case 5:
           return new FfiValidationError.WitnessItemTooLarge({
-            index: FfiConverterUInt64.read(from),
-            len: FfiConverterUInt64.read(from),
-            max: FfiConverterUInt64.read(from),
+            index: FfiConverterUInt64.readFromCursor(c),
+            len: FfiConverterUInt64.readFromCursor(c),
+            max: FfiConverterUInt64.readFromCursor(c),
           });
         case 6:
           return new FfiValidationError.WitnessTooLarge({
-            len: FfiConverterUInt64.read(from),
-            max: FfiConverterUInt64.read(from),
+            len: FfiConverterUInt64.readFromCursor(c),
+            max: FfiConverterUInt64.readFromCursor(c),
           });
         case 7:
           return new FfiValidationError.WeightOutOfRange({
-            weightUnits: FfiConverterUInt64.read(from),
-            maxWu: FfiConverterUInt64.read(from),
+            weightUnits: FfiConverterUInt64.readFromCursor(c),
+            maxWu: FfiConverterUInt64.readFromCursor(c),
           });
         case 8:
           return new FfiValidationError.FeeRateOutOfRange({
-            value: FfiConverterUInt64.read(from),
-            unit: FfiConverterString.read(from),
+            value: FfiConverterUInt64.readFromCursor(c),
+            unit: FfiConverterString.readFromCursor(c),
           });
         case 9:
           return new FfiValidationError.ExpirationOutOfRange({
-            seconds: FfiConverterUInt64.read(from),
-            max: FfiConverterUInt64.read(from),
+            seconds: FfiConverterUInt64.readFromCursor(c),
+            max: FfiConverterUInt64.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case FfiValidationError_Tags.AmountOutOfRange: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.amountSat, into);
-          FfiConverterUInt64.write(inner.maxSat, into);
+          FfiConverterUInt64.writeIntoCursor(inner.amountSat, c);
+          FfiConverterUInt64.writeIntoCursor(inner.maxSat, c);
           return;
         }
         case FfiValidationError_Tags.ScriptEmpty: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterString.write(inner.field, into);
+          FfiConverterString.writeIntoCursor(inner.field, c);
           return;
         }
         case FfiValidationError_Tags.ScriptTooLarge: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterString.write(inner.field, into);
-          FfiConverterUInt64.write(inner.len, into);
-          FfiConverterUInt64.write(inner.max, into);
+          FfiConverterString.writeIntoCursor(inner.field, c);
+          FfiConverterUInt64.writeIntoCursor(inner.len, c);
+          FfiConverterUInt64.writeIntoCursor(inner.max, c);
           return;
         }
         case FfiValidationError_Tags.WitnessItemsTooMany: {
-          ordinalConverter.write(4, into);
+          c.writeI32(4);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.count, into);
-          FfiConverterUInt64.write(inner.max, into);
+          FfiConverterUInt64.writeIntoCursor(inner.count, c);
+          FfiConverterUInt64.writeIntoCursor(inner.max, c);
           return;
         }
         case FfiValidationError_Tags.WitnessItemTooLarge: {
-          ordinalConverter.write(5, into);
+          c.writeI32(5);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.index, into);
-          FfiConverterUInt64.write(inner.len, into);
-          FfiConverterUInt64.write(inner.max, into);
+          FfiConverterUInt64.writeIntoCursor(inner.index, c);
+          FfiConverterUInt64.writeIntoCursor(inner.len, c);
+          FfiConverterUInt64.writeIntoCursor(inner.max, c);
           return;
         }
         case FfiValidationError_Tags.WitnessTooLarge: {
-          ordinalConverter.write(6, into);
+          c.writeI32(6);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.len, into);
-          FfiConverterUInt64.write(inner.max, into);
+          FfiConverterUInt64.writeIntoCursor(inner.len, c);
+          FfiConverterUInt64.writeIntoCursor(inner.max, c);
           return;
         }
         case FfiValidationError_Tags.WeightOutOfRange: {
-          ordinalConverter.write(7, into);
+          c.writeI32(7);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.weightUnits, into);
-          FfiConverterUInt64.write(inner.maxWu, into);
+          FfiConverterUInt64.writeIntoCursor(inner.weightUnits, c);
+          FfiConverterUInt64.writeIntoCursor(inner.maxWu, c);
           return;
         }
         case FfiValidationError_Tags.FeeRateOutOfRange: {
-          ordinalConverter.write(8, into);
+          c.writeI32(8);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.value, into);
-          FfiConverterString.write(inner.unit, into);
+          FfiConverterUInt64.writeIntoCursor(inner.value, c);
+          FfiConverterString.writeIntoCursor(inner.unit, c);
           return;
         }
         case FfiValidationError_Tags.ExpirationOutOfRange: {
-          ordinalConverter.write(9, into);
+          c.writeI32(9);
           const inner = value.inner;
-          FfiConverterUInt64.write(inner.seconds, into);
-          FfiConverterUInt64.write(inner.max, into);
+          FfiConverterUInt64.writeIntoCursor(inner.seconds, c);
+          FfiConverterUInt64.writeIntoCursor(inner.max, c);
           return;
         }
         default:
@@ -2500,20 +2470,20 @@ const FfiConverterTypeFfiValidationError = (() => {
       switch (value.tag) {
         case FfiValidationError_Tags.AmountOutOfRange: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.amountSat);
           size += FfiConverterUInt64.allocationSize(inner.maxSat);
           return size;
         }
         case FfiValidationError_Tags.ScriptEmpty: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.field);
           return size;
         }
         case FfiValidationError_Tags.ScriptTooLarge: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.field);
           size += FfiConverterUInt64.allocationSize(inner.len);
           size += FfiConverterUInt64.allocationSize(inner.max);
@@ -2521,14 +2491,14 @@ const FfiConverterTypeFfiValidationError = (() => {
         }
         case FfiValidationError_Tags.WitnessItemsTooMany: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(4);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.count);
           size += FfiConverterUInt64.allocationSize(inner.max);
           return size;
         }
         case FfiValidationError_Tags.WitnessItemTooLarge: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(5);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.index);
           size += FfiConverterUInt64.allocationSize(inner.len);
           size += FfiConverterUInt64.allocationSize(inner.max);
@@ -2536,28 +2506,28 @@ const FfiConverterTypeFfiValidationError = (() => {
         }
         case FfiValidationError_Tags.WitnessTooLarge: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(6);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.len);
           size += FfiConverterUInt64.allocationSize(inner.max);
           return size;
         }
         case FfiValidationError_Tags.WeightOutOfRange: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(7);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.weightUnits);
           size += FfiConverterUInt64.allocationSize(inner.maxWu);
           return size;
         }
         case FfiValidationError_Tags.FeeRateOutOfRange: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(8);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.value);
           size += FfiConverterString.allocationSize(inner.unit);
           return size;
         }
         case FfiValidationError_Tags.ExpirationOutOfRange: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(9);
+          let size = 4;
           size += FfiConverterUInt64.allocationSize(inner.seconds);
           size += FfiConverterUInt64.allocationSize(inner.max);
           return size;
@@ -2621,23 +2591,24 @@ export type ForeignError = InstanceType<(typeof ForeignError)["InternalError"]>;
 
 // FfiConverter for enum ForeignError
 const FfiConverterTypeForeignError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ForeignError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
-          return new ForeignError.InternalError(FfiConverterString.read(from));
+          return new ForeignError.InternalError(
+            FfiConverterString.readFromCursor(c)
+          );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ForeignError_Tags.InternalError: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner[0], into);
+          FfiConverterString.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -2649,7 +2620,7 @@ const FfiConverterTypeForeignError = (() => {
       switch (value.tag) {
         case ForeignError_Tags.InternalError: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner[0]);
           return size;
         }
@@ -2707,28 +2678,25 @@ export class JsonReceiverSessionPersisterImpl
   }
 
   load(): Array<string> /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterSequenceString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
-          FfiConverterTypeForeignError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_load(
-            uniffiTypeJsonReceiverSessionPersisterImplObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
+        FfiConverterTypeForeignError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersister_load(
+          uniffiTypeJsonReceiverSessionPersisterImplObjectFactory.clonePointer(
+            this
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterSequenceString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   close(): void /*throws*/ {
@@ -2985,43 +2953,37 @@ export class ProtocolError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_display(
-            uniffiTypeProtocolErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_display(
+          uniffiTypeProtocolErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_debug(
-            uniffiTypeProtocolErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_protocolerror_uniffi_trait_debug(
+          uniffiTypeProtocolErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -3139,43 +3101,37 @@ export class ImplementationError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_display(
-            uniffiTypeImplementationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_display(
+          uniffiTypeImplementationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_debug(
-            uniffiTypeImplementationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_implementationerror_uniffi_trait_debug(
+          uniffiTypeImplementationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -3283,43 +3239,37 @@ export class IntoUrlError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_display(
-            uniffiTypeIntoUrlErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_display(
+          uniffiTypeIntoUrlErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_debug(
-            uniffiTypeIntoUrlErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_intourlerror_uniffi_trait_debug(
+          uniffiTypeIntoUrlErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -3583,22 +3533,21 @@ export type ReceiverError = InstanceType<
 
 // FfiConverter for enum ReceiverError
 const FfiConverterTypeReceiverError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ReceiverError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ReceiverError.Protocol(
-            FfiConverterTypeProtocolError.read(from)
+            FfiConverterTypeProtocolError.readFromCursor(c)
           );
         case 2:
           return new ReceiverError.Implementation(
-            FfiConverterTypeImplementationError.read(from)
+            FfiConverterTypeImplementationError.readFromCursor(c)
           );
         case 3:
           return new ReceiverError.IntoUrl(
-            FfiConverterTypeIntoUrlError.read(from)
+            FfiConverterTypeIntoUrlError.readFromCursor(c)
           );
         case 4:
           return new ReceiverError.Unexpected();
@@ -3606,28 +3555,28 @@ const FfiConverterTypeReceiverError = (() => {
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ReceiverError_Tags.Protocol: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeProtocolError.write(inner[0], into);
+          FfiConverterTypeProtocolError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverError_Tags.Implementation: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeImplementationError.write(inner[0], into);
+          FfiConverterTypeImplementationError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverError_Tags.IntoUrl: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeIntoUrlError.write(inner[0], into);
+          FfiConverterTypeIntoUrlError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverError_Tags.Unexpected: {
-          ordinalConverter.write(4, into);
+          c.writeI32(4);
           return;
         }
         default:
@@ -3639,24 +3588,24 @@ const FfiConverterTypeReceiverError = (() => {
       switch (value.tag) {
         case ReceiverError_Tags.Protocol: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeProtocolError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverError_Tags.Implementation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeImplementationError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverError_Tags.IntoUrl: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeIntoUrlError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverError_Tags.Unexpected: {
-          return ordinalConverter.allocationSize(4);
+          return 4;
         }
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
@@ -3805,45 +3754,44 @@ export type ReceiverPersistedError = InstanceType<
 
 // FfiConverter for enum ReceiverPersistedError
 const FfiConverterTypeReceiverPersistedError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ReceiverPersistedError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ReceiverPersistedError.Transient(
-            FfiConverterTypeReceiverError.read(from)
+            FfiConverterTypeReceiverError.readFromCursor(c)
           );
         case 2:
           return new ReceiverPersistedError.Fatal(
-            FfiConverterTypeReceiverError.read(from)
+            FfiConverterTypeReceiverError.readFromCursor(c)
           );
         case 3:
           return new ReceiverPersistedError.Storage(
-            FfiConverterTypeImplementationError.read(from)
+            FfiConverterTypeImplementationError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ReceiverPersistedError_Tags.Transient: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeReceiverError.write(inner[0], into);
+          FfiConverterTypeReceiverError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverPersistedError_Tags.Fatal: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeReceiverError.write(inner[0], into);
+          FfiConverterTypeReceiverError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverPersistedError_Tags.Storage: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeImplementationError.write(inner[0], into);
+          FfiConverterTypeImplementationError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -3855,19 +3803,19 @@ const FfiConverterTypeReceiverPersistedError = (() => {
       switch (value.tag) {
         case ReceiverPersistedError_Tags.Transient: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeReceiverError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverPersistedError_Tags.Fatal: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeReceiverError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverPersistedError_Tags.Storage: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeImplementationError.allocationSize(inner[0]);
           return size;
         }
@@ -3975,9 +3923,16 @@ export class JsonReceiverSessionPersisterAsyncImpl
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterSequenceString.lift.bind(
-          FfiConverterSequenceString
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterSequenceString.lift(__rb);
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeForeignError.lift.bind(
@@ -4491,23 +4446,20 @@ export class ReceiverPendingFallback
   }
 
   fallbackTx(): ArrayBuffer {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterArrayBuffer.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_fallback_tx(
-            uniffiTypeReceiverPendingFallbackObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverpendingfallback_fallback_tx(
+          uniffiTypeReceiverPendingFallbackObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterArrayBuffer.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -4638,30 +4590,27 @@ export class CancelTransition
   save(
     persister: JsonReceiverSessionPersister
   ): ReceiverPendingFallbackLike | undefined /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
-          FfiConverterTypeReceiverPersistedError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save(
-            uniffiTypeCancelTransitionObjectFactory.clonePointer(this),
-            FfiConverterTypeJsonReceiverSessionPersister.lower(
-              persister,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
+        FfiConverterTypeReceiverPersistedError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_canceltransition_save(
+          uniffiTypeCancelTransitionObjectFactory.clonePointer(this),
+          FfiConverterTypeJsonReceiverSessionPersister.lower(
+            persister,
+            nativeModule().rustbuffer_alloc
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   async saveAsync(
@@ -4694,9 +4643,16 @@ export class CancelTransition
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterOptionalTypeReceiverPendingFallback.lift.bind(
-          FfiConverterOptionalTypeReceiverPendingFallback
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
@@ -5352,27 +5308,24 @@ export class ProcessPsbtImpl
   }
 
   callback(psbt: string): string /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
-          FfiConverterTypeForeignError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_processpsbt_callback(
-            uniffiTypeProcessPsbtImplObjectFactory.clonePointer(this),
-            FfiConverterString.lower(psbt, nativeModule().rustbuffer_alloc),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
+        FfiConverterTypeForeignError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_processpsbt_callback(
+          uniffiTypeProcessPsbtImplObjectFactory.clonePointer(this),
+          FfiConverterString.lower(psbt, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -5574,47 +5527,37 @@ export class ReceiverCreateRequestError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_display(
-            uniffiTypeReceiverCreateRequestErrorObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_display(
+          uniffiTypeReceiverCreateRequestErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_debug(
-            uniffiTypeReceiverCreateRequestErrorObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receivercreaterequesterror_uniffi_trait_debug(
+          uniffiTypeReceiverCreateRequestErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -5743,27 +5686,24 @@ export class TransactionFinderImpl
   }
 
   callback(txid: string): ArrayBuffer | undefined /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalBytes.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
-          FfiConverterTypeForeignError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_transactionfinder_callback(
-            uniffiTypeTransactionFinderImplObjectFactory.clonePointer(this),
-            FfiConverterString.lower(txid, nativeModule().rustbuffer_alloc),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
+        FfiConverterTypeForeignError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_transactionfinder_callback(
+          uniffiTypeTransactionFinderImplObjectFactory.clonePointer(this),
+          FfiConverterString.lower(txid, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalBytes.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -6567,30 +6507,24 @@ export class PayjoinProposal
    * Both paths are then OHTTP-encapsulated to the directory's OHTTP Gateway.
    */
   createPostRequest(ohttpRelay: string): RequestResponse /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeRequestResponse.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
-          FfiConverterTypeReceiverCreateRequestError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_create_post_request(
-            uniffiTypePayjoinProposalObjectFactory.clonePointer(this),
-            FfiConverterString.lower(
-              ohttpRelay,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
+        FfiConverterTypeReceiverCreateRequestError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_create_post_request(
+          uniffiTypePayjoinProposalObjectFactory.clonePointer(this),
+          FfiConverterString.lower(ohttpRelay, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeRequestResponse.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -6656,23 +6590,20 @@ export class PayjoinProposal
    * Returns the finalized payjoin proposal PSBT.
    */
   psbt(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_psbt(
-            uniffiTypePayjoinProposalObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_payjoinproposal_psbt(
+          uniffiTypePayjoinProposalObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -7075,23 +7006,20 @@ export class ProvisionalProposal
    * Extract the PSBT that needs to be signed by the receiver's wallet.
    */
   psbtToSign(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_psbt_to_sign(
-            uniffiTypeProvisionalProposalObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_psbt_to_sign(
+          uniffiTypeProvisionalProposalObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -7834,23 +7762,20 @@ export class InputPair extends UniffiAbstractObject implements InputPairLike {
    * Returns the outpoint spent by this input pair.
    */
   outpoint(): OutPoint {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeOutPoint.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(
-            uniffiTypeInputPairObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(
+          uniffiTypeInputPairObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeOutPoint.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -7964,43 +7889,37 @@ export class InputContributionError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_display(
-            uniffiTypeInputContributionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_display(
+          uniffiTypeInputContributionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_debug(
-            uniffiTypeInputContributionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_inputcontributionerror_uniffi_trait_debug(
+          uniffiTypeInputContributionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -8135,43 +8054,37 @@ export class CoinSelectionError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_display(
-            uniffiTypeCoinSelectionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_display(
+          uniffiTypeCoinSelectionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_debug(
-            uniffiTypeCoinSelectionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_coinselectionerror_uniffi_trait_debug(
+          uniffiTypeCoinSelectionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -8742,11 +8655,10 @@ export enum OutputSubstitution {
 }
 
 const FfiConverterTypeOutputSubstitution = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = OutputSubstitution;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return OutputSubstitution.Enabled;
         case 2:
@@ -8755,16 +8667,16 @@ const FfiConverterTypeOutputSubstitution = (() => {
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value) {
         case OutputSubstitution.Enabled:
-          return ordinalConverter.write(1, into);
+          return c.writeI32(1);
         case OutputSubstitution.Disabled:
-          return ordinalConverter.write(2, into);
+          return c.writeI32(2);
       }
     }
     allocationSize(value: TypeName): number {
-      return ordinalConverter.allocationSize(0);
+      return 4;
     }
   }
   return new FFIConverter();
@@ -8799,47 +8711,41 @@ export class OutputSubstitutionProtocolError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_display(
-            uniffiTypeOutputSubstitutionProtocolErrorObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_display(
+          uniffiTypeOutputSubstitutionProtocolErrorObjectFactory.clonePointer(
+            this
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_debug(
-            uniffiTypeOutputSubstitutionProtocolErrorObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_debug(
+          uniffiTypeOutputSubstitutionProtocolErrorObjectFactory.clonePointer(
+            this
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -9028,35 +8934,37 @@ export type OutputSubstitutionError = InstanceType<
 
 // FfiConverter for enum OutputSubstitutionError
 const FfiConverterTypeOutputSubstitutionError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = OutputSubstitutionError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new OutputSubstitutionError.Protocol(
-            FfiConverterTypeOutputSubstitutionProtocolError.read(from)
+            FfiConverterTypeOutputSubstitutionProtocolError.readFromCursor(c)
           );
         case 2:
           return new OutputSubstitutionError.FfiValidation(
-            FfiConverterTypeFfiValidationError.read(from)
+            FfiConverterTypeFfiValidationError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case OutputSubstitutionError_Tags.Protocol: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeOutputSubstitutionProtocolError.write(inner[0], into);
+          FfiConverterTypeOutputSubstitutionProtocolError.writeIntoCursor(
+            inner[0],
+            c
+          );
           return;
         }
         case OutputSubstitutionError_Tags.FfiValidation: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeFfiValidationError.write(inner[0], into);
+          FfiConverterTypeFfiValidationError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -9068,7 +8976,7 @@ const FfiConverterTypeOutputSubstitutionError = (() => {
       switch (value.tag) {
         case OutputSubstitutionError_Tags.Protocol: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size +=
             FfiConverterTypeOutputSubstitutionProtocolError.allocationSize(
               inner[0]
@@ -9077,7 +8985,7 @@ const FfiConverterTypeOutputSubstitutionError = (() => {
         }
         case OutputSubstitutionError_Tags.FfiValidation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeFfiValidationError.allocationSize(inner[0]);
           return size;
         }
@@ -9206,23 +9114,20 @@ export class WantsOutputs
    * Returns whether output substitution is enabled for this session.
    */
   outputSubstitution(): OutputSubstitution {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeOutputSubstitution.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_output_substitution(
-            uniffiTypeWantsOutputsObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_wantsoutputs_output_substitution(
+          uniffiTypeWantsOutputsObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeOutputSubstitution.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -10484,23 +10389,20 @@ export class MaybeInputsOwned
    * Returns the consensus-encoded raw transaction bytes.
    */
   extractTxToScheduleBroadcast(): ArrayBuffer {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterArrayBuffer.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
-            uniffiTypeMaybeInputsOwnedObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+          uniffiTypeMaybeInputsOwnedObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterArrayBuffer.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -11407,86 +11309,74 @@ export class PjUri extends UniffiAbstractObject implements PjUriLike {
   }
 
   address(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_address(
-            uniffiTypePjUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_address(
+          uniffiTypePjUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
    * Number of sats requested as payment
    */
   amountSats(): bigint | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalUInt64.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_amount_sats(
-            uniffiTypePjUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_amount_sats(
+          uniffiTypePjUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalUInt64.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   asString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_as_string(
-            uniffiTypePjUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_as_string(
+          uniffiTypePjUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   pjEndpoint(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_pj_endpoint(
-            uniffiTypePjUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjuri_pj_endpoint(
+          uniffiTypePjUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -11626,30 +11516,27 @@ export class InitializedTransition
   save(
     persister: JsonReceiverSessionPersister
   ): InitializedTransitionOutcome /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeInitializedTransitionOutcome.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
-          FfiConverterTypeReceiverPersistedError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save(
-            uniffiTypeInitializedTransitionObjectFactory.clonePointer(this),
-            FfiConverterTypeJsonReceiverSessionPersister.lower(
-              persister,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
+        FfiConverterTypeReceiverPersistedError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_initializedtransition_save(
+          uniffiTypeInitializedTransitionObjectFactory.clonePointer(this),
+          FfiConverterTypeJsonReceiverSessionPersister.lower(
+            persister,
+            nativeModule().rustbuffer_alloc
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeInitializedTransitionOutcome.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   async saveAsync(
@@ -11682,9 +11569,16 @@ export class InitializedTransition
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterTypeInitializedTransitionOutcome.lift.bind(
-          FfiConverterTypeInitializedTransitionOutcome
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterTypeInitializedTransitionOutcome.lift(__rb);
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
@@ -11855,30 +11749,24 @@ export class Initialized
    * Construct an OHTTP encapsulated GET request, polling the mailbox for the Original PSBT
    */
   createPollRequest(ohttpRelay: string): RequestResponse /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeRequestResponse.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
-          FfiConverterTypeReceiverCreateRequestError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_initialized_create_poll_request(
-            uniffiTypeInitializedObjectFactory.clonePointer(this),
-            FfiConverterString.lower(
-              ohttpRelay,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
+        FfiConverterTypeReceiverCreateRequestError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_initialized_create_poll_request(
+          uniffiTypeInitializedObjectFactory.clonePointer(this),
+          FfiConverterString.lower(ohttpRelay, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeRequestResponse.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -12087,35 +11975,37 @@ export type InitializedTransitionOutcome = InstanceType<
 
 // FfiConverter for enum InitializedTransitionOutcome
 const FfiConverterTypeInitializedTransitionOutcome = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = InitializedTransitionOutcome;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new InitializedTransitionOutcome.Progress({
-            inner: FfiConverterTypeUncheckedOriginalPayload.read(from),
+            inner: FfiConverterTypeUncheckedOriginalPayload.readFromCursor(c),
           });
         case 2:
           return new InitializedTransitionOutcome.Stasis({
-            inner: FfiConverterTypeInitialized.read(from),
+            inner: FfiConverterTypeInitialized.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case InitializedTransitionOutcome_Tags.Progress: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeUncheckedOriginalPayload.write(inner.inner, into);
+          FfiConverterTypeUncheckedOriginalPayload.writeIntoCursor(
+            inner.inner,
+            c
+          );
           return;
         }
         case InitializedTransitionOutcome_Tags.Stasis: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeInitialized.write(inner.inner, into);
+          FfiConverterTypeInitialized.writeIntoCursor(inner.inner, c);
           return;
         }
         default:
@@ -12127,7 +12017,7 @@ const FfiConverterTypeInitializedTransitionOutcome = (() => {
       switch (value.tag) {
         case InitializedTransitionOutcome_Tags.Progress: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeUncheckedOriginalPayload.allocationSize(
             inner.inner
           );
@@ -12135,7 +12025,7 @@ const FfiConverterTypeInitializedTransitionOutcome = (() => {
         }
         case InitializedTransitionOutcome_Tags.Stasis: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeInitialized.allocationSize(inner.inner);
           return size;
         }
@@ -12175,43 +12065,37 @@ export class PsbtInputError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_display(
-            uniffiTypePsbtInputErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_display(
+          uniffiTypePsbtInputErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_debug(
-            uniffiTypePsbtInputErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_psbtinputerror_uniffi_trait_debug(
+          uniffiTypePsbtInputErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -12446,47 +12330,46 @@ export type InputPairError = InstanceType<
 
 // FfiConverter for enum InputPairError
 const FfiConverterTypeInputPairError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = InputPairError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new InputPairError.InvalidOutPoint({
-            txid: FfiConverterString.read(from),
-            vout: FfiConverterUInt32.read(from),
+            txid: FfiConverterString.readFromCursor(c),
+            vout: FfiConverterUInt32.readFromCursor(c),
           });
         case 2:
           return new InputPairError.InvalidPsbtInput(
-            FfiConverterTypePsbtInputError.read(from)
+            FfiConverterTypePsbtInputError.readFromCursor(c)
           );
         case 3:
           return new InputPairError.FfiValidation(
-            FfiConverterTypeFfiValidationError.read(from)
+            FfiConverterTypeFfiValidationError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case InputPairError_Tags.InvalidOutPoint: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner.txid, into);
-          FfiConverterUInt32.write(inner.vout, into);
+          FfiConverterString.writeIntoCursor(inner.txid, c);
+          FfiConverterUInt32.writeIntoCursor(inner.vout, c);
           return;
         }
         case InputPairError_Tags.InvalidPsbtInput: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypePsbtInputError.write(inner[0], into);
+          FfiConverterTypePsbtInputError.writeIntoCursor(inner[0], c);
           return;
         }
         case InputPairError_Tags.FfiValidation: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeFfiValidationError.write(inner[0], into);
+          FfiConverterTypeFfiValidationError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -12498,20 +12381,20 @@ const FfiConverterTypeInputPairError = (() => {
       switch (value.tag) {
         case InputPairError_Tags.InvalidOutPoint: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.txid);
           size += FfiConverterUInt32.allocationSize(inner.vout);
           return size;
         }
         case InputPairError_Tags.InvalidPsbtInput: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypePsbtInputError.allocationSize(inner[0]);
           return size;
         }
         case InputPairError_Tags.FfiValidation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeFfiValidationError.allocationSize(inner[0]);
           return size;
         }
@@ -12623,35 +12506,34 @@ export type ManualReceiveError = InstanceType<
 
 // FfiConverter for enum ManualReceiveError
 const FfiConverterTypeManualReceiveError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ManualReceiveError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ManualReceiveError.Invalid({
-            message: FfiConverterString.read(from),
+            message: FfiConverterString.readFromCursor(c),
           });
         case 2:
           return new ManualReceiveError.Check({
-            message: FfiConverterString.read(from),
+            message: FfiConverterString.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ManualReceiveError_Tags.Invalid: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner.message, into);
+          FfiConverterString.writeIntoCursor(inner.message, c);
           return;
         }
         case ManualReceiveError_Tags.Check: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterString.write(inner.message, into);
+          FfiConverterString.writeIntoCursor(inner.message, c);
           return;
         }
         default:
@@ -12663,13 +12545,13 @@ const FfiConverterTypeManualReceiveError = (() => {
       switch (value.tag) {
         case ManualReceiveError_Tags.Invalid: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.message);
           return size;
         }
         case ManualReceiveError_Tags.Check: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.message);
           return size;
         }
@@ -12744,25 +12626,24 @@ export type OhttpKeysFetchError = InstanceType<
 
 // FfiConverter for enum OhttpKeysFetchError
 const FfiConverterTypeOhttpKeysFetchError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = OhttpKeysFetchError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new OhttpKeysFetchError.Fetch({
-            message: FfiConverterString.read(from),
+            message: FfiConverterString.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case OhttpKeysFetchError_Tags.Fetch: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner.message, into);
+          FfiConverterString.writeIntoCursor(inner.message, c);
           return;
         }
         default:
@@ -12774,7 +12655,7 @@ const FfiConverterTypeOhttpKeysFetchError = (() => {
       switch (value.tag) {
         case OhttpKeysFetchError_Tags.Fetch: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.message);
           return size;
         }
@@ -12832,28 +12713,25 @@ export class JsonSenderSessionPersisterImpl
   }
 
   load(): Array<string> /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterSequenceString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
-          FfiConverterTypeForeignError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_load(
-            uniffiTypeJsonSenderSessionPersisterImplObjectFactory.clonePointer(
-              this
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeForeignError.lift.bind(
+        FfiConverterTypeForeignError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersister_load(
+          uniffiTypeJsonSenderSessionPersisterImplObjectFactory.clonePointer(
+            this
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterSequenceString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   close(): void /*throws*/ {
@@ -13094,43 +12972,37 @@ export class DecapsulationError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(
-            uniffiTypeDecapsulationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(
+          uniffiTypeDecapsulationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_debug(
-            uniffiTypeDecapsulationErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_debug(
+          uniffiTypeDecapsulationErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -13248,43 +13120,37 @@ export class SenderBuilderError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(
-            uniffiTypeSenderBuilderErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(
+          uniffiTypeSenderBuilderErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(
-            uniffiTypeSenderBuilderErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(
+          uniffiTypeSenderBuilderErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   equals(other: SenderBuilderError): boolean {
@@ -13557,22 +13423,21 @@ export type SenderError = InstanceType<
 
 // FfiConverter for enum SenderError
 const FfiConverterTypeSenderError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = SenderError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new SenderError.Decapsulation(
-            FfiConverterTypeDecapsulationError.read(from)
+            FfiConverterTypeDecapsulationError.readFromCursor(c)
           );
         case 2:
           return new SenderError.Response(
-            FfiConverterTypeResponseError.read(from)
+            FfiConverterTypeResponseError.readFromCursor(c)
           );
         case 3:
           return new SenderError.Build(
-            FfiConverterTypeSenderBuilderError.read(from)
+            FfiConverterTypeSenderBuilderError.readFromCursor(c)
           );
         case 4:
           return new SenderError.Unexpected();
@@ -13580,28 +13445,28 @@ const FfiConverterTypeSenderError = (() => {
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case SenderError_Tags.Decapsulation: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeDecapsulationError.write(inner[0], into);
+          FfiConverterTypeDecapsulationError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderError_Tags.Response: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeResponseError.write(inner[0], into);
+          FfiConverterTypeResponseError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderError_Tags.Build: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeSenderBuilderError.write(inner[0], into);
+          FfiConverterTypeSenderBuilderError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderError_Tags.Unexpected: {
-          ordinalConverter.write(4, into);
+          c.writeI32(4);
           return;
         }
         default:
@@ -13613,24 +13478,24 @@ const FfiConverterTypeSenderError = (() => {
       switch (value.tag) {
         case SenderError_Tags.Decapsulation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeDecapsulationError.allocationSize(inner[0]);
           return size;
         }
         case SenderError_Tags.Response: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeResponseError.allocationSize(inner[0]);
           return size;
         }
         case SenderError_Tags.Build: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeSenderBuilderError.allocationSize(inner[0]);
           return size;
         }
         case SenderError_Tags.Unexpected: {
-          return ordinalConverter.allocationSize(4);
+          return 4;
         }
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
@@ -13779,45 +13644,44 @@ export type SenderPersistedError = InstanceType<
 
 // FfiConverter for enum SenderPersistedError
 const FfiConverterTypeSenderPersistedError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = SenderPersistedError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new SenderPersistedError.Transient(
-            FfiConverterTypeSenderError.read(from)
+            FfiConverterTypeSenderError.readFromCursor(c)
           );
         case 2:
           return new SenderPersistedError.Fatal(
-            FfiConverterTypeSenderError.read(from)
+            FfiConverterTypeSenderError.readFromCursor(c)
           );
         case 3:
           return new SenderPersistedError.Storage(
-            FfiConverterTypeImplementationError.read(from)
+            FfiConverterTypeImplementationError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case SenderPersistedError_Tags.Transient: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeSenderError.write(inner[0], into);
+          FfiConverterTypeSenderError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderPersistedError_Tags.Fatal: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeSenderError.write(inner[0], into);
+          FfiConverterTypeSenderError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderPersistedError_Tags.Storage: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeImplementationError.write(inner[0], into);
+          FfiConverterTypeImplementationError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -13829,19 +13693,19 @@ const FfiConverterTypeSenderPersistedError = (() => {
       switch (value.tag) {
         case SenderPersistedError_Tags.Transient: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeSenderError.allocationSize(inner[0]);
           return size;
         }
         case SenderPersistedError_Tags.Fatal: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeSenderError.allocationSize(inner[0]);
           return size;
         }
         case SenderPersistedError_Tags.Storage: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeImplementationError.allocationSize(inner[0]);
           return size;
         }
@@ -13947,9 +13811,16 @@ export class JsonSenderSessionPersisterAsyncImpl
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterSequenceString.lift.bind(
-          FfiConverterSequenceString
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterSequenceString.lift(__rb);
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeForeignError.lift.bind(
@@ -14484,23 +14355,20 @@ export class SenderPendingFallback
    * complete the payment without Payjoin.
    */
   fallbackTx(): ArrayBuffer {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterArrayBuffer.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_fallback_tx(
-            uniffiTypeSenderPendingFallbackObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderpendingfallback_fallback_tx(
+          uniffiTypeSenderPendingFallbackObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterArrayBuffer.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -14828,43 +14696,37 @@ export class CreateRequestError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_display(
-            uniffiTypeCreateRequestErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_display(
+          uniffiTypeCreateRequestErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_debug(
-            uniffiTypeCreateRequestErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_createrequesterror_uniffi_trait_debug(
+          uniffiTypeCreateRequestErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -15001,32 +14863,29 @@ export class PollingForProposalTransition
   save(
     persister: JsonSenderSessionPersister
   ): PollingForProposalTransitionOutcome /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypePollingForProposalTransitionOutcome.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeSenderPersistedError.lift.bind(
-          FfiConverterTypeSenderPersistedError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save(
-            uniffiTypePollingForProposalTransitionObjectFactory.clonePointer(
-              this
-            ),
-            FfiConverterTypeJsonSenderSessionPersister.lower(
-              persister,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeSenderPersistedError.lift.bind(
+        FfiConverterTypeSenderPersistedError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposaltransition_save(
+          uniffiTypePollingForProposalTransitionObjectFactory.clonePointer(
+            this
+          ),
+          FfiConverterTypeJsonSenderSessionPersister.lower(
+            persister,
+            nativeModule().rustbuffer_alloc
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypePollingForProposalTransitionOutcome.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   async saveAsync(
@@ -15061,9 +14920,18 @@ export class PollingForProposalTransition
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterTypePollingForProposalTransitionOutcome.lift.bind(
-          FfiConverterTypePollingForProposalTransitionOutcome
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterTypePollingForProposalTransitionOutcome.lift(
+              __rb
+            );
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeSenderPersistedError.lift.bind(
@@ -15228,30 +15096,24 @@ export class PollingForProposal
   }
 
   createPollRequest(ohttpRelay: string): RequestOhttpContext /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeRequestOhttpContext.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeCreateRequestError__as_error.lift.bind(
-          FfiConverterTypeCreateRequestError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_create_poll_request(
-            uniffiTypePollingForProposalObjectFactory.clonePointer(this),
-            FfiConverterString.lower(
-              ohttpRelay,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeCreateRequestError__as_error.lift.bind(
+        FfiConverterTypeCreateRequestError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pollingforproposal_create_poll_request(
+          uniffiTypePollingForProposalObjectFactory.clonePointer(this),
+          FfiConverterString.lower(ohttpRelay, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeRequestOhttpContext.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -15443,35 +15305,34 @@ export type PollingForProposalTransitionOutcome = InstanceType<
 
 // FfiConverter for enum PollingForProposalTransitionOutcome
 const FfiConverterTypePollingForProposalTransitionOutcome = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = PollingForProposalTransitionOutcome;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new PollingForProposalTransitionOutcome.Progress({
-            psbtBase64: FfiConverterString.read(from),
+            psbtBase64: FfiConverterString.readFromCursor(c),
           });
         case 2:
           return new PollingForProposalTransitionOutcome.Stasis({
-            inner: FfiConverterTypePollingForProposal.read(from),
+            inner: FfiConverterTypePollingForProposal.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case PollingForProposalTransitionOutcome_Tags.Progress: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner.psbtBase64, into);
+          FfiConverterString.writeIntoCursor(inner.psbtBase64, c);
           return;
         }
         case PollingForProposalTransitionOutcome_Tags.Stasis: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypePollingForProposal.write(inner.inner, into);
+          FfiConverterTypePollingForProposal.writeIntoCursor(inner.inner, c);
           return;
         }
         default:
@@ -15483,13 +15344,13 @@ const FfiConverterTypePollingForProposalTransitionOutcome = (() => {
       switch (value.tag) {
         case PollingForProposalTransitionOutcome_Tags.Progress: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner.psbtBase64);
           return size;
         }
         case PollingForProposalTransitionOutcome_Tags.Stasis: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypePollingForProposal.allocationSize(
             inner.inner
           );
@@ -15565,23 +15426,24 @@ export type PsbtParseError = InstanceType<
 
 // FfiConverter for enum PsbtParseError
 const FfiConverterTypePsbtParseError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = PsbtParseError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
-          return new PsbtParseError.InvalidPsbt(FfiConverterString.read(from));
+          return new PsbtParseError.InvalidPsbt(
+            FfiConverterString.readFromCursor(c)
+          );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case PsbtParseError_Tags.InvalidPsbt: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterString.write(inner[0], into);
+          FfiConverterString.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -15593,7 +15455,7 @@ const FfiConverterTypePsbtParseError = (() => {
       switch (value.tag) {
         case PsbtParseError_Tags.InvalidPsbt: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterString.allocationSize(inner[0]);
           return size;
         }
@@ -15638,32 +15500,27 @@ export class HasReplyableErrorTransition
   save(
     persister: JsonReceiverSessionPersister
   ): ReceiverPendingFallbackLike | undefined /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
-          FfiConverterTypeReceiverPersistedError
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save(
-            uniffiTypeHasReplyableErrorTransitionObjectFactory.clonePointer(
-              this
-            ),
-            FfiConverterTypeJsonReceiverSessionPersister.lower(
-              persister,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
+        FfiConverterTypeReceiverPersistedError
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerrortransition_save(
+          uniffiTypeHasReplyableErrorTransitionObjectFactory.clonePointer(this),
+          FfiConverterTypeJsonReceiverSessionPersister.lower(
+            persister,
+            nativeModule().rustbuffer_alloc
+          ),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   async saveAsync(
@@ -15698,9 +15555,16 @@ export class HasReplyableErrorTransition
         // RustBuffer comes back via the shared `rust_future_complete_*`
         // export. The bytes the runtime hands back must be deserialized
         // here using the per-callable return-type converter.
-        /*liftFunc:*/ FfiConverterOptionalTypeReceiverPendingFallback.lift.bind(
-          FfiConverterOptionalTypeReceiverPendingFallback
-        ),
+        // Borrowed view over foreign memory: the call site owns the free,
+        // as on the sync paths. Unconditional — a no-op where buffers are
+        // already JS-owned.
+        /*liftFunc:*/ (__rb) => {
+          try {
+            return FfiConverterOptionalTypeReceiverPendingFallback.lift(__rb);
+          } finally {
+            nativeModule().rustbuffer_free(__rb);
+          }
+        },
         /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString),
         /*asyncOpts:*/ asyncOpts_,
         /*errorHandler:*/ FfiConverterTypeReceiverPersistedError.lift.bind(
@@ -15875,30 +15739,24 @@ export class HasReplyableError
    * error response to the directory so it can be retrieved by the sender.
    */
   createErrorRequest(ohttpRelay: string): RequestResponse /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeRequestResponse.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
-          FfiConverterTypeReceiverCreateRequestError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_create_error_request(
-            uniffiTypeHasReplyableErrorObjectFactory.clonePointer(this),
-            FfiConverterString.lower(
-              ohttpRelay,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeReceiverCreateRequestError__as_error.lift.bind(
+        FfiConverterTypeReceiverCreateRequestError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_hasreplyableerror_create_error_request(
+          uniffiTypeHasReplyableErrorObjectFactory.clonePointer(this),
+          FfiConverterString.lower(ohttpRelay, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeRequestResponse.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -16577,155 +16435,163 @@ export type ReceiveSession = InstanceType<
 
 // FfiConverter for enum ReceiveSession
 const FfiConverterTypeReceiveSession = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ReceiveSession;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ReceiveSession.Initialized({
-            inner: FfiConverterTypeInitialized.read(from),
+            inner: FfiConverterTypeInitialized.readFromCursor(c),
           });
         case 2:
           return new ReceiveSession.UncheckedOriginalPayload({
-            inner: FfiConverterTypeUncheckedOriginalPayload.read(from),
+            inner: FfiConverterTypeUncheckedOriginalPayload.readFromCursor(c),
           });
         case 3:
           return new ReceiveSession.MaybeInputsOwned({
-            inner: FfiConverterTypeMaybeInputsOwned.read(from),
+            inner: FfiConverterTypeMaybeInputsOwned.readFromCursor(c),
           });
         case 4:
           return new ReceiveSession.MaybeInputsSeen({
-            inner: FfiConverterTypeMaybeInputsSeen.read(from),
+            inner: FfiConverterTypeMaybeInputsSeen.readFromCursor(c),
           });
         case 5:
           return new ReceiveSession.OutputsUnknown({
-            inner: FfiConverterTypeOutputsUnknown.read(from),
+            inner: FfiConverterTypeOutputsUnknown.readFromCursor(c),
           });
         case 6:
           return new ReceiveSession.WantsOutputs({
-            inner: FfiConverterTypeWantsOutputs.read(from),
+            inner: FfiConverterTypeWantsOutputs.readFromCursor(c),
           });
         case 7:
           return new ReceiveSession.WantsInputs({
-            inner: FfiConverterTypeWantsInputs.read(from),
+            inner: FfiConverterTypeWantsInputs.readFromCursor(c),
           });
         case 8:
           return new ReceiveSession.WantsFeeRange({
-            inner: FfiConverterTypeWantsFeeRange.read(from),
+            inner: FfiConverterTypeWantsFeeRange.readFromCursor(c),
           });
         case 9:
           return new ReceiveSession.ProvisionalProposal({
-            inner: FfiConverterTypeProvisionalProposal.read(from),
+            inner: FfiConverterTypeProvisionalProposal.readFromCursor(c),
           });
         case 10:
           return new ReceiveSession.PayjoinProposal({
-            inner: FfiConverterTypePayjoinProposal.read(from),
+            inner: FfiConverterTypePayjoinProposal.readFromCursor(c),
           });
         case 11:
           return new ReceiveSession.HasReplyableError({
-            inner: FfiConverterTypeHasReplyableError.read(from),
+            inner: FfiConverterTypeHasReplyableError.readFromCursor(c),
           });
         case 12:
           return new ReceiveSession.Monitor({
-            inner: FfiConverterTypeMonitor.read(from),
+            inner: FfiConverterTypeMonitor.readFromCursor(c),
           });
         case 13:
           return new ReceiveSession.ReceiverPendingFallback({
-            inner: FfiConverterTypeReceiverPendingFallback.read(from),
+            inner: FfiConverterTypeReceiverPendingFallback.readFromCursor(c),
           });
         case 14:
           return new ReceiveSession.Closed({
-            inner: FfiConverterTypeReceiverSessionOutcome.read(from),
+            inner: FfiConverterTypeReceiverSessionOutcome.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ReceiveSession_Tags.Initialized: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeInitialized.write(inner.inner, into);
+          FfiConverterTypeInitialized.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.UncheckedOriginalPayload: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeUncheckedOriginalPayload.write(inner.inner, into);
+          FfiConverterTypeUncheckedOriginalPayload.writeIntoCursor(
+            inner.inner,
+            c
+          );
           return;
         }
         case ReceiveSession_Tags.MaybeInputsOwned: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeMaybeInputsOwned.write(inner.inner, into);
+          FfiConverterTypeMaybeInputsOwned.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.MaybeInputsSeen: {
-          ordinalConverter.write(4, into);
+          c.writeI32(4);
           const inner = value.inner;
-          FfiConverterTypeMaybeInputsSeen.write(inner.inner, into);
+          FfiConverterTypeMaybeInputsSeen.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.OutputsUnknown: {
-          ordinalConverter.write(5, into);
+          c.writeI32(5);
           const inner = value.inner;
-          FfiConverterTypeOutputsUnknown.write(inner.inner, into);
+          FfiConverterTypeOutputsUnknown.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.WantsOutputs: {
-          ordinalConverter.write(6, into);
+          c.writeI32(6);
           const inner = value.inner;
-          FfiConverterTypeWantsOutputs.write(inner.inner, into);
+          FfiConverterTypeWantsOutputs.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.WantsInputs: {
-          ordinalConverter.write(7, into);
+          c.writeI32(7);
           const inner = value.inner;
-          FfiConverterTypeWantsInputs.write(inner.inner, into);
+          FfiConverterTypeWantsInputs.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.WantsFeeRange: {
-          ordinalConverter.write(8, into);
+          c.writeI32(8);
           const inner = value.inner;
-          FfiConverterTypeWantsFeeRange.write(inner.inner, into);
+          FfiConverterTypeWantsFeeRange.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.ProvisionalProposal: {
-          ordinalConverter.write(9, into);
+          c.writeI32(9);
           const inner = value.inner;
-          FfiConverterTypeProvisionalProposal.write(inner.inner, into);
+          FfiConverterTypeProvisionalProposal.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.PayjoinProposal: {
-          ordinalConverter.write(10, into);
+          c.writeI32(10);
           const inner = value.inner;
-          FfiConverterTypePayjoinProposal.write(inner.inner, into);
+          FfiConverterTypePayjoinProposal.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.HasReplyableError: {
-          ordinalConverter.write(11, into);
+          c.writeI32(11);
           const inner = value.inner;
-          FfiConverterTypeHasReplyableError.write(inner.inner, into);
+          FfiConverterTypeHasReplyableError.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.Monitor: {
-          ordinalConverter.write(12, into);
+          c.writeI32(12);
           const inner = value.inner;
-          FfiConverterTypeMonitor.write(inner.inner, into);
+          FfiConverterTypeMonitor.writeIntoCursor(inner.inner, c);
           return;
         }
         case ReceiveSession_Tags.ReceiverPendingFallback: {
-          ordinalConverter.write(13, into);
+          c.writeI32(13);
           const inner = value.inner;
-          FfiConverterTypeReceiverPendingFallback.write(inner.inner, into);
+          FfiConverterTypeReceiverPendingFallback.writeIntoCursor(
+            inner.inner,
+            c
+          );
           return;
         }
         case ReceiveSession_Tags.Closed: {
-          ordinalConverter.write(14, into);
+          c.writeI32(14);
           const inner = value.inner;
-          FfiConverterTypeReceiverSessionOutcome.write(inner.inner, into);
+          FfiConverterTypeReceiverSessionOutcome.writeIntoCursor(
+            inner.inner,
+            c
+          );
           return;
         }
         default:
@@ -16737,13 +16603,13 @@ const FfiConverterTypeReceiveSession = (() => {
       switch (value.tag) {
         case ReceiveSession_Tags.Initialized: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeInitialized.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.UncheckedOriginalPayload: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeUncheckedOriginalPayload.allocationSize(
             inner.inner
           );
@@ -16751,43 +16617,43 @@ const FfiConverterTypeReceiveSession = (() => {
         }
         case ReceiveSession_Tags.MaybeInputsOwned: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeMaybeInputsOwned.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.MaybeInputsSeen: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(4);
+          let size = 4;
           size += FfiConverterTypeMaybeInputsSeen.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.OutputsUnknown: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(5);
+          let size = 4;
           size += FfiConverterTypeOutputsUnknown.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.WantsOutputs: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(6);
+          let size = 4;
           size += FfiConverterTypeWantsOutputs.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.WantsInputs: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(7);
+          let size = 4;
           size += FfiConverterTypeWantsInputs.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.WantsFeeRange: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(8);
+          let size = 4;
           size += FfiConverterTypeWantsFeeRange.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.ProvisionalProposal: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(9);
+          let size = 4;
           size += FfiConverterTypeProvisionalProposal.allocationSize(
             inner.inner
           );
@@ -16795,25 +16661,25 @@ const FfiConverterTypeReceiveSession = (() => {
         }
         case ReceiveSession_Tags.PayjoinProposal: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(10);
+          let size = 4;
           size += FfiConverterTypePayjoinProposal.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.HasReplyableError: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(11);
+          let size = 4;
           size += FfiConverterTypeHasReplyableError.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.Monitor: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(12);
+          let size = 4;
           size += FfiConverterTypeMonitor.allocationSize(inner.inner);
           return size;
         }
         case ReceiveSession_Tags.ReceiverPendingFallback: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(13);
+          let size = 4;
           size += FfiConverterTypeReceiverPendingFallback.allocationSize(
             inner.inner
           );
@@ -16821,7 +16687,7 @@ const FfiConverterTypeReceiveSession = (() => {
         }
         case ReceiveSession_Tags.Closed: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(14);
+          let size = 4;
           size += FfiConverterTypeReceiverSessionOutcome.allocationSize(
             inner.inner
           );
@@ -16863,43 +16729,37 @@ export class AddressParseError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_display(
-            uniffiTypeAddressParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_display(
+          uniffiTypeAddressParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_debug(
-            uniffiTypeAddressParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_addressparseerror_uniffi_trait_debug(
+          uniffiTypeAddressParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -17088,35 +16948,34 @@ export type ReceiverBuilderError = InstanceType<
 
 // FfiConverter for enum ReceiverBuilderError
 const FfiConverterTypeReceiverBuilderError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = ReceiverBuilderError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new ReceiverBuilderError.InvalidAddress(
-            FfiConverterTypeAddressParseError.read(from)
+            FfiConverterTypeAddressParseError.readFromCursor(c)
           );
         case 2:
           return new ReceiverBuilderError.IntoUrl(
-            FfiConverterTypeIntoUrlError.read(from)
+            FfiConverterTypeIntoUrlError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case ReceiverBuilderError_Tags.InvalidAddress: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeAddressParseError.write(inner[0], into);
+          FfiConverterTypeAddressParseError.writeIntoCursor(inner[0], c);
           return;
         }
         case ReceiverBuilderError_Tags.IntoUrl: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeIntoUrlError.write(inner[0], into);
+          FfiConverterTypeIntoUrlError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -17128,13 +16987,13 @@ const FfiConverterTypeReceiverBuilderError = (() => {
       switch (value.tag) {
         case ReceiverBuilderError_Tags.InvalidAddress: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeAddressParseError.allocationSize(inner[0]);
           return size;
         }
         case ReceiverBuilderError_Tags.IntoUrl: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeIntoUrlError.allocationSize(inner[0]);
           return size;
         }
@@ -17405,30 +17264,24 @@ export class WithReplyKey
    * The specific concern is that the relay can see that a request is being retried.
    */
   createV2PostRequest(ohttpRelay: string): RequestOhttpContext /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeRequestOhttpContext.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeCreateRequestError__as_error.lift.bind(
-          FfiConverterTypeCreateRequestError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_create_v2_post_request(
-            uniffiTypeWithReplyKeyObjectFactory.clonePointer(this),
-            FfiConverterString.lower(
-              ohttpRelay,
-              nativeModule().rustbuffer_alloc
-            ),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeCreateRequestError__as_error.lift.bind(
+        FfiConverterTypeCreateRequestError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_withreplykey_create_v2_post_request(
+          uniffiTypeWithReplyKeyObjectFactory.clonePointer(this),
+          FfiConverterString.lower(ohttpRelay, nativeModule().rustbuffer_alloc),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeRequestOhttpContext.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -17600,23 +17453,20 @@ export class SenderSessionOutcome
   }
 
   successPsbtBase64(): string | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_success_psbt_base64(
-            uniffiTypeSenderSessionOutcomeObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionoutcome_success_psbt_base64(
+          uniffiTypeSenderSessionOutcomeObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -17844,55 +17694,54 @@ export type SendSession = InstanceType<
 
 // FfiConverter for enum SendSession
 const FfiConverterTypeSendSession = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = SendSession;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new SendSession.WithReplyKey({
-            inner: FfiConverterTypeWithReplyKey.read(from),
+            inner: FfiConverterTypeWithReplyKey.readFromCursor(c),
           });
         case 2:
           return new SendSession.PollingForProposal({
-            inner: FfiConverterTypePollingForProposal.read(from),
+            inner: FfiConverterTypePollingForProposal.readFromCursor(c),
           });
         case 3:
           return new SendSession.SenderPendingFallback({
-            inner: FfiConverterTypeSenderPendingFallback.read(from),
+            inner: FfiConverterTypeSenderPendingFallback.readFromCursor(c),
           });
         case 4:
           return new SendSession.Closed({
-            inner: FfiConverterTypeSenderSessionOutcome.read(from),
+            inner: FfiConverterTypeSenderSessionOutcome.readFromCursor(c),
           });
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case SendSession_Tags.WithReplyKey: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypeWithReplyKey.write(inner.inner, into);
+          FfiConverterTypeWithReplyKey.writeIntoCursor(inner.inner, c);
           return;
         }
         case SendSession_Tags.PollingForProposal: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypePollingForProposal.write(inner.inner, into);
+          FfiConverterTypePollingForProposal.writeIntoCursor(inner.inner, c);
           return;
         }
         case SendSession_Tags.SenderPendingFallback: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeSenderPendingFallback.write(inner.inner, into);
+          FfiConverterTypeSenderPendingFallback.writeIntoCursor(inner.inner, c);
           return;
         }
         case SendSession_Tags.Closed: {
-          ordinalConverter.write(4, into);
+          c.writeI32(4);
           const inner = value.inner;
-          FfiConverterTypeSenderSessionOutcome.write(inner.inner, into);
+          FfiConverterTypeSenderSessionOutcome.writeIntoCursor(inner.inner, c);
           return;
         }
         default:
@@ -17904,13 +17753,13 @@ const FfiConverterTypeSendSession = (() => {
       switch (value.tag) {
         case SendSession_Tags.WithReplyKey: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypeWithReplyKey.allocationSize(inner.inner);
           return size;
         }
         case SendSession_Tags.PollingForProposal: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypePollingForProposal.allocationSize(
             inner.inner
           );
@@ -17918,7 +17767,7 @@ const FfiConverterTypeSendSession = (() => {
         }
         case SendSession_Tags.SenderPendingFallback: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeSenderPendingFallback.allocationSize(
             inner.inner
           );
@@ -17926,7 +17775,7 @@ const FfiConverterTypeSendSession = (() => {
         }
         case SendSession_Tags.Closed: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(4);
+          let size = 4;
           size += FfiConverterTypeSenderSessionOutcome.allocationSize(
             inner.inner
           );
@@ -18069,45 +17918,44 @@ export type SenderInputError = InstanceType<
 
 // FfiConverter for enum SenderInputError
 const FfiConverterTypeSenderInputError = (() => {
-  const ordinalConverter = FfiConverterInt32;
   type TypeName = SenderInputError;
   class FFIConverter extends AbstractFfiConverterByteArray<TypeName> {
-    read(from: RustBuffer): TypeName {
-      switch (ordinalConverter.read(from)) {
+    readFromCursor(c: Cursor): TypeName {
+      switch (c.readI32()) {
         case 1:
           return new SenderInputError.Psbt(
-            FfiConverterTypePsbtParseError.read(from)
+            FfiConverterTypePsbtParseError.readFromCursor(c)
           );
         case 2:
           return new SenderInputError.Build(
-            FfiConverterTypeSenderBuilderError.read(from)
+            FfiConverterTypeSenderBuilderError.readFromCursor(c)
           );
         case 3:
           return new SenderInputError.FfiValidation(
-            FfiConverterTypeFfiValidationError.read(from)
+            FfiConverterTypeFfiValidationError.readFromCursor(c)
           );
         default:
           throw new UniffiInternalError.UnexpectedEnumCase();
       }
     }
-    write(value: TypeName, into: RustBuffer): void {
+    writeIntoCursor(value: TypeName, c: Cursor): void {
       switch (value.tag) {
         case SenderInputError_Tags.Psbt: {
-          ordinalConverter.write(1, into);
+          c.writeI32(1);
           const inner = value.inner;
-          FfiConverterTypePsbtParseError.write(inner[0], into);
+          FfiConverterTypePsbtParseError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderInputError_Tags.Build: {
-          ordinalConverter.write(2, into);
+          c.writeI32(2);
           const inner = value.inner;
-          FfiConverterTypeSenderBuilderError.write(inner[0], into);
+          FfiConverterTypeSenderBuilderError.writeIntoCursor(inner[0], c);
           return;
         }
         case SenderInputError_Tags.FfiValidation: {
-          ordinalConverter.write(3, into);
+          c.writeI32(3);
           const inner = value.inner;
-          FfiConverterTypeFfiValidationError.write(inner[0], into);
+          FfiConverterTypeFfiValidationError.writeIntoCursor(inner[0], c);
           return;
         }
         default:
@@ -18119,19 +17967,19 @@ const FfiConverterTypeSenderInputError = (() => {
       switch (value.tag) {
         case SenderInputError_Tags.Psbt: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(1);
+          let size = 4;
           size += FfiConverterTypePsbtParseError.allocationSize(inner[0]);
           return size;
         }
         case SenderInputError_Tags.Build: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(2);
+          let size = 4;
           size += FfiConverterTypeSenderBuilderError.allocationSize(inner[0]);
           return size;
         }
         case SenderInputError_Tags.FfiValidation: {
           const inner = value.inner;
-          let size = ordinalConverter.allocationSize(3);
+          let size = 4;
           size += FfiConverterTypeFfiValidationError.allocationSize(inner[0]);
           return size;
         }
@@ -18165,43 +18013,37 @@ export class FeeRateError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_display(
-            uniffiTypeFeeRateErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_display(
+          uniffiTypeFeeRateErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_debug(
-            uniffiTypeFeeRateErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_feerateerror_uniffi_trait_debug(
+          uniffiTypeFeeRateErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -18696,23 +18538,20 @@ export class JsonReply extends UniffiAbstractObject implements JsonReplyLike {
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_debug(
-            uniffiTypeJsonReplyObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_jsonreply_uniffi_trait_debug(
+          uniffiTypeJsonReplyObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
   toString(): string {
     return this.toDebugString();
@@ -18838,43 +18677,37 @@ export class OhttpError extends UniffiAbstractObject implements OhttpErrorLike {
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_display(
-            uniffiTypeOhttpErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_display(
+          uniffiTypeOhttpErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_debug(
-            uniffiTypeOhttpErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_ohttperror_uniffi_trait_debug(
+          uniffiTypeOhttpErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -19120,43 +18953,37 @@ export class PjNotSupported
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_display(
-            uniffiTypePjNotSupportedObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_display(
+          uniffiTypePjNotSupportedObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_debug(
-            uniffiTypePjNotSupportedObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjnotsupported_uniffi_trait_debug(
+          uniffiTypePjNotSupportedObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   equals(other: PjNotSupported): boolean {
@@ -19309,23 +19136,20 @@ export class PjParam extends UniffiAbstractObject implements PjParamLike {
    * is not reused across sessions, without parsing the endpoint fragment.
    */
   receiverPubkey(): ArrayBuffer {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterArrayBuffer.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjparam_receiver_pubkey(
-            uniffiTypePjParamObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_pjparam_receiver_pubkey(
+          uniffiTypePjParamObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterArrayBuffer.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -19690,43 +19514,37 @@ export class ReceiverReplayError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_display(
-            uniffiTypeReceiverReplayErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_display(
+          uniffiTypeReceiverReplayErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_debug(
-            uniffiTypeReceiverReplayErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiverreplayerror_uniffi_trait_debug(
+          uniffiTypeReceiverReplayErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -19852,43 +19670,37 @@ export class SerdeJsonError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_display(
-            uniffiTypeSerdeJsonErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_display(
+          uniffiTypeSerdeJsonErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_debug(
-            uniffiTypeSerdeJsonErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_serdejsonerror_uniffi_trait_debug(
+          uniffiTypeSerdeJsonErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -20030,26 +19842,23 @@ export class ReceiverSessionEvent
   }
 
   toJson(): string /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeSerdeJsonError__as_error.lift.bind(
-          FfiConverterTypeSerdeJsonError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiversessionevent_to_json(
-            uniffiTypeReceiverSessionEventObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeSerdeJsonError__as_error.lift.bind(
+        FfiConverterTypeSerdeJsonError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiversessionevent_to_json(
+          uniffiTypeReceiverSessionEventObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -20286,23 +20095,20 @@ export class ReceiverSessionHistory
    * Fallback transaction from the session if present
    */
   fallbackTx(): ArrayBuffer | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalBytes.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_fallback_tx(
-            uniffiTypeReceiverSessionHistoryObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_receiversessionhistory_fallback_tx(
+          uniffiTypeReceiverSessionHistoryObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalBytes.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
@@ -20462,23 +20268,20 @@ export class ReplayResult
   }
 
   state(): ReceiveSession {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeReceiveSession.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_replayresult_state(
-            uniffiTypeReplayResultObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_replayresult_state(
+          uniffiTypeReplayResultObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeReceiveSession.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -20918,43 +20721,37 @@ export class SenderReplayError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_display(
-            uniffiTypeSenderReplayErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_display(
+          uniffiTypeSenderReplayErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_debug(
-            uniffiTypeSenderReplayErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayerror_uniffi_trait_debug(
+          uniffiTypeSenderReplayErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -21202,23 +20999,20 @@ export class SenderSessionHistory
    * Fallback transaction from the session if present
    */
   fallbackTx(): ArrayBuffer {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterArrayBuffer.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_fallback_tx(
-            uniffiTypeSenderSessionHistoryObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionhistory_fallback_tx(
+          uniffiTypeSenderSessionHistoryObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterArrayBuffer.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   pjParam(): PjParamLike {
@@ -21371,23 +21165,20 @@ export class SenderReplayResult
   }
 
   state(): SendSession {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterTypeSendSession.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_state(
-            uniffiTypeSenderReplayResultObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_senderreplayresult_state(
+          uniffiTypeSenderReplayResultObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterTypeSendSession.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -21514,26 +21305,23 @@ export class SenderSessionEvent
   }
 
   toJson(): string /*throws*/ {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCallWithError(
-        /*liftError:*/ FfiConverterTypeSerdeJsonError__as_error.lift.bind(
-          FfiConverterTypeSerdeJsonError__as_error
-        ),
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionevent_to_json(
-            uniffiTypeSenderSessionEventObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCallWithError(
+      /*liftError:*/ FfiConverterTypeSerdeJsonError__as_error.lift.bind(
+        FfiConverterTypeSerdeJsonError__as_error
+      ),
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sendersessionevent_to_json(
+          uniffiTypeSenderSessionEventObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -21647,43 +21435,37 @@ export class SessionError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_display(
-            uniffiTypeSessionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_display(
+          uniffiTypeSessionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_debug(
-            uniffiTypeSessionErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_sessionerror_uniffi_trait_debug(
+          uniffiTypeSessionErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -21814,66 +21596,57 @@ export class Uri extends UniffiAbstractObject implements UriLike {
   }
 
   address(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_address(
-            uniffiTypeUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_address(
+          uniffiTypeUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   /**
    * Gets the amount in satoshis.
    */
   amountSats(): bigint | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalUInt64.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_amount_sats(
-            uniffiTypeUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_amount_sats(
+          uniffiTypeUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalUInt64.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   asString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_as_string(
-            uniffiTypeUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_as_string(
+          uniffiTypeUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   checkPjSupported(): PjUriLike /*throws*/ {
@@ -21894,43 +21667,37 @@ export class Uri extends UniffiAbstractObject implements UriLike {
   }
 
   label(): string | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_label(
-            uniffiTypeUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_label(
+          uniffiTypeUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   message(): string | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_message(
-            uniffiTypeUriObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uri_message(
+          uniffiTypeUriObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -22034,43 +21801,37 @@ export class UriParseError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_display(
-            uniffiTypeUriParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_display(
+          uniffiTypeUriParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_debug(
-            uniffiTypeUriParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_uriparseerror_uniffi_trait_debug(
+          uniffiTypeUriParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -22209,43 +21970,37 @@ export class Url extends UniffiAbstractObject implements UrlLike {
   }
 
   asString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_url_as_string(
-            uniffiTypeUrlObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_url_as_string(
+          uniffiTypeUrlObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   query(): string | undefined {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterOptionalString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_url_query(
-            uniffiTypeUrlObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_url_query(
+          uniffiTypeUrlObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterOptionalString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
@@ -22349,43 +22104,37 @@ export class UrlParseError
   }
 
   toString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_display(
-            uniffiTypeUrlParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_display(
+          uniffiTypeUrlParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   toDebugString(): string {
-    return ((__rb: Uint8Array) => {
-      try {
-        return FfiConverterString.lift(__rb);
-      } finally {
-        nativeModule().rustbuffer_free(__rb);
-      }
-    })(
-      uniffiCaller.rustCall(
-        /*caller:*/ (callStatus) => {
-          return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_debug(
-            uniffiTypeUrlParseErrorObjectFactory.clonePointer(this),
-            callStatus
-          );
-        },
-        /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
-      )
+    const __rb: Uint8Array = uniffiCaller.rustCall(
+      /*caller:*/ (callStatus) => {
+        return nativeModule().ubrn_uniffi_payjoin_ffi_fn_method_urlparseerror_uniffi_trait_debug(
+          uniffiTypeUrlParseErrorObjectFactory.clonePointer(this),
+          callStatus
+        );
+      },
+      /*liftString:*/ FfiConverterString.lift.bind(FfiConverterString)
     );
+    try {
+      return FfiConverterString.lift(__rb);
+    } finally {
+      nativeModule().rustbuffer_free(__rb);
+    }
   }
 
   uniffiDestroy(): void {
