@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.6.0] - 2026-09-23
+
+No API changes. Still `payjoin 1.0.0`.
+
+### Fixed
+
+- Memory leak on calls with record, enum, list, optional or byte-array
+  arguments. Strings were not affected.
+
+### Changed
+
+- Updated `uniffi-bindgen-react-native` and `@ubjs/core` to `0.31.0-5`.
+- Faster reading and writing of large or nested values.
+- Android: `PayjoinPackage` extends `BaseReactPackage` instead of the
+  deprecated `TurboReactPackage` (React Native 0.74+, already the minimum).
+
 ## [0.5.0] - 2026-08-13
 
 Upstream upgrade to the first stable payjoin release. No API changes: the
