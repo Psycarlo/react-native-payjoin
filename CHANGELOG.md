@@ -10,6 +10,8 @@ No API changes. Still `payjoin 1.0.0`.
 
 - Memory leak on calls with record, enum, list, optional or byte-array
   arguments. Strings were not affected.
+- Updated `rustls` to `0.23.45`
+  ([RUSTSEC-2026-0285](https://rustsec.org/advisories/RUSTSEC-2026-0285)).
 
 ### Changed
 
