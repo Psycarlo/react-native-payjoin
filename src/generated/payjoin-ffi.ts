@@ -188,6 +188,14 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_buildsendererror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_buildsendererror(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
   ubrn_uniffi_payjoin_ffi_fn_clone_canbroadcast(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -308,11 +316,27 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
   ubrn_uniffi_payjoin_ffi_fn_clone_inputpair(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_free_inputpair(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
@@ -388,6 +412,30 @@ interface NativeModuleInterface {
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
   ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsowned(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -449,6 +497,14 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_free_ohttpkeys(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): void;
+  ubrn_uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem(
+    ptr: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
@@ -657,14 +713,6 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_free_senderbuilder(
-    ptr: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): void;
-  ubrn_uniffi_payjoin_ffi_fn_clone_senderbuildererror(
-    ptr: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): bigint;
-  ubrn_uniffi_payjoin_ffi_fn_free_senderbuildererror(
     ptr: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): void;
@@ -986,6 +1034,24 @@ interface NativeModuleInterface {
     uniffiSelf: bigint,
     persister: bigint
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
+  ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne(
+    uniffiSelf: bigint,
+    other: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): number;
   ubrn_uniffi_payjoin_ffi_fn_method_canbroadcast_callback(
     uniffiSelf: bigint,
     tx: Uint8Array,
@@ -1122,13 +1188,58 @@ interface NativeModuleInterface {
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark(
+    uniffiSelf: bigint,
+    result: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new(
     txin: Uint8Array,
     psbtin: Uint8Array,
     expectedWeight: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh(
+    nonWitnessUtxo: Uint8Array,
+    outpoint: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend(
+    txout: Uint8Array,
+    outpoint: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend(
+    txout: Uint8Array,
+    outpoint: Uint8Array,
+    expectedWeight: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh(
+    txout: Uint8Array,
+    outpoint: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh(
+    txout: Uint8Array,
+    outpoint: Uint8Array,
+    expectedWeight: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark(
+    uniffiSelf: bigint,
+    result: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
@@ -1215,6 +1326,11 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_fn_method_jsonsendersessionpersisterasync_close(
     uniffiSelf: bigint
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist(
+    uniffiSelf: bigint,
+    markedChecklist: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1225,6 +1341,10 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
@@ -1241,6 +1361,11 @@ interface NativeModuleInterface {
     uniffiSelf: bigint,
     persister: bigint
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist(
+    uniffiSelf: bigint,
+    markedChecklist: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1250,6 +1375,10 @@ interface NativeModuleInterface {
     isKnown: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1297,6 +1426,15 @@ interface NativeModuleInterface {
     bytes: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark(
+    uniffiSelf: bigint,
+    result: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_payjoin_ffi_fn_method_outputsubstitutionprotocolerror_uniffi_trait_debug(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1305,6 +1443,11 @@ interface NativeModuleInterface {
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist(
+    uniffiSelf: bigint,
+    markedChecklist: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1314,6 +1457,10 @@ interface NativeModuleInterface {
     isReceiverOutput: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1457,6 +1604,11 @@ interface NativeModuleInterface {
     processPsbt: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal(
+    uniffiSelf: bigint,
+    signedPsbt: Uint8Array,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_proposal_txid_is_stable(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1594,24 +1746,6 @@ interface NativeModuleInterface {
     clampFeeContribution: number,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
-  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(
-    uniffiSelf: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(
-    uniffiSelf: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): Uint8Array;
-  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(
-    uniffiSelf: bigint,
-    other: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): number;
-  ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(
-    uniffiSelf: bigint,
-    other: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): number;
   ubrn_uniffi_payjoin_ffi_fn_method_sendercanceltransition_save(
     uniffiSelf: bigint,
     persister: bigint,
@@ -1702,6 +1836,12 @@ interface NativeModuleInterface {
     txid: Uint8Array,
     uniffi_out_err: UniffiRustCallStatus
   ): Uint8Array;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability(
+    uniffiSelf: bigint,
+    minFeeRateSatPerKwu: Uint8Array,
+    isBroadcastSuitable: number,
+    uniffi_out_err: UniffiRustCallStatus
+  ): bigint;
   ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(
     uniffiSelf: bigint,
     uniffi_out_err: UniffiRustCallStatus
@@ -1716,6 +1856,10 @@ interface NativeModuleInterface {
     canBroadcast: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): bigint;
+  ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(
+    uniffiSelf: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): Uint8Array;
   ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayloadtransition_save(
     uniffiSelf: bigint,
     persister: bigint,
@@ -1952,8 +2096,17 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_checksum_method_initialized_process_response(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_initializedtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value(): number;
   ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_isinputowned_callback(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_isoutputknown_callback(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_isscriptowned_callback(): number;
@@ -1969,14 +2122,18 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_load(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_jsonsendersessionpersisterasync_close(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_check_inputs_not_owned(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_proposal_txid_is_stable(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save_async(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_proposal_txid_is_stable(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseentransition_save_async(): number;
@@ -1986,8 +2143,12 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_monitortransition_save_async(): number;
   ubrn_uniffi_payjoin_ffi_checksum_constructor_ohttpkeys_decode(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_proposal_txid_is_stable(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknowntransition_save_async(): number;
@@ -2014,6 +2175,7 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_checksum_method_processpsbt_callback(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_cancel(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_proposal_txid_is_stable(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_psbt_to_sign(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposaltransition_save(): number;
@@ -2055,9 +2217,11 @@ interface NativeModuleInterface {
   ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_is_success(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_sendersessionoutcome_success_psbt_base64(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_transactionfinder_callback(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_cancel(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(): number;
+  ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save(): number;
   ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save_async(): number;
   ubrn_uniffi_payjoin_ffi_checksum_constructor_uri_parse(): number;
@@ -2113,7 +2277,27 @@ interface NativeModuleInterface {
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_addressparseerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_intourlerror_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_jsonreceiversessionpersister_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_markedinputownedchecklistitem_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_markedinputseenchecklistitem_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_markedoutputownedchecklistitem_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2122,10 +2306,6 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_implementationerror_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_intourlerror_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2142,18 +2322,6 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_canceltransition_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_isinputowned_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_isoutputknown_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_isscriptowned_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2237,11 +2405,27 @@ interface NativeModuleInterface {
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isscriptowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_outputownedchecklistitem_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_outputsunknown_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_maybeinputsseentransition_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isoutputknown_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_inputseenchecklistitem_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2253,7 +2437,19 @@ interface NativeModuleInterface {
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_isinputowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_inputownedchecklistitem_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_maybeinputsowned_ffi__bless_pointer(
+    pointer: bigint,
+    uniffi_out_err: UniffiRustCallStatus
+  ): UniffiGcObject;
+  ubrn_uniffi_internal_fn_method_uncheckedoriginalpayloadtransition_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2262,10 +2458,6 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_canbroadcast_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_uncheckedoriginalpayloadtransition_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2297,7 +2489,7 @@ interface NativeModuleInterface {
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer(
+  ubrn_uniffi_internal_fn_method_buildsendererror_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
@@ -2338,10 +2530,6 @@ interface NativeModuleInterface {
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
   ubrn_uniffi_internal_fn_method_receiversessionoutcome_ffi__bless_pointer(
-    pointer: bigint,
-    uniffi_out_err: UniffiRustCallStatus
-  ): UniffiGcObject;
-  ubrn_uniffi_internal_fn_method_addressparseerror_ffi__bless_pointer(
     pointer: bigint,
     uniffi_out_err: UniffiRustCallStatus
   ): UniffiGcObject;
