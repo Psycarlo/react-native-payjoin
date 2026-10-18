@@ -40,7 +40,6 @@ import {
   type PayjoinProposalLike,
   type PjUriLike,
   type PollingForProposalLike,
-  type ProcessPsbt,
   type ProvisionalProposalLike,
   type Request,
   type UncheckedOriginalPayloadLike,
@@ -229,6 +228,9 @@ export interface SendOptions extends PollOptions {
  *
  * Throws if the URI is not payjoin-capable, which is the check you want before
  * offering payjoin in your UI.
+ *
+ * Note that this accepts BIP 78 (v1) URIs too, but {@link payjoinSend} only
+ * speaks BIP 77 (v2): a v1-only URI passes here and is rejected there.
  */
 export function parsePjUri(uri: string | PjUriLike): PjUriLike {
   return typeof uri === 'string' ? Uri.parse(uri).checkPjSupported() : uri;
@@ -243,6 +245,11 @@ export function parsePjUri(uri: string | PjUriLike): PjUriLike {
  * If the receiver never responds, this rejects with {@link PayjoinTimeoutError}
  * and the session remains in your persister, so you can resume it later or
  * fall back to broadcasting the original transaction.
+ *
+ * A URI whose `pj` endpoint is BIP 78 (v1) only rejects up front with
+ * `SenderInputError.UnsupportedPjVersion` (check with
+ * `SenderInputError.UnsupportedPjVersion.instanceOf(e)`), before anything is
+ * persisted or sent. Fall back to a plain transaction in that case.
  */
 export async function payjoinSend(options: SendOptions): Promise<string> {
   const {
@@ -340,6 +347,25 @@ export interface ReceiverCallbacks {
   isScriptOwned(script: ArrayBuffer): boolean;
 }
 
+/**
+ * {@link ReceiverCallbacks}, but each check may also return a `Promise`.
+ *
+ * Wallet lookups in a React Native app are usually asynchronous — a mempool
+ * accept test over HTTP, a UTXO query against on-device storage — so
+ * {@link payjoinReceive} takes these. Synchronous callbacks still work: any
+ * `ReceiverCallbacks` object is also an `AsyncReceiverCallbacks`.
+ */
+export interface AsyncReceiverCallbacks {
+  /** See {@link ReceiverCallbacks.canBroadcast}. */
+  canBroadcast(tx: ArrayBuffer): boolean | Promise<boolean>;
+  /** See {@link ReceiverCallbacks.isInputOwned}. */
+  isInputOwned(outpoint: OutPoint): boolean | Promise<boolean>;
+  /** See {@link ReceiverCallbacks.isOutputKnown}. */
+  isOutputKnown(outpoint: OutPoint): boolean | Promise<boolean>;
+  /** See {@link ReceiverCallbacks.isScriptOwned}. */
+  isScriptOwned(script: ArrayBuffer): boolean | Promise<boolean>;
+}
+
 export interface ReceiveOptions extends PollOptions {
   /** Address to receive at. */
   address: string;
@@ -351,10 +377,10 @@ export interface ReceiveOptions extends PollOptions {
   ohttpRelay: string;
   /** Your session storage. */
   persister: JsonReceiverSessionPersister;
-  /** Wallet-side security checks. */
-  callbacks: ReceiverCallbacks;
-  /** Sign the proposal PSBT. Return the signed base64 PSBT. */
-  processPsbt: ProcessPsbt['callback'];
+  /** Wallet-side security checks. Each may be sync or async. */
+  callbacks: AsyncReceiverCallbacks;
+  /** Sign the proposal PSBT. Return the signed base64 PSBT, or a Promise of it. */
+  processPsbt: (psbt: string) => string | Promise<string>;
   /** Expected amount in satoshis. */
   amountSats?: number;
   /** Session expiry in seconds. */
@@ -422,6 +448,7 @@ export function createReceiveSession(options: {
  *
  * Waits for a sender, runs every protocol check against your callbacks,
  * optionally contributes inputs, has you sign, and posts the proposal back.
+ * The callbacks and `processPsbt` may be async.
  *
  * For QR-code flows, call {@link createReceiveSession} first so you can render
  * the URI, then pass the resulting session in as `session`.
@@ -474,10 +501,10 @@ export async function payjoinReceive(
     await sleep(intervalMs, signal);
   }
 
-  // Run the mandatory protocol checks in order. `checkBroadcastSuitability`
+  // Run the mandatory protocol checks in order. `applyBroadcastSuitability`
   // takes sat/kwu while our options use sat/vB (1 vB = 4 WU, 1 kwu = 1000 WU,
   // so sat/kwu = sat/vB ÷ 4 × 1000 = sat/vB × 250).
-  const wantsOutputs = runReceiverChecks(unchecked, persister, callbacks, {
+  const wantsOutputs = await runReceiverChecksAsync(unchecked, persister, callbacks, {
     minFeeRateSatPerKwu:
       options.feeRange?.minSatPerVb === undefined
         ? undefined
@@ -500,8 +527,11 @@ export async function payjoinReceive(
     )
     .save(persister);
 
-  // Sign, then post the proposal back to the sender.
-  const proposal = provisional.finalizeProposal({ callback: processPsbt }).save(persister);
+  // Sign, then post the proposal back to the sender. The PSBT is handed out and
+  // the signed one submitted back, rather than passing `processPsbt` in as a
+  // uniffi callback, so the wallet may sign asynchronously.
+  const signed = await processPsbt(provisional.psbtToSign());
+  const proposal = provisional.finalizeSignedProposal(signed).save(persister);
 
   const { request, clientResponse } = proposal.createPostRequest(ohttpRelay);
   const body = await transport(request);
@@ -515,6 +545,9 @@ export async function payjoinReceive(
  *
  * Exported so you can drive the chain yourself while still getting the checks
  * in the right order — the order is protocol-significant, not stylistic.
+ *
+ * The callbacks must answer synchronously, since Rust calls them in place. Use
+ * {@link runReceiverChecksAsync} if any of them needs to await.
  */
 export function runReceiverChecks(
   unchecked: UncheckedOriginalPayloadLike,
@@ -522,10 +555,18 @@ export function runReceiverChecks(
   callbacks: ReceiverCallbacks,
   opts?: { minFeeRateSatPerKwu?: number }
 ): WantsOutputsLike {
-  const canBroadcast: CanBroadcast = { callback: callbacks.canBroadcast };
-  const isInputOwned: IsInputOwned = { callback: callbacks.isInputOwned };
-  const isOutputKnown: IsOutputKnown = { callback: callbacks.isOutputKnown };
-  const isScriptOwned: IsScriptOwned = { callback: callbacks.isScriptOwned };
+  // Arrow functions keep `this` bound to `callbacks`, so class-based
+  // implementations work.
+  const canBroadcast: CanBroadcast = { callback: (tx) => callbacks.canBroadcast(tx) };
+  const isInputOwned: IsInputOwned = {
+    callback: (outpoint) => callbacks.isInputOwned(outpoint),
+  };
+  const isOutputKnown: IsOutputKnown = {
+    callback: (outpoint) => callbacks.isOutputKnown(outpoint),
+  };
+  const isScriptOwned: IsScriptOwned = {
+    callback: (script) => callbacks.isScriptOwned(script),
+  };
 
   // 1. The original transaction must be broadcastable, so a fallback exists.
   const maybeInputsOwned = unchecked
@@ -543,6 +584,62 @@ export function runReceiverChecks(
 
   // 4. Identify which outputs are ours.
   return outputsUnknown.identifyReceiverOutputs(isScriptOwned).save(persister);
+}
+
+/**
+ * {@link runReceiverChecks}, for callbacks that may be asynchronous.
+ *
+ * Uses upstream's non-blocking receiver interface: each step hands out the data
+ * to check, awaits your answers, then applies them and persists the transition.
+ * Checklist items are checked one at a time, in input/output order, as
+ * upstream's own callback path does.
+ *
+ * If a callback throws or rejects, that step is not applied and the session
+ * stays at its last persisted state.
+ */
+export async function runReceiverChecksAsync(
+  unchecked: UncheckedOriginalPayloadLike,
+  persister: JsonReceiverSessionPersister,
+  callbacks: AsyncReceiverCallbacks,
+  opts?: { minFeeRateSatPerKwu?: number }
+): Promise<WantsOutputsLike> {
+  // 1. The original transaction must be broadcastable, so a fallback exists.
+  const isBroadcastSuitable = await callbacks.canBroadcast(
+    unchecked.extractTxToCheckBroadcastSuitability()
+  );
+  const maybeInputsOwned = unchecked
+    .applyBroadcastSuitability(
+      opts?.minFeeRateSatPerKwu === undefined ? undefined : sats(opts.minFeeRateSatPerKwu),
+      isBroadcastSuitable
+    )
+    .save(persister);
+
+  // 2. None of the sender's inputs may be ours.
+  const maybeInputsSeen = maybeInputsOwned
+    .applyInputsOwnedChecklist(
+      await markChecklist(maybeInputsOwned.inputsOwnedChecklist(), (outpoint) =>
+        callbacks.isInputOwned(outpoint)
+      )
+    )
+    .save(persister);
+
+  // 3. No input may have been seen in a previous session (anti-probing).
+  const outputsUnknown = maybeInputsSeen
+    .applyInputsSeenChecklist(
+      await markChecklist(maybeInputsSeen.inputsSeenChecklist(), (outpoint) =>
+        callbacks.isOutputKnown(outpoint)
+      )
+    )
+    .save(persister);
+
+  // 4. Identify which outputs are ours.
+  return outputsUnknown
+    .applyOutputsOwnedChecklist(
+      await markChecklist(outputsUnknown.outputsOwnedChecklist(), (script) =>
+        callbacks.isScriptOwned(script)
+      )
+    )
+    .save(persister);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -593,4 +690,19 @@ function isWantsOutputs(
   state: WantsOutputsLike | WantsInputsLike
 ): state is WantsOutputsLike {
   return typeof (state as WantsOutputsLike).commitOutputs === 'function';
+}
+
+/**
+ * Mark each checklist item with the answer to `check`, sequentially. Upstream
+ * rejects a marked checklist whose order differs from the original PSBT's.
+ */
+async function markChecklist<V, M>(
+  items: ReadonlyArray<{ value(): V; mark(result: boolean): M }>,
+  check: (value: V) => boolean | Promise<boolean>
+): Promise<M[]> {
+  const marked: M[] = [];
+  for (const item of items) {
+    marked.push(item.mark(await check(item.value())));
+  }
+  return marked;
 }

@@ -2,6 +2,74 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.7.0] - 2026-10-18
+
+Upstream upgrade to `payjoin 1.2.0` (`payjoin-ffi 0.25.0` at rev `13f9f82`,
+the `payjoin-ffi-0.25.0` release tag). Contains breaking changes to error type
+names; the high-level wrapper API is source compatible.
+
+### Changed
+
+- Updated `payjoin` to `1.2.0` (from `1.0.0`) and `payjoin-ffi` to `0.25.0`
+  (from `0.24.0` at rev `aa48553`).
+- **Breaking:** renamed generated error types to match upstream:
+  `ReceiverBuilderError` → `BuildReceiverError`, `SenderBuilderError` →
+  `BuildSenderError`, and the `SenderError.Build` variant →
+  `SenderError.BuildSender`.
+- **Breaking:** `new SenderBuilder(psbt, uri)` with a URI whose `pj` endpoint
+  is BIP 78 (v1) only now throws `SenderInputError.UnsupportedPjVersion`
+  instead of crashing on a Rust panic. `payjoinSend` rejects with it before
+  anything is persisted or sent; fall back to a plain transaction.
+  `parsePjUri` still accepts v1 URIs.
+- `payjoinReceive` drives the receiver with upstream's new extract/apply
+  methods instead of the callback methods. Behavior is the same.
+- Updated `bitcoin` to `0.32.102`, `bitcoin-hpke` to `0.20.0` and
+  `bitcoin-ohttp` to `0.7.0`, as required by `payjoin 1.1.0`.
+
+### Added
+
+- Non-blocking receiver API from `payjoin 1.2.0`. Each callback-based receiver
+  step has an extract/apply pair, so ownership lookups, broadcast checks and
+  signing can be async: `extractTxToCheckBroadcastSuitability` /
+  `applyBroadcastSuitability`, `inputsOwnedChecklist` /
+  `applyInputsOwnedChecklist`, `inputsSeenChecklist` /
+  `applyInputsSeenChecklist`, `outputsOwnedChecklist` /
+  `applyOutputsOwnedChecklist`, and `psbtToSign` / `finalizeSignedProposal`.
+  The callback methods remain.
+- `payjoinReceive` accepts async callbacks (`AsyncReceiverCallbacks`, each may
+  return `boolean | Promise<boolean>`) and an async `processPsbt`
+  (`string | Promise<string>`). Existing sync callbacks keep working.
+- `runReceiverChecksAsync`: the async counterpart of `runReceiverChecks`.
+  Callbacks run one at a time, in order.
+- Typed `InputPair` constructors for contributing receiver inputs without
+  building the `TxIn` and PSBT input by hand: `newP2wpkh`, `newP2trKeyspend`,
+  `newP2trScriptpathSpend`, `newP2wsh` and `newP2pkh`.
+- `InputPairError.InvalidTransaction`, for a funding transaction passed to
+  `newP2pkh` that does not decode.
+
+### Fixed
+
+- `runReceiverChecks` lost `this` when calling the callbacks, so class-based
+  implementations that read their own fields failed. Callbacks are now called
+  as methods of the object you pass.
+- Upstream validation hardening (`payjoin 1.1.0`): fee rates, fee arithmetic,
+  PSBT amounts above `MAX_MONEY`, endpoint URLs with userinfo, oversized OHTTP
+  key responses and short mailbox responses are rejected instead of
+  overflowing, panicking or redirecting a request.
+- The sender rejects proposals that drop or reorder its original inputs with
+  `MissingOrShuffledInputs` (`payjoin 1.2.0`).
+- Updated `rustls` to `0.23.46`
+  ([RUSTSEC-2026-0346](https://rustsec.org/advisories/RUSTSEC-2026-0346),
+  [RUSTSEC-2026-0347](https://rustsec.org/advisories/RUSTSEC-2026-0347),
+  [RUSTSEC-2026-0348](https://rustsec.org/advisories/RUSTSEC-2026-0348),
+  [RUSTSEC-2026-0349](https://rustsec.org/advisories/RUSTSEC-2026-0349)) and
+  `quinn-proto` to `0.11.19`
+  ([RUSTSEC-2026-0338](https://rustsec.org/advisories/RUSTSEC-2026-0338),
+  [RUSTSEC-2026-0339](https://rustsec.org/advisories/RUSTSEC-2026-0339),
+  [RUSTSEC-2026-0340](https://rustsec.org/advisories/RUSTSEC-2026-0340),
+  [RUSTSEC-2026-0341](https://rustsec.org/advisories/RUSTSEC-2026-0341),
+  [RUSTSEC-2026-0342](https://rustsec.org/advisories/RUSTSEC-2026-0342)).
+
 ## [0.6.0] - 2026-09-23
 
 No API changes. Still `payjoin 1.0.0`.

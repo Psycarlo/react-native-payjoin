@@ -508,6 +508,23 @@ extern "C" {
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t persister
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark(
+        /*handle*/ uint64_t ptr, 
+        int8_t result, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_inputpair(
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
@@ -522,7 +539,51 @@ extern "C" {
         RustBuffer expected_weight, 
         RustCallStatus *uniffi_out_err
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh(
+        RustBuffer non_witness_utxo, 
+        RustBuffer outpoint, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend(
+        RustBuffer txout, 
+        RustBuffer outpoint, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend(
+        RustBuffer txout, 
+        RustBuffer outpoint, 
+        RustBuffer expected_weight, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh(
+        RustBuffer txout, 
+        RustBuffer outpoint, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh(
+        RustBuffer txout, 
+        RustBuffer outpoint, 
+        RustBuffer expected_weight, 
+        RustCallStatus *uniffi_out_err
+    );
     RustBuffer uniffi_payjoin_ffi_fn_method_inputpair_outpoint(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark(
+        /*handle*/ uint64_t ptr, 
+        int8_t result, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value(
         /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
     );
@@ -619,12 +680,41 @@ extern "C" {
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_close(
         /*handle*/ uint64_t ptr
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_maybeinputsowned(
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
     );
     void uniffi_payjoin_ffi_fn_free_maybeinputsowned(
         /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist(
+        /*handle*/ uint64_t ptr, 
+        RustBuffer marked_checklist, 
         RustCallStatus *uniffi_out_err
     );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel(
@@ -637,6 +727,10 @@ extern "C" {
         RustCallStatus *uniffi_out_err
     );
     RustBuffer uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist(
         /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
     );
@@ -669,6 +763,11 @@ extern "C" {
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist(
+        /*handle*/ uint64_t ptr, 
+        RustBuffer marked_checklist, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(
         /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
@@ -676,6 +775,10 @@ extern "C" {
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_maybeinputsseen_check_no_inputs_seen_before(
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t is_known, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist(
+        /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
     );
     int8_t uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable(
@@ -737,12 +840,34 @@ extern "C" {
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t persister
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark(
+        /*handle*/ uint64_t ptr, 
+        int8_t result, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_outputsunknown(
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
     );
     void uniffi_payjoin_ffi_fn_free_outputsunknown(
         /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist(
+        /*handle*/ uint64_t ptr, 
+        RustBuffer marked_checklist, 
         RustCallStatus *uniffi_out_err
     );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(
@@ -752,6 +877,10 @@ extern "C" {
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_outputsunknown_identify_receiver_outputs(
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t is_receiver_output, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist(
+        /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
     );
     int8_t uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable(
@@ -871,6 +1000,11 @@ extern "C" {
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t process_psbt, 
+        RustCallStatus *uniffi_out_err
+    );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal(
+        /*handle*/ uint64_t ptr, 
+        RustBuffer signed_psbt, 
         RustCallStatus *uniffi_out_err
     );
     int8_t uniffi_payjoin_ffi_fn_method_provisionalproposal_proposal_txid_is_stable(
@@ -1039,6 +1173,12 @@ extern "C" {
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability(
+        /*handle*/ uint64_t ptr, 
+        RustBuffer min_fee_rate_sat_per_kwu, 
+        int8_t is_broadcast_suitable, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(
         /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
@@ -1051,6 +1191,10 @@ extern "C" {
         /*handle*/ uint64_t ptr, 
         RustBuffer min_fee_rate_sat_per_kwu, 
         /*handle*/ uint64_t can_broadcast, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(
+        /*handle*/ uint64_t ptr, 
         RustCallStatus *uniffi_out_err
     );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayloadtransition(
@@ -1714,6 +1858,32 @@ extern "C" {
         /*handle*/ uint64_t ptr, 
         /*handle*/ uint64_t persister
     );
+    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_buildsendererror(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    void uniffi_payjoin_ffi_fn_free_buildsendererror(
+        /*handle*/ uint64_t handle, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
+    RustBuffer uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display(
+        /*handle*/ uint64_t ptr, 
+        RustCallStatus *uniffi_out_err
+    );
+    int8_t uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq(
+        /*handle*/ uint64_t ptr, 
+        /*handle*/ uint64_t other, 
+        RustCallStatus *uniffi_out_err
+    );
+    int8_t uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne(
+        /*handle*/ uint64_t ptr, 
+        /*handle*/ uint64_t other, 
+        RustCallStatus *uniffi_out_err
+    );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_createrequesterror(
         /*handle*/ uint64_t handle, 
         RustCallStatus *uniffi_out_err
@@ -1748,32 +1918,6 @@ extern "C" {
     );
     RustBuffer uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(
         /*handle*/ uint64_t ptr, 
-        RustCallStatus *uniffi_out_err
-    );
-    /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_senderbuildererror(
-        /*handle*/ uint64_t handle, 
-        RustCallStatus *uniffi_out_err
-    );
-    void uniffi_payjoin_ffi_fn_free_senderbuildererror(
-        /*handle*/ uint64_t handle, 
-        RustCallStatus *uniffi_out_err
-    );
-    RustBuffer uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(
-        /*handle*/ uint64_t ptr, 
-        RustCallStatus *uniffi_out_err
-    );
-    RustBuffer uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(
-        /*handle*/ uint64_t ptr, 
-        RustCallStatus *uniffi_out_err
-    );
-    int8_t uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(
-        /*handle*/ uint64_t ptr, 
-        /*handle*/ uint64_t other, 
-        RustCallStatus *uniffi_out_err
-    );
-    int8_t uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(
-        /*handle*/ uint64_t ptr, 
-        /*handle*/ uint64_t other, 
         RustCallStatus *uniffi_out_err
     );
     /*handle*/ uint64_t uniffi_payjoin_ffi_fn_clone_senderreplayerror(
@@ -2294,7 +2438,15 @@ extern "C" {
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_initializedtransition_save_async(
     );
+    uint16_t uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value(
+    );
     uint16_t uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_isinputowned_callback(
     );
@@ -2314,11 +2466,15 @@ extern "C" {
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_close(
     );
+    uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist(
+    );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_check_inputs_not_owned(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsowned_proposal_txid_is_stable(
     );
@@ -2326,9 +2482,13 @@ extern "C" {
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save_async(
     );
+    uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist(
+    );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_maybeinputsseen_proposal_txid_is_stable(
     );
@@ -2346,9 +2506,17 @@ extern "C" {
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_monitortransition_save_async(
     );
+    uint16_t uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist(
+    );
     uint16_t uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_outputsunknown_proposal_txid_is_stable(
     );
@@ -2379,6 +2547,8 @@ extern "C" {
     uint16_t uniffi_payjoin_ffi_checksum_method_provisionalproposal_cancel(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_provisionalproposal_proposal_txid_is_stable(
     );
@@ -2414,11 +2584,15 @@ extern "C" {
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_transactionfinder_callback(
     );
+    uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability(
+    );
     uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_cancel(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(
     );
     uint16_t uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save(
     );
@@ -2581,6 +2755,16 @@ extern "C" {
     uint16_t uniffi_payjoin_ffi_checksum_constructor_ohttpkeys_decode(
     );
     uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh(
+    );
+    uint16_t uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh(
     );
     uint16_t uniffi_payjoin_ffi_checksum_constructor_receiverbuilder_new(
     );
@@ -9758,6 +9942,38 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_method_initializedtransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_inputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_inputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_inputpair"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_inputpair"),
@@ -9782,12 +9998,84 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend"),
+        3,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh"),
+        3,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_inputpair_outpoint"),
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_inputseenchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_inputseenchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_isinputowned"] = jsi::Function::createFromHostFunction(
@@ -9982,6 +10270,54 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpersisterasync_close(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsowned"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_maybeinputsowned"),
@@ -9996,6 +10332,14 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_free_maybeinputsowned(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel"] = jsi::Function::createFromHostFunction(
@@ -10020,6 +10364,14 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsowned_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -10078,6 +10430,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_free_maybeinputsseen(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel"),
@@ -10092,6 +10452,14 @@ NativePayjoin::NativePayjoin(
         2,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_check_no_inputs_seen_before(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -10206,6 +10574,38 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_method_monitortransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_outputownedchecklistitem"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_outputownedchecklistitem"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknown"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_outputsunknown"),
@@ -10222,6 +10622,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_free_outputsunknown(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel"),
@@ -10236,6 +10644,14 @@ NativePayjoin::NativePayjoin(
         2,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_identify_receiver_outputs(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -10460,6 +10876,14 @@ NativePayjoin::NativePayjoin(
         2,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_method_provisionalproposal_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -10782,6 +11206,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayload(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability"),
+        3,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver"),
@@ -10804,6 +11236,14 @@ NativePayjoin::NativePayjoin(
         3,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_check_broadcast_suitability(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayloadtransition"] = jsi::Function::createFromHostFunction(
@@ -12070,6 +12510,54 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_fn_method_withreplykeytransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_fn_clone_buildsendererror"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_buildsendererror"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_clone_buildsendererror(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_free_buildsendererror"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_buildsendererror"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_free_buildsendererror(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne"),
+        2,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_createrequesterror"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_createrequesterror"),
@@ -12140,54 +12628,6 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_fn_method_decapsulationerror_uniffi_trait_display(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_clone_senderbuildererror"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_clone_senderbuildererror"),
-        1,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_clone_senderbuildererror(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_free_senderbuildererror"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_free_senderbuildererror"),
-        1,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_free_senderbuildererror(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug"),
-        1,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display"),
-        1,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq"),
-        2,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne"),
-        2,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_fn_clone_senderreplayerror"] = jsi::Function::createFromHostFunction(
@@ -13302,12 +13742,44 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_method_initializedtransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint"),
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_isinputowned_callback"] = jsi::Function::createFromHostFunction(
@@ -13382,6 +13854,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_method_jsonreceiversessionpersisterasync_close(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel"),
@@ -13404,6 +13884,14 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -13430,6 +13918,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsownedtransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel"),
@@ -13444,6 +13940,14 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -13510,6 +14014,30 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_method_monitortransition_save_async(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel"),
@@ -13524,6 +14052,14 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_outputsunknown_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -13644,6 +14180,14 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_provisionalproposal_proposal_txid_is_stable"] = jsi::Function::createFromHostFunction(
@@ -13782,6 +14326,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_method_transactionfinder_callback(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver"),
@@ -13804,6 +14356,14 @@ NativePayjoin::NativePayjoin(
         0,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayloadtransition_save"] = jsi::Function::createFromHostFunction(
@@ -14454,6 +15014,46 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh"),
+        0,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_payjoin_ffi_checksum_constructor_receiverbuilder_new"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_payjoin_ffi_checksum_constructor_receiverbuilder_new"),
@@ -14614,12 +15214,28 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_internal_fn_method_initializedtransition_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_internal_fn_method_inputownedchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_inputownedchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_inputownedchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_internal_fn_method_inputpair_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_inputpair_ffi__bless_pointer"),
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_internal_fn_method_inputpair_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_internal_fn_method_inputseenchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_inputseenchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_inputseenchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_internal_fn_method_isinputowned_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
@@ -14660,6 +15276,30 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_internal_fn_method_jsonreceiversessionpersisterasync_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_internal_fn_method_markedinputownedchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_markedinputownedchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_markedinputownedchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_internal_fn_method_markedinputseenchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_markedinputseenchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_markedinputseenchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_internal_fn_method_markedoutputownedchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_markedoutputownedchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_markedoutputownedchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_internal_fn_method_maybeinputsowned_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
@@ -14708,6 +15348,14 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_internal_fn_method_monitortransition_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
+    props["ubrn_uniffi_internal_fn_method_outputownedchecklistitem_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_outputownedchecklistitem_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_outputownedchecklistitem_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_internal_fn_method_outputsunknown_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
@@ -15126,6 +15774,14 @@ NativePayjoin::NativePayjoin(
             return this->cpp_uniffi_internal_fn_method_withreplykeytransition_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
+    props["ubrn_uniffi_internal_fn_method_buildsendererror_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
+        rt,
+        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_buildsendererror_ffi__bless_pointer"),
+        1,
+        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
+            return this->cpp_uniffi_internal_fn_method_buildsendererror_ffi__bless_pointer(rt, thisVal, args, count);
+        }
+    );
     props["ubrn_uniffi_internal_fn_method_createrequesterror_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
         rt,
         jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_createrequesterror_ffi__bless_pointer"),
@@ -15140,14 +15796,6 @@ NativePayjoin::NativePayjoin(
         1,
         [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
             return this->cpp_uniffi_internal_fn_method_decapsulationerror_ffi__bless_pointer(rt, thisVal, args, count);
-        }
-    );
-    props["ubrn_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
-        rt,
-        jsi::PropNameID::forAscii(rt, "ubrn_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer"),
-        1,
-        [this](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
-            return this->cpp_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer(rt, thisVal, args, count);
         }
     );
     props["ubrn_uniffi_internal_fn_method_senderreplayerror_ffi__bless_pointer"] = jsi::Function::createFromHostFunction(
@@ -15536,11 +16184,29 @@ jsi::Value NativePayjoin::cpp_uniffi_internal_fn_func_ffi__read_string_from_buff
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
     return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_inputownedchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
 }jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_inputpair_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
     auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
     auto static destructor = [](uint64_t p) {
         RustCallStatus status = {0};
         uniffi_payjoin_ffi_fn_free_inputpair(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_inputseenchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(p, &status);
     };
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
@@ -15586,6 +16252,33 @@ jsi::Value NativePayjoin::cpp_uniffi_internal_fn_func_ffi__read_string_from_buff
     auto static destructor = [](uint64_t p) {
         RustCallStatus status = {0};
         uniffi_payjoin_ffi_fn_free_jsonreceiversessionpersisterasync(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_markedinputownedchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_markedinputseenchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_markedoutputownedchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(p, &status);
     };
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
@@ -15640,6 +16333,15 @@ jsi::Value NativePayjoin::cpp_uniffi_internal_fn_func_ffi__read_string_from_buff
     auto static destructor = [](uint64_t p) {
         RustCallStatus status = {0};
         uniffi_payjoin_ffi_fn_free_monitortransition(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_outputownedchecklistitem_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(p, &status);
     };
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
@@ -16112,6 +16814,15 @@ jsi::Value NativePayjoin::cpp_uniffi_internal_fn_func_ffi__read_string_from_buff
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
     return jsi::Value(rt, obj);
+}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_buildsendererror_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
+    auto static destructor = [](uint64_t p) {
+        RustCallStatus status = {0};
+        uniffi_payjoin_ffi_fn_free_buildsendererror(p, &status);
+    };
+    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
+    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
+    return jsi::Value(rt, obj);
 }jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_createrequesterror_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
     auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
     auto static destructor = [](uint64_t p) {
@@ -16126,15 +16837,6 @@ jsi::Value NativePayjoin::cpp_uniffi_internal_fn_func_ffi__read_string_from_buff
     auto static destructor = [](uint64_t p) {
         RustCallStatus status = {0};
         uniffi_payjoin_ffi_fn_free_decapsulationerror(p, &status);
-    };
-    auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
-    auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
-    return jsi::Value(rt, obj);
-}jsi::Value NativePayjoin::cpp_uniffi_internal_fn_method_senderbuildererror_ffi__bless_pointer(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-    auto pointer = uniffi_jsi::Bridging<uint64_t>::fromJs(rt, callInvoker, args[0]);
-    auto static destructor = [](uint64_t p) {
-        RustCallStatus status = {0};
-        uniffi_payjoin_ffi_fn_free_senderbuildererror(p, &status);
     };
     auto ptrObj = std::make_shared<uniffi_jsi::DestructibleObject>(pointer, destructor);
     auto obj = jsi::Object::createFromHostObject(rt, ptrObj);
@@ -16753,6 +17455,46 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_initializedtransition
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_inputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_inputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_mark(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging<int8_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_inputownedchecklistitem_value(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_inputpair(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_clone_inputpair(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -16783,9 +17525,99 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new(js
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2pkh(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_keyspend(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2tr_scriptpath_spend(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[2]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wpkh(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_constructor_inputpair_new_p2wsh(uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[2]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_inputpair_outpoint(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_inputpair_outpoint(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_inputseenchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_inputseenchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_mark(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging<int8_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_inputseenchecklistitem_value(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
             &status
         );
         uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
@@ -17059,6 +17891,66 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_jsonreceiversessionpe
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_markedinputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_markedinputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_markedinputseenchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_markedinputseenchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_markedoutputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_markedoutputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_maybeinputsowned(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_clone_maybeinputsowned(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -17078,6 +17970,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_maybeinputsowned(jsi::R
 
         
         return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_maybeinputsowned_apply_inputs_owned_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
@@ -17102,6 +18004,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_chec
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_maybeinputsowned_extract_tx_to_schedule_broadcast(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_maybeinputsowned_inputs_owned_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
             &status
         );
         uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
@@ -17176,6 +18088,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_maybeinputsseen(jsi::Ru
         
         return jsi::Value::undefined();
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_maybeinputsseen_apply_inputs_seen_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_maybeinputsseen_cancel(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -17195,6 +18117,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_check
 
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_maybeinputsseen_inputs_seen_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_maybeinputsseen_proposal_txid_is_stable(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
@@ -17330,6 +18262,46 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_monitortransition_sav
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_outputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_outputownedchecklistitem(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_mark(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging<int8_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_outputownedchecklistitem_value(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_outputsunknown(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_clone_outputsunknown(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -17350,6 +18322,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_outputsunknown(jsi::Run
         
         return jsi::Value::undefined();
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_outputsunknown_apply_outputs_owned_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_outputsunknown_cancel(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -17369,6 +18351,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_identi
 
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_outputsunknown_outputs_owned_checklist(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_outputsunknown_proposal_txid_is_stable(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
@@ -17641,6 +18633,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_provisionalproposal_c
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_proposal(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_provisionalproposal_finalize_signed_proposal(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), 
             &status
         );
         uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
@@ -18052,6 +19054,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_uncheckedoriginalpayloa
         
         return jsi::Value::undefined();
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_apply_broadcast_suitability(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi::payjoin::Bridging<RustBuffer>::fromJs(rt, callInvoker, args[1]), uniffi_jsi::Bridging<int8_t>::fromJs(rt, callInvoker, args[2]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_assume_interactive_receiver(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -18081,6 +19093,16 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayl
 
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_uncheckedoriginalpayloadtransition(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
@@ -19640,6 +20662,66 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_withreplykeytransitio
         
         return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_buildsendererror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_clone_buildsendererror(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_buildsendererror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        uniffi_payjoin_ffi_fn_free_buildsendererror(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return jsi::Value::undefined();
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_debug(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_display(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_eq(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
+        auto value = uniffi_payjoin_ffi_fn_method_buildsendererror_uniffi_trait_eq_ne(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[1]), 
+            &status
+        );
+        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
+
+        
+        return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_createrequesterror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
         auto value = uniffi_payjoin_ffi_fn_clone_createrequesterror(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
@@ -19729,66 +20811,6 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_decapsulationerror_un
 
         
         return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_senderbuildererror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        auto value = uniffi_payjoin_ffi_fn_clone_senderbuildererror(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return uniffi_jsi::Bridging</*handle*/ uint64_t>::toJs(rt, callInvoker, value);
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_free_senderbuildererror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        uniffi_payjoin_ffi_fn_free_senderbuildererror(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return jsi::Value::undefined();
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        auto value = uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_debug(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        auto value = uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_display(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return uniffi::payjoin::Bridging<RustBuffer>::toJs(rt, callInvoker, value);
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        auto value = uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_eq(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[1]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
-}
-jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
-        RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
-        auto value = uniffi_payjoin_ffi_fn_method_senderbuildererror_uniffi_trait_eq_ne(uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[0]), uniffi_jsi::Bridging</*handle*/ uint64_t>::fromJs(rt, callInvoker, args[1]), 
-            &status
-        );
-        uniffi::payjoin::Bridging<RustCallStatus>::copyIntoJs(rt, callInvoker, status, args[count - 1]);
-
-        
-        return uniffi_jsi::Bridging<int8_t>::toJs(rt, callInvoker, value);
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_fn_clone_senderreplayerror(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         RustCallStatus status = uniffi::payjoin::Bridging<RustCallStatus>::rustSuccess(rt);
@@ -20985,8 +22007,36 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_initializedtran
         
         return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_mark(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_inputownedchecklistitem_value(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_inputpair_outpoint(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_mark(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_inputseenchecklistitem_value(
         );
 
         
@@ -21055,6 +22105,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_jsonreceiverses
         
         return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsowned_apply_inputs_owned_checklist(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsowned_cancel(
         );
@@ -21071,6 +22128,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowne
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsowned_extract_tx_to_schedule_broadcast(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsowned_inputs_owned_checklist(
         );
 
         
@@ -21097,6 +22161,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsowne
         
         return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsseen_apply_inputs_seen_checklist(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsseen_cancel(
         );
@@ -21106,6 +22177,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsseen_check_no_inputs_seen_before(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_maybeinputsseen_inputs_seen_checklist(
         );
 
         
@@ -21167,6 +22245,27 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_monitortransiti
         
         return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_mark(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_outputownedchecklistitem_value(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_outputsunknown_apply_outputs_owned_checklist(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_outputsunknown_cancel(
         );
@@ -21176,6 +22275,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_outputsunknown_identify_receiver_outputs(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_outputsunknown_outputs_owned_checklist(
         );
 
         
@@ -21281,6 +22387,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_provisionalprop
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_proposal(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_provisionalproposal_finalize_signed_proposal(
         );
 
         
@@ -21405,6 +22518,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_transactionfind
         
         return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
 }
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_apply_broadcast_suitability(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_assume_interactive_receiver(
         );
@@ -21421,6 +22541,13 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_uncheckedorigin
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_check_broadcast_suitability(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_method_uncheckedoriginalpayload_extract_tx_to_check_broadcast_suitability(
         );
 
         
@@ -21988,6 +23115,41 @@ jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_ohttpkeys_
 }
 jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
         auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2pkh(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_keyspend(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2tr_scriptpath_spend(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wpkh(
+        );
+
+        
+        return uniffi_jsi::Bridging<uint16_t>::toJs(rt, callInvoker, value);
+}
+jsi::Value NativePayjoin::cpp_uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh(jsi::Runtime& rt, const jsi::Value& thisVal, const jsi::Value* args, size_t count) {
+        auto value = uniffi_payjoin_ffi_checksum_constructor_inputpair_new_p2wsh(
         );
 
         

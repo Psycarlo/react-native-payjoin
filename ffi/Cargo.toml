@@ -17,11 +17,11 @@ doctest = false
 # generated API surface: send/receive typestates, Uri/PjUri, OhttpKeys,
 # and the persister callback interfaces.
 #
-# NOTE: payjoin-ffi is NOT published to crates.io (its 0.24.0 version is
-# internal to the monorepo), and it exists only on `master` — no release tag
-# contains it. So we pin an exact commit for reproducibility. This rev is the
-# `payjoin 1.0.0` release commit, where payjoin-ffi declares `payjoin = "1.0.0"`.
-payjoin-ffi = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "aa48553019497f59e5b8f703a6bc3eafe44f528b" }
+# NOTE: payjoin-ffi is NOT published to crates.io; upstream ships it only as
+# the source of the Python / JavaScript / C# / Dart packages. So we pin an
+# exact commit for reproducibility. This rev is the `payjoin-ffi-0.25.0`
+# release tag, where payjoin-ffi declares `payjoin = "1.2.0"`.
+payjoin-ffi = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "13f9f82acfa7f38a00a801617a8e462eac08510c" }
 
 # The `io` feature adds fetch_ohttp_keys(), which needs an HTTP CONNECT
 # proxy to keep the client IP off the payjoin directory. RN's fetch/XHR
@@ -30,19 +30,20 @@ payjoin-ffi = { git = "https://github.com/payjoin/rust-payjoin.git", rev = "aa48
 # Taken from crates.io. Through the release candidates payjoin-ffi was
 # developed against an in-tree `payjoin` that had no published counterpart, so
 # this had to be git-pinned and redirected with a `[patch.crates-io]` to keep
-# wrapper and core on one crate instance. `payjoin 1.0.0` is published and is
+# wrapper and core on one crate instance. `payjoin 1.2.0` is published and is
 # exactly what payjoin-ffi asks for at the pinned rev, so both now resolve to
 # the same crates.io release with no patch.
-payjoin = { version = "1.0.0", features = ["v1", "v2", "io"] }
+payjoin = { version = "1.2.0", features = ["v1", "v2", "io"] }
 
-# Must match the uniffi version used by payjoin-ffi 0.24.0.
+# Must match the uniffi version used by payjoin-ffi 0.25.0.
 uniffi = { version = "=0.31.2", features = ["tokio"] }
 
 # The offline (out-of-band) receiver primitives in `manual.rs` build PSBTs and
 # input pairs directly, so they need the same `bitcoin` types the pinned
 # `payjoin` core exposes — a different major here would be a distinct crate
-# instance and the types would not unify.
-bitcoin = { version = "0.32.9", features = ["base64", "serde"] }
+# instance and the types would not unify. `payjoin 1.1.0` raised its floor to
+# 0.32.102, so this matches it.
+bitcoin = { version = "0.32.102", features = ["base64", "serde"] }
 
 # `ProvisionalProposal` is Serialize/Deserialize, which is what makes the
 # two-step offline flow resumable across the signing step.

@@ -16,6 +16,7 @@ import {
   payjoinSend,
   pollOnce,
   runReceiverChecks,
+  runReceiverChecksAsync,
   sats,
   toSats,
   type ReceiverCallbacks,
@@ -280,6 +281,18 @@ describe('pollOnce', () => {
 
 // ─── receiving ─────────────────────────────────────────────────────────────
 
+/** Fake checklist item: `mark(result)` returns a marked item carrying both. */
+const checklistItem = <V>(value: V) => ({
+  value: () => value,
+  mark: jest.fn((result: boolean) => ({ value, result })),
+});
+
+const originalTx = new ArrayBuffer(16);
+const senderOutpoint = { txid: 'aa'.repeat(32), vout: 0 };
+const otherOutpoint = { txid: 'bb'.repeat(32), vout: 1 };
+const receiverScript = new ArrayBuffer(22);
+const senderChangeScript = new ArrayBuffer(34);
+
 /** Fake receiver typestate chain from UncheckedOriginalPayload onwards. */
 function mockReceiverChain() {
   const calls: string[] = [];
@@ -290,8 +303,12 @@ function mockReceiverChain() {
     psbt: jest.fn(() => 'final-psbt'),
   };
   const provisional = {
-    finalizeProposal: jest.fn(() => {
-      calls.push('finalizeProposal');
+    psbtToSign: jest.fn(() => {
+      calls.push('psbtToSign');
+      return 'psbt-to-sign';
+    }),
+    finalizeSignedProposal: jest.fn((_signed: string) => {
+      calls.push('finalizeSignedProposal');
       return saveable(proposal);
     }),
   };
@@ -319,10 +336,26 @@ function mockReceiverChain() {
       calls.push('identifyReceiverOutputs');
       return saveable(wantsOutputs);
     }),
+    outputsOwnedChecklist: jest.fn(() => [
+      checklistItem(receiverScript),
+      checklistItem(senderChangeScript),
+    ]),
+    applyOutputsOwnedChecklist: jest.fn((_marked: unknown[]) => {
+      calls.push('applyOutputsOwnedChecklist');
+      return saveable(wantsOutputs);
+    }),
   };
   const maybeInputsSeen = {
     checkNoInputsSeenBefore: jest.fn(() => {
       calls.push('checkNoInputsSeenBefore');
+      return saveable(outputsUnknown);
+    }),
+    inputsSeenChecklist: jest.fn(() => [
+      checklistItem(senderOutpoint),
+      checklistItem(otherOutpoint),
+    ]),
+    applyInputsSeenChecklist: jest.fn((_marked: unknown[]) => {
+      calls.push('applyInputsSeenChecklist');
       return saveable(outputsUnknown);
     }),
   };
@@ -331,18 +364,35 @@ function mockReceiverChain() {
       calls.push('checkInputsNotOwned');
       return saveable(maybeInputsSeen);
     }),
+    inputsOwnedChecklist: jest.fn(() => [
+      checklistItem(senderOutpoint),
+      checklistItem(otherOutpoint),
+    ]),
+    applyInputsOwnedChecklist: jest.fn((_marked: unknown[]) => {
+      calls.push('applyInputsOwnedChecklist');
+      return saveable(maybeInputsSeen);
+    }),
   };
   const unchecked = {
     checkBroadcastSuitability: jest.fn(() => {
       calls.push('checkBroadcastSuitability');
       return saveable(maybeInputsOwned);
     }),
+    extractTxToCheckBroadcastSuitability: jest.fn(() => originalTx),
+    applyBroadcastSuitability: jest.fn(
+      (_minFeeRate: bigint | undefined, _isBroadcastSuitable: boolean) => {
+        calls.push('applyBroadcastSuitability');
+        return saveable(maybeInputsOwned);
+      }
+    ),
   };
 
   return {
     calls,
     unchecked,
     maybeInputsOwned,
+    maybeInputsSeen,
+    outputsUnknown,
     wantsOutputs,
     wantsInputs,
     wantsFeeRange,
@@ -378,9 +428,140 @@ describe('runReceiverChecks', () => {
     expect(result).toBe(chain.wantsOutputs);
     // Callbacks are wrapped into the uniffi `{ callback }` shape.
     const [minRate, canBroadcast] = chain.unchecked.checkBroadcastSuitability
-      .mock.calls[0] as unknown as [unknown, unknown];
+      .mock.calls[0] as unknown as [unknown, { callback: (tx: ArrayBuffer) => boolean }];
     expect(minRate).toBeUndefined();
-    expect((canBroadcast as any).callback).toBe(receiverCallbacks.canBroadcast);
+    expect(canBroadcast.callback(originalTx)).toBe(true);
+  });
+
+  it('keeps `this` bound to the callbacks object', () => {
+    const chain = mockReceiverChain();
+    class Wallet {
+      suitable = true;
+      canBroadcast() {
+        return this.suitable;
+      }
+      isInputOwned() {
+        return false;
+      }
+      isOutputKnown() {
+        return false;
+      }
+      isScriptOwned() {
+        return true;
+      }
+    }
+
+    runReceiverChecks(chain.unchecked as any, makePersister() as any, new Wallet());
+
+    const [, canBroadcast] = chain.unchecked.checkBroadcastSuitability.mock
+      .calls[0] as unknown as [unknown, { callback: (tx: ArrayBuffer) => boolean }];
+    expect(canBroadcast.callback(originalTx)).toBe(true);
+  });
+});
+
+describe('runReceiverChecksAsync', () => {
+  /** Class-based so a lost `this` binding would surface as a TypeError. */
+  class Wallet {
+    owned = new Set([otherOutpoint.txid]);
+    seen = new Set([senderOutpoint.txid]);
+    scripts = new Set([receiverScript]);
+
+    async canBroadcast(_tx: ArrayBuffer) {
+      return true;
+    }
+    async isInputOwned(outpoint: { txid: string }) {
+      return this.owned.has(outpoint.txid);
+    }
+    async isOutputKnown(outpoint: { txid: string }) {
+      return this.seen.has(outpoint.txid);
+    }
+    async isScriptOwned(script: ArrayBuffer) {
+      return this.scripts.has(script);
+    }
+  }
+
+  it('awaits each check, then applies the answers in order, persisting each transition', async () => {
+    const chain = mockReceiverChain();
+    const persister = makePersister();
+
+    const result = await runReceiverChecksAsync(
+      chain.unchecked as any,
+      persister as any,
+      new Wallet(),
+      { minFeeRateSatPerKwu: 250 }
+    );
+
+    expect(result).toBe(chain.wantsOutputs);
+    expect(chain.calls).toEqual([
+      'applyBroadcastSuitability',
+      'applyInputsOwnedChecklist',
+      'applyInputsSeenChecklist',
+      'applyOutputsOwnedChecklist',
+    ]);
+    expect(chain.unchecked.applyBroadcastSuitability).toHaveBeenCalledWith(250n, true);
+    // Marked items are submitted in checklist order, each with its answer.
+    expect(chain.maybeInputsOwned.applyInputsOwnedChecklist).toHaveBeenCalledWith([
+      { value: senderOutpoint, result: false },
+      { value: otherOutpoint, result: true },
+    ]);
+    expect(chain.maybeInputsSeen.applyInputsSeenChecklist).toHaveBeenCalledWith([
+      { value: senderOutpoint, result: true },
+      { value: otherOutpoint, result: false },
+    ]);
+    expect(chain.outputsUnknown.applyOutputsOwnedChecklist).toHaveBeenCalledWith([
+      { value: receiverScript, result: true },
+      { value: senderChangeScript, result: false },
+    ]);
+    // The synchronous callback API is not used at all.
+    expect(chain.unchecked.checkBroadcastSuitability).not.toHaveBeenCalled();
+  });
+
+  it('hands canBroadcast the extracted original transaction', async () => {
+    const chain = mockReceiverChain();
+    const canBroadcast = jest.fn(async () => true);
+
+    await runReceiverChecksAsync(chain.unchecked as any, makePersister() as any, {
+      ...receiverCallbacks,
+      canBroadcast,
+    });
+
+    expect(canBroadcast).toHaveBeenCalledWith(originalTx);
+    expect(chain.unchecked.applyBroadcastSuitability).toHaveBeenCalledWith(undefined, true);
+  });
+
+  it('checks checklist items one at a time', async () => {
+    const chain = mockReceiverChain();
+    let inFlight = 0;
+    let maxInFlight = 0;
+    const isInputOwned = async () => {
+      maxInFlight = Math.max(maxInFlight, ++inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 1));
+      inFlight--;
+      return false;
+    };
+
+    await runReceiverChecksAsync(chain.unchecked as any, makePersister() as any, {
+      ...receiverCallbacks,
+      isInputOwned,
+    });
+
+    expect(maxInFlight).toBe(1);
+  });
+
+  it('does not apply a step whose callback rejects', async () => {
+    const chain = mockReceiverChain();
+
+    await expect(
+      runReceiverChecksAsync(chain.unchecked as any, makePersister() as any, {
+        ...receiverCallbacks,
+        isInputOwned: async () => {
+          throw new Error('wallet offline');
+        },
+      })
+    ).rejects.toThrow('wallet offline');
+
+    expect(chain.calls).toEqual(['applyBroadcastSuitability']);
+    expect(chain.maybeInputsOwned.applyInputsOwnedChecklist).not.toHaveBeenCalled();
   });
 });
 
@@ -412,10 +593,7 @@ describe('payjoinReceive', () => {
     });
 
     // 10 sat/vB = 2500 sat/kwu (1 vB = 4 WU, 1 kwu = 1000 WU).
-    expect(chain.unchecked.checkBroadcastSuitability).toHaveBeenCalledWith(
-      2500n,
-      expect.anything()
-    );
+    expect(chain.unchecked.applyBroadcastSuitability).toHaveBeenCalledWith(2500n, true);
     // applyFeeRange takes sat/vB directly.
     expect(chain.wantsFeeRange.applyFeeRange).toHaveBeenCalledWith(10n, 50n);
     expect(result.psbt).toBe('final-psbt');
@@ -423,10 +601,42 @@ describe('payjoinReceive', () => {
     // No contribute callback: proposal accepted as-is via commitOutputs.
     expect(chain.calls).toContain('commitOutputs');
     expect(chain.calls).toContain('commitInputs');
-    // The signing callback is handed to finalizeProposal in the uniffi shape.
-    const [processArg] = chain.provisional.finalizeProposal.mock
-      .calls[0] as unknown as [{ callback: unknown }];
-    expect(processArg.callback).toBe(processPsbt);
+    // The PSBT to sign goes out to processPsbt and its result comes back.
+    expect(processPsbt).toHaveBeenCalledWith('psbt-to-sign');
+    expect(chain.provisional.finalizeSignedProposal).toHaveBeenCalledWith('psbt-to-sign');
+  });
+
+  it('awaits async callbacks and an async processPsbt', async () => {
+    const chain = mockReceiverChain();
+    const session = makeSession(() => ({
+      tag: 'Progress',
+      inner: { inner: chain.unchecked },
+    }));
+
+    const result = await payjoinReceive({
+      session,
+      address: 'addr',
+      directory: 'd',
+      ohttpKeys: {} as any,
+      ohttpRelay: 'r',
+      persister: makePersister() as any,
+      callbacks: {
+        canBroadcast: async () => true,
+        isInputOwned: async () => false,
+        isOutputKnown: async () => false,
+        isScriptOwned: async () => true,
+      },
+      processPsbt: async (psbt: string) => `signed:${psbt}`,
+      transport: okTransport,
+    });
+
+    expect(chain.provisional.finalizeSignedProposal).toHaveBeenCalledWith(
+      'signed:psbt-to-sign'
+    );
+    expect(chain.calls.indexOf('finalizeSignedProposal')).toBeGreaterThan(
+      chain.calls.indexOf('applyOutputsOwnedChecklist')
+    );
+    expect(result.psbt).toBe('final-psbt');
   });
 
   it('skips commitOutputs when contribute already returned a WantsInputs state', async () => {
